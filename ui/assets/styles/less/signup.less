@@ -1,0 +1,282 @@
+@charset "utf-8";
+/* CSS Document */
+
+.headline-font(@size)
+{
+  font-size: @size;
+  font-family: @headline-font;
+}
+@headline-font: 'Clarendon W01 Bold 692098';
+.button-font(@size){
+  font-family:'Futura W01 Bold';
+  font-size: @size;
+}
+.body-font(@size)
+{
+  font-size: @size;
+  font-family: 'Clarendon W01 Light 692104';
+}
+.animation(@props){
+  -webkit-animation: @props;
+  -moz-animation: @props;
+  animation: @props;
+}
+
+@easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/**********       BASE        **********/
+
+
+html{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: @lightColor;
+  
+  a { color: @highlightColor; text-decoration:none; font-size: 1em;}
+  a:visited { color:  @highlightColor }
+  a:hover { color:  @lightColor }
+  a:focus { outline: thin dotted; }
+  a:hover, a:active { outline: 0; }
+}
+
+body{
+  font-size: 1em; 
+  line-height: 1.4; 
+  .body-font(16px);
+  letter-spacing: .01rem;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  background: @darkColor;
+}
+
+.touch{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  position: relative;
+}
+
+/* ===== Primary Styles ========================================================
+   Author: Nick Jones / The Experiment
+   ========================================================================== */
+
+// .background{
+//   background: url('/ui/assets/images/olly.jpg') center center; 
+//   background-size: cover;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   opacity: .3;
+//   .transform(perspective(1000px) scale(1));
+//   @media (max-width: 1000px){
+//     .transition(1s,ease-in);
+//   }
+// }
+.content{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 4% 10%;
+   @media (max-width: 1000px){
+    padding: 7% 12%;
+  }
+}
+header{
+  width: 100%;
+  height: 100px;
+  text-align: center;
+}
+.tagline{
+  .body-font(2em);
+  line-height: 1em;
+  padding-bottom: 1em;
+  img{
+    position: relative;
+    top: -4px;
+    left: 10px;
+  }
+}
+
+h1,h2,h3,h4,h5{
+  font-family: @headline-font;
+  font-weight: 100;
+  line-height: .8em;
+  // margin: 30px 0;
+}
+h1{
+  font-size: 6em;
+  position: relative;
+  width: 50%;
+  margin-bottom: 77px;
+  top: 0;
+  opacity: 0;
+  .transform(translateY(40px));
+  .animation(fade-in 1s .4s forwards @easeOutBack);
+  @media (max-width: 1000px){
+    font-size: 5em;
+    .andson{
+      display: block;
+      float: left;
+    }
+  }
+}
+h2{
+ font-size: 2.5em; 
+ line-height: 1em;
+ top: 0;
+ position: relative;
+ opacity: 0;
+ .transform(translateY(40px));
+ .animation(fade-in 1s 1s forwards @easeOutBack);
+ @media (max-width: 1000px){
+    font-size: 3em;
+  }
+}
+h3{
+  font-size: 4em;
+  margin-bottom: 20px;
+}
+
+.logo{
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 80px;
+  opacity: 0;
+  top: 0;
+  .transform(translateY(40px));
+  .animation(fade-in 1s .2s forwards @easeOutBack);
+}
+
+p{
+  position: relative;
+  top: 0;
+  opacity: 0;
+  .transform(translateY(40px));
+  .animation(fade-in 1s .6s forwards @easeOutBack);
+  .body-font(1.3em);
+  width: 550px;
+  line-height: 1.5em;
+  @media (max-width: 1000px){
+    width: 100%;
+    font-size: 1.5em;
+  }
+}
+.founder-twitter{
+  path{
+    .transition(.2s,@easeOut);
+  }
+  &:hover{
+    path{
+      fill: @orange;
+    }
+  }
+}
+.twitter,
+.medium{
+  position: fixed;
+  right: 6.5%;
+  bottom: 100px;
+  path{
+    .transition(.2s,@easeOut);
+  }
+  &:hover{
+    path{
+      fill: @orange;
+    }
+  }
+}
+.twitter{
+  bottom: 180px;
+}
+.btn-signup-holder{
+  position: fixed;
+  right: 6%;
+  top: 6%;
+  margin-top: 50px;
+  z-index: 2000;
+}
+.btn-signup{
+  position: relative;
+  padding: 14px 20px;
+  background: @darkColor;
+  .button-font(1em);
+  color: @orange;
+  border: 4px solid @orange;
+  font-size: .8em;
+  letter-spacing: .2em;
+  line-height: .8em;
+  opacity: 0;
+  .transition(.2s, @easeOut);
+  .animation(fade-in 1s 2s forwards ease-in-out); 
+  &:hover{
+    border: 4px solid @orange;
+    background: @orange;
+    color: @darkColor;
+  }
+}
+
+.timeline{
+  position: absolute;
+  margin: auto;
+  width: 80%;
+  height: 30px;
+  background: @orange;
+}
+.bar{
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.age{
+  position: absolute;
+}
+.slider{
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  &:hover{
+    opacity: .5;
+  }
+}
+.you-slider{
+  width: 200px;
+  height: 100%;
+  .age{
+    right: 0;
+  }
+  .bar{
+    background: @lightColor50;
+  }
+}
+.son-slider{
+  width: 100px;
+  height: 100%;
+  right: 0;
+  display: none;
+  .bar{
+    background: @lightColor50;
+  }
+  &.active{
+    display: block;
+  }
+}
+

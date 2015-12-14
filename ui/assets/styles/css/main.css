@@ -1,0 +1,497 @@
+@charset "utf-8";
+.viewInTransition {
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-delay: 0.5s;
+  -moz-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
+  -ms-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -ms-transition-timing-function: linear;
+  transition-transition-timing-function: linear;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
+}
+.hideBackface {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.box-sizing {
+  -o-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.centerY {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.centerX {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.centerXY {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.clearAnimation {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-animation: none;
+  animation: none;
+}
+.clearAnimation {
+  -webkit-animation: none;
+  animation: none;
+}
+@-webkit-keyframes fade-in {
+  100% {
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    opacity: 1;
+  }
+}
+@-moz-keyframes fade-in {
+  100% {
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  100% {
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    transform: translateY(-10px);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    top: -20px;
+    opacity: 1;
+  }
+}
+/**********       EASING       **********/
+/* CSS Document */
+/**********       BASE        **********/
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: #fef5b9;
+}
+html a {
+  color: #ff7347;
+  text-decoration: none;
+  font-size: 1em;
+}
+html a:visited {
+  color: #ff7347;
+}
+html a:hover {
+  color: #fef5b9;
+}
+html a:focus {
+  outline: thin dotted;
+}
+html a:hover,
+html a:active {
+  outline: 0;
+}
+body {
+  font-size: 1em;
+  line-height: 1.4;
+  font-size: 16px;
+  font-family: 'Clarendon W01 Light 692104';
+  letter-spacing: .01rem;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  background: #43191d;
+}
+.touch {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  position: relative;
+}
+/* ===== Primary Styles ========================================================
+   Author: Nick Jones / The Experiment
+   ========================================================================== */
+.content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 4% 10%;
+}
+@media (max-width: 1000px) {
+  .content {
+    padding: 7% 12%;
+  }
+}
+header {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+}
+.tagline {
+  font-size: 2em;
+  font-family: 'Clarendon W01 Light 692104';
+  line-height: 1em;
+  padding-bottom: 1em;
+}
+.tagline img {
+  position: relative;
+  top: -4px;
+  left: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Clarendon W01 Bold 692098';
+  font-weight: 100;
+  line-height: .8em;
+}
+h1 {
+  font-size: 6em;
+  position: relative;
+  width: 50%;
+  margin-bottom: 77px;
+  top: 0;
+  opacity: 0;
+  -webkit-transform: translateY(40px);
+  -moz-transform: translateY(40px);
+  -ms-transform: translateY(40px);
+  -o-transform: translateY(40px);
+  transform: translateY(40px);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-animation: fade-in 1s 0.4s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-animation: fade-in 1s 0.4s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fade-in 1s 0.4s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 5em;
+  }
+  h1 .andson {
+    display: block;
+    float: left;
+  }
+}
+h2 {
+  font-size: 2.5em;
+  line-height: 1em;
+  top: 0;
+  position: relative;
+  opacity: 0;
+  -webkit-transform: translateY(40px);
+  -moz-transform: translateY(40px);
+  -ms-transform: translateY(40px);
+  -o-transform: translateY(40px);
+  transform: translateY(40px);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@media (max-width: 1000px) {
+  h2 {
+    font-size: 3em;
+  }
+}
+h3 {
+  font-size: 4em;
+  margin-bottom: 20px;
+}
+.logo {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 80px;
+  opacity: 0;
+  top: 0;
+  -webkit-transform: translateY(40px);
+  -moz-transform: translateY(40px);
+  -ms-transform: translateY(40px);
+  -o-transform: translateY(40px);
+  transform: translateY(40px);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-animation: fade-in 1s 0.2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-animation: fade-in 1s 0.2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fade-in 1s 0.2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+p {
+  position: relative;
+  top: 0;
+  opacity: 0;
+  -webkit-transform: translateY(40px);
+  -moz-transform: translateY(40px);
+  -ms-transform: translateY(40px);
+  -o-transform: translateY(40px);
+  transform: translateY(40px);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-animation: fade-in 1s 0.6s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-animation: fade-in 1s 0.6s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fade-in 1s 0.6s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 1.3em;
+  font-family: 'Clarendon W01 Light 692104';
+  width: 550px;
+  line-height: 1.5em;
+}
+@media (max-width: 1000px) {
+  p {
+    width: 100%;
+    font-size: 1.5em;
+  }
+}
+.founder-twitter path {
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -ms-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+}
+.founder-twitter:hover path {
+  fill: #ff7347;
+}
+.twitter,
+.medium {
+  position: fixed;
+  right: 6.5%;
+  bottom: 100px;
+}
+.twitter path,
+.medium path {
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -ms-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+}
+.twitter:hover path,
+.medium:hover path {
+  fill: #ff7347;
+}
+.twitter {
+  bottom: 180px;
+}
+.btn-signup-holder {
+  position: fixed;
+  right: 6%;
+  top: 6%;
+  margin-top: 50px;
+  z-index: 2000;
+}
+.btn-signup {
+  position: relative;
+  padding: 14px 20px;
+  background: #43191d;
+  font-family: 'Futura W01 Bold';
+  font-size: 1em;
+  color: #ff7347;
+  border: 4px solid #ff7347;
+  font-size: .8em;
+  letter-spacing: .2em;
+  line-height: .8em;
+  opacity: 0;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -ms-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+  -webkit-animation: fade-in 1s 2s forwards ease-in-out;
+  -moz-animation: fade-in 1s 2s forwards ease-in-out;
+  animation: fade-in 1s 2s forwards ease-in-out;
+}
+.btn-signup:hover {
+  border: 4px solid #ff7347;
+  background: #ff7347;
+  color: #43191d;
+}
+.timeline {
+  position: absolute;
+  margin: auto;
+  width: 80%;
+  height: 30px;
+  background: #ff7347;
+}
+.bar {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.age {
+  position: absolute;
+}
+.slider {
+  position: absolute;
+  width: 100px;
+  height: 100%;
+}
+.slider:hover {
+  opacity: .5;
+}
+.you-slider {
+  width: 200px;
+  height: 100%;
+}
+.you-slider .age {
+  right: 0;
+}
+.you-slider .bar {
+  background: rgba(223, 236, 230, 0.5);
+}
+.son-slider {
+  width: 100px;
+  height: 100%;
+  right: 0;
+  display: none;
+}
+.son-slider .bar {
+  background: rgba(223, 236, 230, 0.5);
+}
+.son-slider.active {
+  display: block;
+}
