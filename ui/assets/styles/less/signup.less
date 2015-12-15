@@ -52,6 +52,9 @@ body{
   -webkit-overflow-scrolling: touch;
   position: relative;
   background: @darkColor;
+  @media (max-width: 700px){
+    .body-font(2vw);
+  }
 }
 
 .touch{
@@ -96,8 +99,8 @@ body{
   width: 100%;
   height: 100%;
   padding: 4% 10%;
-   @media (max-width: 1000px){
-    padding: 7% 12%;
+  @media (max-width: 700px){
+    padding: 7% 5%;
   }
 }
 header{
@@ -106,7 +109,7 @@ header{
   text-align: center;
 }
 .tagline{
-  .body-font(2.25vw);
+  .body-font(4.2em);
   line-height: 1em;
   padding-bottom: 1em;
   img{
@@ -220,20 +223,25 @@ p{
   top: 6%;
   margin-top: 50px;
   z-index: 2000;
+  @media screen and (max-width: 700px) {
+    right: 5%;
+  }
 }
 .btn-signup{
   position: relative;
   padding: 14px 20px;
   background: @darkColor;
-  .button-font(1em);
+  .button-font(.8em);
   color: @orange;
   border: 4px solid @red;
-  font-size: .8em;
   letter-spacing: .2em;
   line-height: .8em;
   opacity: 0;
   .transition(.2s, @easeOut);
   .animation(fade-in 1s 2s forwards ease-in-out); 
+  @media screen and (max-width: 700px) {
+    font-size: 1.2em;
+  }
   &:hover{
     border: 4px solid @orange;
     background: @orange;
@@ -247,6 +255,9 @@ p{
   width: 80%;
   height: 35px;
   border: 1px solid @red50;
+  @media screen and (max-width: 700px) {
+    width: 90%;
+  }
   .hashes{
     .hash{
       position: absolute;
@@ -263,7 +274,7 @@ p{
 }
 .age{
   position: absolute;
-  font-size: 2.2vw;
+  font-size: 2.2em;
 }
 .slider{
   position: absolute;
