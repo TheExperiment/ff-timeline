@@ -453,6 +453,8 @@ p {
   }
 }
 .btn-signup {
+  cursor: pointer;
+  display: inline-block;
   position: relative;
   padding: 14px 20px;
   background: #43191d;
@@ -501,7 +503,6 @@ p {
   margin: auto;
   width: 80%;
   height: 35px;
-  border: 1px solid #7B252A;
 }
 @media screen and (max-width: 700px) {
   .timeline {
@@ -514,6 +515,32 @@ p {
   top: 8px;
   padding-left: 10px;
   border-left: 1px solid #7B252A;
+}
+.timeline .sliders {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #7B252A;
+  opacity: 0;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -ms-transition-timing-function: linear;
+  transition-transition-timing-function: linear;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
 }
 .bar {
   width: 100%;
@@ -559,11 +586,30 @@ p {
   right: 0;
   top: -45px;
 }
-.you-slider.inactive .drag {
-  display: none;
-}
 .name {
   position: absolute;
+  font-size: 2.2rem;
+  border-bottom: 1px dotted #F1734C;
+  outline: none;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-transition-timing-function: ease-in-out;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
 }
 .your-name {
   top: 45px;
@@ -607,14 +653,6 @@ p {
 .son-slider .bar {
   background: #D74C36;
 }
-.son-slider.active {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-}
-.son-slider.inactive .drag {
-  display: none;
-}
 .window-slider {
   opacity: 0;
   width: 0;
@@ -639,9 +677,6 @@ p {
   -moz-transition-property: 'width';
   -ms-transition-property: 'width';
   transition-property: 'width';
-}
-.window-slider.active {
-  opacity: 1;
 }
 .window-slider .age {
   left: 100%;
@@ -669,4 +704,31 @@ p {
   right: 0;
   opacity: .5;
   width: 100%;
+}
+.show-timeline {
+  top: 150px;
+}
+.isBothNames .show-timeline {
+  display: none;
+}
+.isBothNames .sliders {
+  opacity: 1;
+}
+.isBothNames .name {
+  font-size: .8em;
+  border: none;
+}
+.isSonAge .son-slider {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+.isMovingYouAge .you-slider .drag {
+  display: none;
+}
+.isMovingSonAge .drag {
+  display: none;
+}
+.isWindow .window-slider {
+  opacity: 1;
 }

@@ -23,41 +23,43 @@
       <p class="tagline">Your window of time<br>together is <span class="window-years">brief.</span></p>
 
       <div class="timeline">
-        <div class="hashes">
-          <div class="hash small-text">0</div>
-          <div class="hash small-text">10</div>
-          <div class="hash small-text">20</div>
-          <div class="hash small-text">30</div>
-          <div class="hash small-text">40</div>
-          <div class="hash small-text">50</div>
-          <div class="hash small-text">60</div>
-          <div class="hash small-text">70</div>
-          <div class="hash small-text">80</div>
+        <div class="sliders">
+          <div class="hashes">
+            <div class="hash small-text">0</div>
+            <div class="hash small-text">10</div>
+            <div class="hash small-text">20</div>
+            <div class="hash small-text">30</div>
+            <div class="hash small-text">40</div>
+            <div class="hash small-text">50</div>
+            <div class="hash small-text">60</div>
+            <div class="hash small-text">70</div>
+            <div class="hash small-text">80</div>
+          </div>
+          <div class="slider you-slider">
+            <div class="bar"></div>
+            <div class="age">Your Age</div>
+            <div class="drag small-text blink">Drag ></div>
+          </div>
+          <div class="slider son-slider">
+            <div class="age">Son’s Age</div>
+            <div class="bar"></div>
+            <div class="drag small-text blink">< Drag</div>
+          </div>
+          <div class="window-slider">
+            <div class="age son-age">18</div>
+            <div class="age your-age">50</div>
+            <div class="bar"></div>
+          </div>
         </div>
-        <div class="slider you-slider">
-          <div class="bar"></div>
-          <div class="age">Your Age</div>
-          <div class="drag small-text blink">Drag ></div>
-        </div>
-        <div class="slider son-slider">
-          <div class="age">Son’s Age</div>
-          <div class="bar"></div>
-          <div class="drag small-text blink">< Drag</div>
-        </div>
-        <div class="window-slider">
-          <div class="age son-age">18</div>
-          <div class="age your-age">50</div>
-          <div class="bar"></div>
-        </div>
-        <div class="name son-name small-text">Son’s Name</div>
-        <div class="name your-name small-text">Your Name</div>
+
+        <div class="name son-name" contenteditable>Son’s Name</div>
+        <div class="name your-name" contenteditable>Your Name</div>
+        <div class="btn-signup show-timeline">SHOW TIMELINE</button>
       </div>
-      <footer>
-  	    <div class="btn-signup-holder">
-  	    	<div class="btn-signup signup">SIGN UP</div>
-  	    	<!-- <div class="total">Total Fathers:<br><span class="count">{{ $totalUsersCount }}</span></div> -->
-  	    </div>
-  	  </footer>
+	    <div class="btn-signup-holder">
+	    	<div class="btn-signup signup">SIGN UP</div>
+	    	<!-- <div class="total">Total Fathers:<br><span class="count">{{ $totalUsersCount }}</span></div> -->
+	    </div>
     </div>
   
 	<script>

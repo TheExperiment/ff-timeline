@@ -228,6 +228,8 @@ p{
   }
 }
 .btn-signup{
+  cursor: pointer;
+  display: inline-block;
   position: relative;
   padding: 14px 20px;
   background: @darkColor;
@@ -254,7 +256,6 @@ p{
   margin: auto;
   width: 80%;
   height: 35px;
-  border: 1px solid @red50;
   @media screen and (max-width: 700px) {
     width: 90%;
   }
@@ -266,6 +267,14 @@ p{
       padding-left: 10px;
       border-left: 1px solid @red50;
     }
+  }
+  .sliders{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid @red50;
+    opacity: 0;
+    .transition(.5s);
   }
 }
 .bar{
@@ -311,14 +320,13 @@ p{
     right: 0;
     top: -45px;
   }
-  &.inactive{
-    .drag{
-      display: none;
-    }
-  }
 }
 .name{
   position: absolute;
+  font-size: 2.2rem;
+  border-bottom: 1px dotted @orange;
+  outline: none;
+  .transition(.3s,ease-in-out);
 }
 .your-name{
   top: 45px;
@@ -343,16 +351,6 @@ p{
   .bar{
     background: @orangeRed;
   }
-  &.active{
-    display: block;
-    opacity: 1;
-    visibility: visible;
-  }
-  &.inactive{
-    .drag{
-      display: none;
-    }
-  }
 }
 .window-slider{
   opacity: 0;
@@ -360,9 +358,6 @@ p{
   height: 120px;
   top: -45px;
   .transition(.6s, ease-out, 'width');
-  &.active{
-    opacity: 1;
-  }
   .age{
     left: 100%;
     margin-left: 16px;
@@ -392,4 +387,48 @@ p{
     width: 100%;
   }
 }
-
+.show-timeline{
+  top: 150px;
+}
+.isYouName{
+  
+}
+.isSonName{
+  
+}
+.isBothNames{
+  .show-timeline{
+    display: none;
+  }
+  .sliders{
+    opacity: 1;
+  }
+  .name{
+    font-size: .8em;
+    border: none;
+  }
+}
+.isSonAge{
+  .son-slider{
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+.isMovingYouAge{
+  .you-slider{
+    .drag{
+      display: none;
+    }
+  }
+}
+.isMovingSonAge{
+  .drag{
+    display: none;
+  }
+}
+.isWindow{
+  .window-slider{
+    opacity: 1;
+  }
+}

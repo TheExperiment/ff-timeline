@@ -6,6 +6,12 @@ $(function() {
 	WIN.on('resize',placeHashes)
 	$('.slider').on('mousedown',startDrag)
 	$('.slider').on('touchstart',startDrag)
+	$('.show-timeline').on('click',function(){
+		$('.content').addClass('isBothNames')
+	})
+	$('.name').on('click',function(){
+		$(this).text('.')
+	})
 	function startDrag (e) {
 		e.preventDefault();
 		slider = $(this)
@@ -20,11 +26,11 @@ $(function() {
 			x = e.pageX
 		}
 		if(slider.hasClass('you-slider')){
-			$('.you-slider').addClass("inactive");
+			$('.content').addClass("isMovingYouAge");
 			var width = x - slider.offset().left;
 		}else{
-			$('.son-slider').addClass("inactive");
-			$('.window-slider').addClass('active')
+			$('.content').addClass("isMovingSonAge");
+			$('.content').addClass('isWindow')
 			var width = (WIN.width() - x - WIN.width()/10) - (WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width()));
 			setWindowWidth();
 		}
@@ -39,7 +45,7 @@ $(function() {
 		WIN.off('mousemove')
 		WIN.off('touchmove')
 		if(slider.hasClass('you-slider')){
-			$('.son-slider').addClass("active");
+			$('.content').addClass("isSonAge");
 			$('.son-slider').css({
 				right: WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width())
 			})
