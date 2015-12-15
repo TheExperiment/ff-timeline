@@ -90,6 +90,10 @@
   animation: fadein @time ease-out @delay forwards;
 }
 
+.blink {
+  animation: blink 1s infinite;
+  -webkit-animation: blink 1s infinite;
+}
 
 .clearAnimation{
   .transform(translate3d(0,0,0));
@@ -138,7 +142,29 @@
 @keyframes fade-in{
   100%{
     .transform(translateY(-10px));
-    top: -20px;
     opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: .2;
+  }
+  50% {
+    opacity: .9;
+  }
+  100%{
+    opacity: .2;
+  }
+}
+@-webkit-keyframes blink {
+  0% {
+    opacity: .2;
+  }
+  50% {
+    opacity: .9;
+  }
+  100%{
+    opacity: .2;
   }
 }
