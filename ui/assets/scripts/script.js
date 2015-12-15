@@ -17,9 +17,9 @@ $(function() {
 				var width = (WIN.width() - e.pageX - WIN.width()/10) - (WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width()));
 				setWindowWidth();
 			}
-			slider.find($('.age')).html(Math.floor(80*(width/$('.timeline').width())));
+			slider.find($('.age')).html(Math.max(0,Math.floor(80*(width/$('.timeline').width()))));
 			slider.css({
-				width: Math.min($('.timeline').width(),width)
+				width: Math.max(5,Math.min($('.timeline').width(),width))
 			})
 			WIN.on('mouseup',function(){
 				WIN.off('mousemove')
@@ -30,14 +30,14 @@ $(function() {
 					})
 				}else{
 					$('.window-years').html((18-Number($('.son-slider').find($('.age')).text()))+' years.')
-					$('.window-slider').find($('.bar')).addClass('blink')
+					$('.window-slider').find($('.bar')).addClass('blink');
 					setWindowWidth();
 				}
 			})
 		})
 	})
 	function setWindowWidth(){
-		$('.window-slider').find($('.your-age')).html(18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text()))
+		$('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
 		$('.window-slider').css({
 			width: $('.timeline').width()*((18-$('.son-slider').find($('.age')).text())/80),
 			left: $('.you-slider').width()
