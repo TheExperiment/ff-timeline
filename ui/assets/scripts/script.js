@@ -17,6 +17,8 @@ $(function() {
 		slider = $(this)
 		WIN.on('mousemove',onMove)
 		WIN.on('touchmove',onMove)
+		WIN.on('mouseup',onRelease)
+		WIN.on('touchend',onRelease)
 	}
 	function onMove (e) {
 		var x;
@@ -38,12 +40,13 @@ $(function() {
 		slider.css({
 			width: Math.max(5,Math.min($('.timeline').width(),width))
 		})
-		WIN.on('mouseup',onRelease)
-		WIN.on('touchend',onRelease)
 	}
 	function onRelease (e) {
+		console.log('release')
 		WIN.off('mousemove')
 		WIN.off('touchmove')
+		WIN.off('mouseup')
+		WIN.off('touchend')
 		if(slider.hasClass('you-slider')){
 			$('.content').addClass("isSonAge");
 			$('.son-slider').css({
