@@ -4,8 +4,22 @@ var resultingData;
 var WIN = $(window);
 var DOC = $(document);
 var slider;
+var colors = ['red','orange']
+color = 0;
 $(function() {
 
+	setInterval(function(){
+		color = !color
+		$('.particles').append('<div class="particle"></div>')
+		$('.particle').eq($('.particle').length-100).remove();
+		$('.particle').eq($('.particle').length-1).css({
+			'-webkit-transform': 'translate('+(Math.random()*(WIN.width()/4)-(WIN.width()/4)/2)+'px,'+(Math.random()*(WIN.height()/4)-(WIN.height()/4)/2)+'px)',
+			background: colors[0]
+		})
+		$('.particles').css({
+			top: "+=.2px"
+		})
+	},20)
 	if(window.location.hash) {
 	  var timelineId = window.location.hash.split('#')[1];;
 	  placeHashes()
@@ -20,6 +34,10 @@ $(function() {
 		$('.slider').on('touchstart',startDrag)
 		var youTimeout;
 		var sonTimeout;
+		$('.your-name').find('span').on('keydown',function(){
+			$('.content').addClass('isTyped')
+			resetField($(this))
+		})
 		$('.your-name').on('keyup',function(){
 			clearTimeout(youTimeout);
 			youTimeout = setTimeout(function(){
@@ -44,17 +62,28 @@ $(function() {
 				//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
 			}
 		})
-		$('.name').on('click',function(e){
-			var name = $(this).find('span')
-			name.html('.')
+		$('.your-name').find('span').focus();
+		$('.name').find('span').on('click',function(e){
+			resetField()
+			$('.content').addClass('isTyped')
 		})
 		$('.son-name').find('span').on('focus',function(){
 			var name = $(this)
 			setTimeout(function(){
 				name.prop('selectionStart', 0)
-				name.text('.')
+				resetField(name)
 			},300)
 		})
+		function resetField(el){
+			if(el.text() == 'What is your name?'){
+				el.html('.')
+			}
+			console.log(el.text())
+			if(el.text() == 'What did you name your son?'){
+				el.html('.')
+			}
+			
+		}
 		function startDrag (e) {
 			e.preventDefault();
 			slider = $(this)
@@ -137,3 +166,72 @@ $(function() {
 		}
 	}
 })
+
+// // particles
+// var system;
+
+// function setup() {
+//   createCanvas(window.innerWidth, window.innerHeight);
+//   system = new ParticleSystem(createVector(width/2, height/2));
+// }
+
+// function draw() {
+//   background(67,25,29);
+//   system.addParticle();
+//   system.run();
+// }
+
+// // A simple Particle class
+// var Particle = function(position) {
+//   this.acceleration = createVector(0, 0.05);
+//   this.velocity = createVector(random(-1, 1), random(-1, 1));
+//   this.position = position.copy();
+//   this.lifespan = 25.0;
+// };
+
+// Particle.prototype.run = function() {
+//   this.update();
+//   this.display();
+// };
+
+// // Method to update position
+// Particle.prototype.update = function(){
+//   this.velocity.add(this.acceleration);
+//   this.position.add(this.velocity);
+//   this.lifespan -= 2;
+// };
+
+// // Method to display
+// Particle.prototype.display = function() {
+// 	strokeWeight(0)
+//   fill(189,33,50, this.lifespan);
+//   ellipse(this.position.x, this.position.y, 222, 222);
+// };
+
+// // Is the particle still useful?
+// Particle.prototype.isDead = function(){
+//   if (this.lifespan < 0) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// };
+
+// var ParticleSystem = function(position) {
+//   this.origin = position.copy();
+//   this.particles = [];
+// };
+
+// ParticleSystem.prototype.addParticle = function() {
+//   this.particles.push(new Particle(this.origin));
+// };
+
+// ParticleSystem.prototype.run = function() {
+//   for (var i = this.particles.length-1; i >= 0; i--) {
+//     var p = this.particles[i];
+//     p.run();
+//     if (p.isDead()) {
+//       this.particles.splice(i, 1);
+//     }
+//   }
+// };
