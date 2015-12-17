@@ -3,7 +3,8 @@
   var timeline = Parse.Object.extend("timeline");
 
   var featureObjects = []
-  function saveFeatures() {
+  function saveUserObj() {
+      console.log(userObj);
       var obj = this
       var f = new timeline()
       f.set("index", 1)

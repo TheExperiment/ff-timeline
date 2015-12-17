@@ -1,23 +1,34 @@
 var slider;
-$(function() {
+var userObj = {};
+
+// $(function() {
 	var WIN = $(window);
 	var DOC = $(document);
+	
 	placeHashes()
 	WIN.on('resize',placeHashes)
+	
 	$('.slider').on('mousedown',startDrag)
 	$('.slider').on('touchstart',startDrag)
+
 	$('.show-timeline').on('click',function(){
 		$('.content').addClass('isBothNames')
+		userObj.sonName = $('.son-name').text();
+		userObj.dadName = $('.your-name').text();
 	})
+
 	$('.name').on('click',function(){
 		$(this).text('.')
 	})
+
+
 	function startDrag (e) {
 		e.preventDefault();
 		slider = $(this)
 		WIN.on('mousemove',onMove)
 		WIN.on('touchmove',onMove)
 	}
+
 	function onMove (e) {
 		var x;
 		if(e.type == 'touchmove'){
@@ -41,27 +52,47 @@ $(function() {
 		WIN.on('mouseup',onRelease)
 		WIN.on('touchend',onRelease)
 	}
+
 	function onRelease (e) {
+		
+
 		WIN.off('mousemove')
 		WIN.off('touchmove')
 		if(slider.hasClass('you-slider')){
+			userObj.dadAge = $('.you-slider .age').text();
 			$('.content').addClass("isSonAge");
 			$('.son-slider').css({
 				right: WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width())
 			})
 		}else{
+			if($('.window-slider .bar').is('.blink')){
+				console.log('true')
+				return;
+			}
+			userObj.sonAge = $('.son-slider .age').text();
 			$('.window-years').html((18-Number($('.son-slider').find($('.age')).text()))+' years.')
 			$('.window-slider').find($('.bar')).addClass('blink');
-			setWindowWidth();
-		}
+			// e.stopPropagation();
+
+			console.log('helo')
+		}		
 	}
+
 	function setWindowWidth(){
 		$('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
+
+		userObj.sonAge = $('.son-slider.age').text();
+		// saveUserObj();
+
 		$('.window-slider').css({
 			width: $('.timeline').width()*((18-$('.son-slider').find($('.age')).text())/80),
 			left: $('.you-slider').width()
 		});
+
+			console.log('guk')
+		
 	}
+
 	function placeHashes(){
 		for (var i = $('.hash').length - 1; i >= 0; i--) {
 			$('.hash').eq(i).css({
@@ -69,4 +100,4 @@ $(function() {
 			})
 		};
 	}
-})
+// })
