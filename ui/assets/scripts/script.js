@@ -6,11 +6,40 @@ $(function() {
 	WIN.on('resize',placeHashes)
 	$('.slider').on('mousedown',startDrag)
 	$('.slider').on('touchstart',startDrag)
-	$('.show-timeline').on('click',function(){
-		$('.content').addClass('isBothNames')
+	var youTimeout;
+	var sonTimeout;
+	$('.your-name').on('keyup',function(){
+		clearTimeout(youTimeout);
+		youTimeout = setTimeout(function(){
+			$('.content').addClass('isYouName')
+		},500)
 	})
-	$('.name').on('click',function(){
-		$(this).text('.')
+	$('.son-name').on('keypress',function(){
+		clearTimeout(sonTimeout);
+		sonTimeout = setTimeout(function(){
+			$('.content').addClass('isSonName')
+		},500)
+	})
+	$('.continue').on('click',function(){
+		if(!$('.content').hasClass('isYouName')){
+			$('.content').addClass('isYouName')
+		}else if(!$('.content').hasClass('isBothNames')){
+			$('.content').addClass('isBothNames')
+			$('.tagline').html('How Many Years Have<br> You Been On Earth?')
+		}else{
+			//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
+		}
+	})
+	$('.name').on('click',function(e){
+		var name = $(this).find('span')
+		name.html('.')
+	})
+	$('.son-name').find('span').on('focus',function(){
+		var name = $(this)
+		setTimeout(function(){
+			name.prop('selectionStart', 0)
+			name.text('.')
+		},300)
 	})
 	function startDrag (e) {
 		e.preventDefault();
@@ -48,12 +77,13 @@ $(function() {
 		WIN.off('mouseup')
 		WIN.off('touchend')
 		if(slider.hasClass('you-slider')){
+			$('.tagline').html('How Many Years Have<br> You Been On Earth <span class="window-years">Together?</span>')
 			$('.content').addClass("isSonAge");
 			$('.son-slider').css({
 				right: WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width())
 			})
 		}else{
-			$('.window-years').html((18-Number($('.son-slider').find($('.age')).text()))+' years.')
+			$('.tagline').html('Your Window of Time<br>Together is <span class="window-years">' + (18-Number($('.son-slider').find($('.age')).text()))+' years.</span>')
 			$('.window-slider').find($('.bar')).addClass('blink');
 			setWindowWidth();
 		}

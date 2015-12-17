@@ -239,12 +239,13 @@ p{
   letter-spacing: .2em;
   line-height: .8em;
   opacity: 0;
-  .transition(.2s, @easeOut);
-  .animation(fade-in 1s 2s forwards ease-in-out); 
+  .transition(.5s, @easeOut);
+  // .animation(fade-in 1s 2s forwards ease-in-out); 
   @media screen and (max-width: 700px) {
     font-size: 1.2em;
   }
   &:hover{
+    .transition(.2s, @easeOut);
     border: 4px solid @orange;
     background: @orange;
     color: @darkColor;
@@ -327,14 +328,32 @@ p{
   position: absolute;
   font-size: 2.2rem;
   border-bottom: 1px dotted @orange;
-  outline: none;
   .transition(.3s,ease-in-out);
+  span{
+    outline: none;
+    &:focus{
+      + label{
+        opacity: 1;
+      }
+    }
+  }
+  label{
+    position: absolute;
+    font-size: .8rem;
+    top: -15px;
+    left: 0;
+    width: 200px;
+    color: @orange;
+    opacity: 0;
+  }
+
 }
 .your-name{
-  top: 45px;
+  top: -30px;
 }
 .son-name{
-  top: -30px;
+  top: 44px;
+  opacity: 0;
 }
 .son-slider{
   width: 100px;
@@ -400,19 +419,21 @@ p{
     width: 100%;
   }
 }
-.show-timeline{
+.continue{
   top: 150px;
+  opacity: 0;
 }
 .isYouName{
-  
+  .son-name{
+    opacity: 1;
+  }
 }
 .isSonName{
-  
+  .continue{
+    opacity: 1;
+  }
 }
 .isBothNames{
-  .show-timeline{
-    display: none;
-  }
   .sliders{
     opacity: 1;
   }
