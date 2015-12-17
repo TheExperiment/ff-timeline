@@ -9,8 +9,13 @@
     <!--Scripts-->
     <script src="ui/assets/scripts/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.4.min.js"></script>
+    <script type="text/javascript">
+      Parse.initialize("8WLSVyS5c0l6rzXHtpUGP9ecoDnJtTRtADmPr6QJ", "IMuqqwV87a5UvbmVEpobgnwiGrmFanoy8wuqcWID");
+    </script>
     <script type="text/javascript" src="ui/assets/scripts/get.js"></script>
     <script type="text/javascript" src="ui/assets/scripts/put.js"></script>
+    <script type="text/javascript" src="ui/assets/scripts/script.js"></script>
+
     <!--Styles-->
     <link rel="stylesheet" type="text/css" href="ui/assets/styles/css/main.css">
     <!--Fonts-->
@@ -74,14 +79,7 @@
 
 	</script>
   <!--Application-->
-  
-  <script type="text/javascript">
-    var stripeKey = '{{ getenv ( "STRIPE_API_KEY_PUBLISH" ) }}';
-  </script>
-  <script type="text/javascript" src="ui/assets/scripts/script.js"></script>
-  <script type="text/javascript">
-    Parse.initialize("8WLSVyS5c0l6rzXHtpUGP9ecoDnJtTRtADmPr6QJ", "IMuqqwV87a5UvbmVEpobgnwiGrmFanoy8wuqcWID");
-  </script>
+
 </body>
 
 </html>
