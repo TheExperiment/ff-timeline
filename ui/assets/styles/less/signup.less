@@ -246,8 +246,8 @@ p{
   }
   &:hover{
     .transition(.2s, @easeOut);
-    border: 4px solid @orange;
-    background: @orange;
+    // border: 4px solid @orange;
+    background: @red;
     color: @darkColor;
   }
 }
@@ -327,7 +327,8 @@ p{
 .name{
   position: absolute;
   font-size: 2.2rem;
-  border-bottom: 1px dotted @orange;
+  line-height: 1;
+  border-bottom: 1px solid @orangeRed;
   .transition(.3s,ease-in-out);
   span{
     outline: none;
@@ -339,17 +340,19 @@ p{
   }
   label{
     position: absolute;
-    font-size: .8rem;
-    top: -15px;
+    font-size: 1rem;
+    top: -20px;
     left: 0;
     width: 200px;
-    color: @orange;
+    color: @orangeRed;
     opacity: 0;
   }
 
 }
 .your-name{
   top: -30px;
+  opacity: 0;
+  .animation(fade-in 1s 1s forwards @easeOutBack);
 }
 .son-name{
   top: 44px;
