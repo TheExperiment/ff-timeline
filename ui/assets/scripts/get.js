@@ -18,6 +18,7 @@ function getTimeline(timelineId) {
 
 function setTimeline(resultingData) {
   console.log(resultingData.attributes)
+  $('.content').addClass('hash')
   $('.content').addClass('isYouName')
   $('.content').addClass('isSonName')
   $('.content').addClass('isBothNames')
@@ -29,7 +30,7 @@ function setTimeline(resultingData) {
   $('.son-slider .age').html(resultingData.attributes.son_age );
   $('.you-slider .age').html(resultingData.attributes.father_age );
 
-  $('.tagline').html('Your Window of Time<br>Together is <span class="window-years">' + (18 - resultingData.attributes.son_age )+' years.</span>')
+  $('.tagline').html(resultingData.attributes.father_name+' and '+resultingData.attributes.son_name+' have<br><span class="window-years">' + (18 - resultingData.attributes.son_age )+' more years together.</span>')
 
   var width = parseInt(resultingData.attributes.index) - $('.you-slider').offset().left;
 

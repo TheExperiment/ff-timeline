@@ -4,24 +4,36 @@ var resultingData;
 var WIN = $(window);
 var DOC = $(document);
 var slider;
-var colors = ['red','orange']
+var paused;
 color = 0;
 $(function() {
 
-	setInterval(function(){
-		color = !color
-		$('.particles').append('<div class="particle"></div>')
-		$('.particle').eq($('.particle').length-100).remove();
-		$('.particle').eq($('.particle').length-1).css({
-			'-webkit-transform': 'translate('+(Math.random()*(WIN.width()/4)-(WIN.width()/4)/2)+'px,'+(Math.random()*(WIN.height()/4)-(WIN.height()/4)/2)+'px)',
-			background: colors[0]
-		})
-		$('.particles').css({
-			top: "+=.2px"
-		})
+	var particleInterval = setInterval(function(){
+		if(!paused){
+			$('.particles').append('<div class="particle"></div>')
+			$('.particle').eq($('.particle').length-100).remove();
+			$('.particle').eq($('.particle').length-1).css({
+				'-webkit-transform': 'translate('+(Math.random()*(WIN.width()/4)-(WIN.width()/4)/2)+'px,'+(Math.random()*(WIN.height()/4)-(WIN.height()/2)/2)+'px)'
+			})
+			$('.particles').css({
+				top: "+=.05px"
+			})
+		}else{
+			// $('.particle').css({
+			// 	width: 10,
+			// 	height: 10
+			// })
+		}
 	},20)
+
+	WIN.on('keydown',function(){
+		paused = true;
+		setTimeout(function(){
+			paused = false;
+		},1000)
+	})
 	if(window.location.hash) {
-	  var timelineId = window.location.hash.split('#')[1];;
+	  var timelineId = window.location.hash.split('#')[1];
 	  placeHashes()
 	  WIN.on('resize',placeHashes)
 	  setWindowWidth();
@@ -34,7 +46,7 @@ $(function() {
 		$('.slider').on('touchstart',startDrag)
 		var youTimeout;
 		var sonTimeout;
-		$('.your-name').find('span').on('keydown',function(){
+		$('.your-name span').on('keydown',function(){
 			$('.content').addClass('isTyped')
 			resetField($(this))
 		})
@@ -44,30 +56,22 @@ $(function() {
 				$('.content').addClass('isYouName')
 			},500)
 		})
-		$('.son-name').on('keypress',function(){
+		$('.son-name').on('keypress',function(e){
+			if(e.keyCode == 13){
+				continueClick();
+			}
 			clearTimeout(sonTimeout);
 			sonTimeout = setTimeout(function(){
 				$('.content').addClass('isSonName')
 			},500)
 		})
-		$('.continue').on('click',function(){
-			if(!$('.content').hasClass('isYouName')){
-				$('.content').addClass('isYouName')
-			}else if(!$('.content').hasClass('isBothNames')){
-				$('.content').addClass('isBothNames')
-				userObj.sonName = $('.son-name span').text();
-				userObj.dadName = $('.your-name span').text();
-				changeTagline('How Many Years Have<br> You Been On Earth?')
-			}else{
-				//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
-			}
-		})
-		$('.your-name').find('span').focus();
-		$('.name').find('span').on('click',function(e){
+		$('.continue').on('click',continueClick)
+		$('.your-name span').focus();
+		$('.name span').on('click',function(e){
 			resetField()
 			$('.content').addClass('isTyped')
 		})
-		$('.son-name').find('span').on('focus',function(){
+		$('.son-name span').on('focus',function(){
 			var name = $(this)
 			setTimeout(function(){
 				name.prop('selectionStart', 0)
@@ -76,13 +80,25 @@ $(function() {
 		})
 		function resetField(el){
 			if(el.text() == 'What is your name?'){
-				el.html('.')
+				el.html('')
 			}
 			console.log(el.text())
 			if(el.text() == 'What did you name your son?'){
-				el.html('.')
+				el.html('')
 			}
 			
+		}
+		function continueClick(){
+			if(!$('.content').hasClass('isYouName')){
+				$('.content').addClass('isYouName')
+			}else if(!$('.content').hasClass('isBothNames')){
+				$('.content').addClass('isBothNames')
+				changeTagline('How many years have<br> you been on Earth?')
+				userObj.sonName = $('.son-name span').text();
+				userObj.dadName = $('.your-name span').text();
+			}else{
+				//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
+			}
 		}
 		function startDrag (e) {
 			e.preventDefault();
@@ -122,13 +138,13 @@ $(function() {
 			WIN.off('mouseup')
 			WIN.off('touchend')
 			if(slider.hasClass('you-slider')){
-				changeTagline('How Many Years Have<br> You Been On Earth <span class="window-years">Together?</span>')	
+				changeTagline('How many years have<br> you been on Earth <span class="window-years">with '+userObj.sonName+'?</span>')	
 				$('.content').addClass("isSonAge");
 				$('.son-slider').css({
 					right: WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width())
 				})
 			}else{
-				changeTagline('Your Window of Time<br>Together is <span class="window-years">' + (18-Number($('.son-slider').find($('.age')).text()))+' years.</span>')
+				changeTagline(userObj.dadName+' and '+userObj.sonName+' have<br><span class="window-years">' + (18-Number($('.son-slider').find($('.age')).text()))+' more years together.</span>')
 				$('.window-slider').find($('.bar')).addClass('blink');
 				userObj.dadAge = $('.you-slider .age').text();
 				userObj.sonAge = $('.son-slider .age').text();
@@ -138,7 +154,7 @@ $(function() {
 			}
 		}
 		function setWindowWidth(){
-			$('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
+			// $('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
 			$('.window-slider').css({
 				width: $('.timeline').width()*((18-$('.son-slider').find($('.age')).text())/80),
 				left: $('.you-slider').width()
