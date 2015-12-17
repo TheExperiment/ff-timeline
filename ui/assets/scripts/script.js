@@ -12,18 +12,6 @@ $(function() {
 	  WIN.on('resize',placeHashes)
 	  setWindowWidth();
 		getTimeline(timelineId);
-		// var sonAge;
-		// sonAge = parseInt(userObj.sonAge);
-		// console.log(window.resultingData.attributes)
-
-		// $('.content').addClass('isBothNames')
-		// $('.son-name span').text(userObj.sonName );
-		// $('.your-name span').text(userObj.dadName );		
-		
-
-
-		// changeTagline('Your Window of Time<br>Together is <span class="window-years">' + (18 - sonAge)+' years.</span>')
-		// $('.window-slider').find($('.bar')).addClass('blink');
 	}
 	else{
 		placeHashes()
@@ -89,6 +77,8 @@ $(function() {
 				$('.content').addClass("isMovingSonAge");
 				$('.content').addClass('isWindow')
 				var width = (WIN.width() - x - WIN.width()/10) - (WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width()));
+				userObj.index = x;
+				
 				setWindowWidth();
 			}
 			slider.find($('.age')).html(Math.max(0,Math.floor(80*(width/$('.timeline').width()))));

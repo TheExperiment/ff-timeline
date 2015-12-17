@@ -1,4 +1,4 @@
-  
+
   var featureData = window.featureData
   var timeline = Parse.Object.extend("timeline");
 
@@ -7,7 +7,7 @@
       console.log(userObj);
       var obj = this
       var f = new timeline()
-      f.set("index", 1)
+      f.set("index", userObj.index)
       f.set("father_name", userObj.dadName)
       f.set("son_name", userObj.sonName)
       f.set("son_age", userObj.sonAge)

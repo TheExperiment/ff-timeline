@@ -31,8 +31,14 @@ function setTimeline(resultingData) {
 
   $('.tagline').html('Your Window of Time<br>Together is <span class="window-years">' + (18 - resultingData.attributes.son_age )+' years.</span>')
 
-  $('.content').addClass("isSonAge");
+  var width = parseInt(resultingData.attributes.index) - $('.you-slider').offset().left;
 
+  $('.you-slider').css({
+    width: Math.max(5,Math.min($('.timeline').width(),width))
+  })
+
+
+  $('.content').addClass("isSonAge");
   $('.content').addClass("isSonAge");
   $('.son-slider').css({
     right: WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width())
