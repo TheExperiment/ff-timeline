@@ -1,34 +1,65 @@
 var slider;
 var userObj = {};
 
-// $(function() {
+var slider;
+$(function() {
 	var WIN = $(window);
 	var DOC = $(document);
-	
+
+	if(window.location.hash) {
+	  var timelineId = window.location.hash.split('#')[1];;
+		getTimeline(timelineId);
+	}
+
 	placeHashes()
 	WIN.on('resize',placeHashes)
-	
 	$('.slider').on('mousedown',startDrag)
 	$('.slider').on('touchstart',startDrag)
-
-	$('.show-timeline').on('click',function(){
-		$('.content').addClass('isBothNames')
-		userObj.sonName = $('.son-name').text();
-		userObj.dadName = $('.your-name').text();
+	var youTimeout;
+	var sonTimeout;
+	$('.your-name').on('keyup',function(){
+		clearTimeout(youTimeout);
+		youTimeout = setTimeout(function(){
+			$('.content').addClass('isYouName')
+		},500)
 	})
-
-	$('.name').on('click',function(){
-		$(this).text('.')
+	$('.son-name').on('keypress',function(){
+		clearTimeout(sonTimeout);
+		sonTimeout = setTimeout(function(){
+			$('.content').addClass('isSonName')
+		},500)
 	})
-
-
+	$('.continue').on('click',function(){
+		if(!$('.content').hasClass('isYouName')){
+			$('.content').addClass('isYouName')
+		}else if(!$('.content').hasClass('isBothNames')){
+			$('.content').addClass('isBothNames')
+			userObj.sonName = $('.son-name span').text();
+			userObj.dadName = $('.your-name span').text();
+			changeTagline('How Many Years Have<br> You Been On Earth?')
+		}else{
+			//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
+		}
+	})
+	$('.name').on('click',function(e){
+		var name = $(this).find('span')
+		name.html('.')
+	})
+	$('.son-name').find('span').on('focus',function(){
+		var name = $(this)
+		setTimeout(function(){
+			name.prop('selectionStart', 0)
+			name.text('.')
+		},300)
+	})
 	function startDrag (e) {
 		e.preventDefault();
 		slider = $(this)
 		WIN.on('mousemove',onMove)
 		WIN.on('touchmove',onMove)
+		WIN.on('mouseup',onRelease)
+		WIN.on('touchend',onRelease)
 	}
-
 	function onMove (e) {
 		var x;
 		if(e.type == 'touchmove'){
@@ -49,50 +80,49 @@ var userObj = {};
 		slider.css({
 			width: Math.max(5,Math.min($('.timeline').width(),width))
 		})
-		WIN.on('mouseup',onRelease)
-		WIN.on('touchend',onRelease)
 	}
-
 	function onRelease (e) {
-		
-
+		console.log('release')
 		WIN.off('mousemove')
 		WIN.off('touchmove')
+		WIN.off('mouseup')
+		WIN.off('touchend')
 		if(slider.hasClass('you-slider')){
-			userObj.dadAge = $('.you-slider .age').text();
+			changeTagline('How Many Years Have<br> You Been On Earth <span class="window-years">Together?</span>')	
 			$('.content').addClass("isSonAge");
 			$('.son-slider').css({
 				right: WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width())
 			})
 		}else{
-			if($('.window-slider .bar').is('.blink')){
-				console.log('true')
-				return;
-			}
-			userObj.sonAge = $('.son-slider .age').text();
-			$('.window-years').html((18-Number($('.son-slider').find($('.age')).text()))+' years.')
+			changeTagline('Your Window of Time<br>Together is <span class="window-years">' + (18-Number($('.son-slider').find($('.age')).text()))+' years.</span>')
 			$('.window-slider').find($('.bar')).addClass('blink');
-			// e.stopPropagation();
-
-			console.log('helo')
-		}		
+			userObj.dadAge = $('.you-slider .age').text();
+			userObj.sonAge = $('.son-slider .age').text();
+			// console.log(userObj)
+			saveTimeline();
+			setWindowWidth();
+		}
 	}
-
 	function setWindowWidth(){
 		$('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
-
-		userObj.sonAge = $('.son-slider.age').text();
-		// saveUserObj();
-
 		$('.window-slider').css({
 			width: $('.timeline').width()*((18-$('.son-slider').find($('.age')).text())/80),
 			left: $('.you-slider').width()
 		});
-
-			console.log('guk')
-		
 	}
-
+	function changeTagline (message) {
+		$('.tagline').css({
+			'-webkit-transition-duration':'1s',
+			'-webkit-filter':'blur(10px) opacity(10%)'
+		})
+		setTimeout(function(){
+			$('.tagline').html(message)
+			$('.tagline').css({
+				'-webkit-transition-duration':'1s',
+				'-webkit-filter':'blur(0px) opacity(100%)'
+			})
+		},1000)
+	}
 	function placeHashes(){
 		for (var i = $('.hash').length - 1; i >= 0; i--) {
 			$('.hash').eq(i).css({
@@ -100,4 +130,4 @@ var userObj = {};
 			})
 		};
 	}
-// })
+})

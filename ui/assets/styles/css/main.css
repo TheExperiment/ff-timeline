@@ -465,6 +465,32 @@ p {
   letter-spacing: .2em;
   line-height: .8em;
   opacity: 0;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+}
+@media screen and (max-width: 700px) {
+  .btn-signup {
+    font-size: 1.2em;
+  }
+}
+.btn-signup:hover {
   -webkit-transition-duration: 0.2s;
   -moz-transition-duration: 0.2s;
   -o-transition-duration: 0.2s;
@@ -484,18 +510,7 @@ p {
   -moz-transition-property: all;
   -ms-transition-property: all;
   transition-property: all;
-  -webkit-animation: fade-in 1s 2s forwards ease-in-out;
-  -moz-animation: fade-in 1s 2s forwards ease-in-out;
-  animation: fade-in 1s 2s forwards ease-in-out;
-}
-@media screen and (max-width: 700px) {
-  .btn-signup {
-    font-size: 1.2em;
-  }
-}
-.btn-signup:hover {
-  border: 4px solid #F1734C;
-  background: #F1734C;
+  background: #BD2132;
   color: #43191d;
 }
 .timeline {
@@ -549,6 +564,8 @@ p {
 .age {
   position: absolute;
   font-size: 2.2em;
+  z-index: 2;
+  color: #fef5b9;
 }
 .slider {
   position: absolute;
@@ -557,7 +574,7 @@ p {
   cursor: pointer;
 }
 .slider .age {
-  right: 17px;
+  right: 0px;
   width: 300px;
   text-align: right;
 }
@@ -566,31 +583,33 @@ p {
   opacity: 0;
   top: 7px;
   color: #43191d;
-  right: 10px;
+  right: 20px;
 }
 .you-slider {
   width: 25%;
   height: 100%;
 }
 .you-slider .age {
-  top: 35px;
+  right: -70px;
+  top: -25px;
+  width: 80px;
+  height: 80px;
+  border: 4px solid #F1734C;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: #43191d;
+  text-align: center;
+  padding-top: 10px;
 }
 .you-slider .bar {
   background: #F1734C;
 }
-.you-slider:after {
-  content: "";
-  height: 120px;
-  border-right: 1px solid #F1734C;
-  position: absolute;
-  right: 0;
-  top: -45px;
-}
 .name {
   position: absolute;
   font-size: 2.2rem;
-  border-bottom: 1px dotted #F1734C;
-  outline: none;
+  line-height: 1;
+  border-bottom: 1px solid #D74C36;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
@@ -611,11 +630,31 @@ p {
   -ms-transition-property: all;
   transition-property: all;
 }
+.name span {
+  outline: none;
+}
+.name span:focus + label {
+  opacity: 1;
+}
+.name label {
+  position: absolute;
+  font-size: 1rem;
+  top: -20px;
+  left: 0;
+  width: 200px;
+  color: #D74C36;
+  opacity: 0;
+}
 .your-name {
-  top: 45px;
+  top: -30px;
+  opacity: 0;
+  -webkit-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .son-name {
-  top: -30px;
+  top: 44px;
+  opacity: 0;
 }
 .son-slider {
   width: 100px;
@@ -645,13 +684,23 @@ p {
 }
 .son-slider .drag {
   right: auto;
-  left: 10px;
+  left: 18px;
 }
 .son-slider .age {
-  top: -54px;
+  left: -70px;
+  top: -25px;
+  width: 80px;
+  height: 80px;
+  border: 4px solid #fef5b9;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: #43191d;
+  text-align: center;
+  padding-top: 10px;
 }
 .son-slider .bar {
-  background: #D74C36;
+  background: #fef5b9;
 }
 .window-slider {
   opacity: 0;
@@ -687,7 +736,12 @@ p {
   top: -9px;
 }
 .window-slider .your-age {
-  top: 80px;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
 }
 .window-slider .bar {
   width: 100%;
@@ -705,11 +759,15 @@ p {
   opacity: .5;
   width: 100%;
 }
-.show-timeline {
+.continue {
   top: 150px;
+  opacity: 0;
 }
-.isBothNames .show-timeline {
-  display: none;
+.isYouName .son-name {
+  opacity: 1;
+}
+.isSonName .continue {
+  opacity: 1;
 }
 .isBothNames .sliders {
   opacity: 1;

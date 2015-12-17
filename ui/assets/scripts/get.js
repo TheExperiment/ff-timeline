@@ -1,10 +1,10 @@
 var timeline = Parse.Object.extend("timeline");
 var myId = 'JxkXQD8zBw' 
 
-function getData() {
+function getTimeline(timelineId) {
   var query = new Parse.Query(timeline);
 
-  query.get(myId, {
+  query.get(timelineId, {
     success: function(results) {
       window.resultingData = results
       console.log(resultingData.attributes)

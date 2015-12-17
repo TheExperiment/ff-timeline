@@ -26,6 +26,16 @@
 
       <div class="timeline">
         <div class="sliders">
+          <div class="slider you-slider">
+            <div class="bar"></div>
+            <div class="age">20</div>
+            <div class="drag small-text blink">Drag Your Age ></div>
+          </div>
+          <div class="slider son-slider">
+            <div class="age">4</div>
+            <div class="bar"></div>
+            <div class="drag small-text blink">< His Age</div>
+          </div>
           <div class="hashes">
             <div class="hash small-text">0</div>
             <div class="hash small-text">10</div>
@@ -37,26 +47,15 @@
             <div class="hash small-text">70</div>
             <div class="hash small-text">80</div>
           </div>
-          <div class="slider you-slider">
-            <div class="bar"></div>
-            <div class="age">Your Age</div>
-            <div class="drag small-text blink">Drag ></div>
-          </div>
-          <div class="slider son-slider">
-            <div class="age">Son’s Age</div>
-            <div class="bar"></div>
-            <div class="drag small-text blink">< Drag</div>
-          </div>
           <div class="window-slider">
             <div class="age son-age">18</div>
             <div class="age your-age">50</div>
             <div class="bar"></div>
           </div>
         </div>
-
-        <div class="name son-name" contenteditable>Son’s Name</div>
-        <div class="name your-name" contenteditable>Your Name</div>
-        <div class="btn-signup show-timeline">SHOW TIMELINE</button>
+        <div class="name your-name"><span contenteditable>What is your name?</span><label>Your Name</label></div>
+        <div class="name son-name"><span contenteditable>What did you name your son?</span><label>Your Son’s Name</label></div>
+        <div class="btn-signup continue">CONTINUE</button>
       </div>
 	    <div class="btn-signup-holder">
 	    	<div class="btn-signup signup">SIGN UP</div>
@@ -80,6 +79,9 @@
     var stripeKey = '{{ getenv ( "STRIPE_API_KEY_PUBLISH" ) }}';
   </script>
   <script type="text/javascript" src="ui/assets/scripts/script.js"></script>
+  <script type="text/javascript">
+    Parse.initialize("8WLSVyS5c0l6rzXHtpUGP9ecoDnJtTRtADmPr6QJ", "IMuqqwV87a5UvbmVEpobgnwiGrmFanoy8wuqcWID");
+  </script>
 </body>
 
 </html>
