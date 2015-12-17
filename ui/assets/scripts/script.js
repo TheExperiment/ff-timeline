@@ -25,7 +25,7 @@ $(function() {
 			$('.content').addClass('isYouName')
 		}else if(!$('.content').hasClass('isBothNames')){
 			$('.content').addClass('isBothNames')
-			$('.tagline').html('How Many Years Have<br> You Been On Earth?')
+			changeTagline('How Many Years Have<br> You Been On Earth?')
 		}else{
 			//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
 		}
@@ -77,13 +77,13 @@ $(function() {
 		WIN.off('mouseup')
 		WIN.off('touchend')
 		if(slider.hasClass('you-slider')){
-			$('.tagline').html('How Many Years Have<br> You Been On Earth <span class="window-years">Together?</span>')
+			changeTagline('How Many Years Have<br> You Been On Earth <span class="window-years">Together?</span>')	
 			$('.content').addClass("isSonAge");
 			$('.son-slider').css({
 				right: WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width())
 			})
 		}else{
-			$('.tagline').html('Your Window of Time<br>Together is <span class="window-years">' + (18-Number($('.son-slider').find($('.age')).text()))+' years.</span>')
+			changeTagline('Your Window of Time<br>Together is <span class="window-years">' + (18-Number($('.son-slider').find($('.age')).text()))+' years.</span>')
 			$('.window-slider').find($('.bar')).addClass('blink');
 			setWindowWidth();
 		}
@@ -94,6 +94,19 @@ $(function() {
 			width: $('.timeline').width()*((18-$('.son-slider').find($('.age')).text())/80),
 			left: $('.you-slider').width()
 		});
+	}
+	function changeTagline (message) {
+		$('.tagline').css({
+			'-webkit-transition-duration':'1s',
+			'-webkit-filter':'blur(10px) opacity(10%)'
+		})
+		setTimeout(function(){
+			$('.tagline').html(message)
+			$('.tagline').css({
+				'-webkit-transition-duration':'1s',
+				'-webkit-filter':'blur(0px) opacity(100%)'
+			})
+		},1000)
 	}
 	function placeHashes(){
 		for (var i = $('.hash').length - 1; i >= 0; i--) {
