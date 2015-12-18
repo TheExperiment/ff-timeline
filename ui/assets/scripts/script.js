@@ -95,7 +95,7 @@ $(function() {
 				$('.content').addClass('isYouName')
 			}else if(!$('.content').hasClass('isBothNames')){
 				$('.content').addClass('isBothNames')
-				changeTagline('How many years have<br> you been on Earth?')
+				changeTagline('How many years have you been on Earth?')
 				userObj.sonName = $('.son-name span').text();
 				userObj.dadName = $('.your-name span').text();
 			}else{
@@ -139,14 +139,14 @@ $(function() {
 			WIN.off('mouseup')
 			WIN.off('touchend')
 			if(slider.hasClass('you-slider')){
-				changeTagline('How many years have<br> you been on Earth <span class="window-years">with '+userObj.sonName+'?</span>')	
+				changeTagline('How many years have you been on Earth <span class="window-years">with '+userObj.sonName+'?</span>')	
 				$('.content').addClass("isSonAge");
 				$('.son-slider').css({
 					right: WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2
 				})
 			}else{
 				yearsLeft = (18-Number($('.son-slider').find($('.age')).text()));
-				changeTagline(userObj.dadName+' and '+userObj.sonName+' have<br><span class="window-years">' + yearsLeft +' more years together.</span>')
+				changeTagline(userObj.dadName+' and '+userObj.sonName+' have <span class="window-years">' + yearsLeft +' more years together.</span>')
 				$('.window-slider').find($('.bar')).addClass('blink');
 				userObj.dadAge = $('.you-slider .age').text();
 				userObj.sonAge = $('.son-slider .age').text();

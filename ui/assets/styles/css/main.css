@@ -97,11 +97,11 @@
 }
 @-webkit-keyframes fade-in {
   100% {
-    -webkit-transform: translateY(-10px);
-    -moz-transform: translateY(-10px);
-    -ms-transform: translateY(-10px);
-    -o-transform: translateY(-10px);
-    transform: translateY(-10px);
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    transform: translateY(0px);
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
@@ -112,11 +112,11 @@
 }
 @-moz-keyframes fade-in {
   100% {
-    -webkit-transform: translateY(-10px);
-    -moz-transform: translateY(-10px);
-    -ms-transform: translateY(-10px);
-    -o-transform: translateY(-10px);
-    transform: translateY(-10px);
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    transform: translateY(0px);
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
@@ -127,11 +127,11 @@
 }
 @keyframes fade-in {
   100% {
-    -webkit-transform: translateY(-10px);
-    -moz-transform: translateY(-10px);
-    -ms-transform: translateY(-10px);
-    -o-transform: translateY(-10px);
-    transform: translateY(-10px);
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    transform: translateY(0px);
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
@@ -264,6 +264,12 @@ header {
   font-family: 'Clarendon W01 Light 692104';
   line-height: 1em;
   padding-bottom: .5em;
+  width: 62%;
+}
+@media (max-width: 700px) {
+  .tagline {
+    width: 100%;
+  }
 }
 .tagline img {
   position: relative;
@@ -286,7 +292,7 @@ h1 {
   font-size: 6em;
   position: relative;
   width: 50%;
-  margin-bottom: 77px;
+  margin-bottom: 1em;
   top: 0;
   opacity: 0;
   -webkit-transform: translateY(10px);
@@ -303,7 +309,7 @@ h1 {
   -moz-animation: fade-in 1s 0.4s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: fade-in 1s 0.4s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-@media (max-width: 1000px) {
+@media (max-width: 700px) {
   h1 {
     font-size: 5em;
   }
@@ -314,7 +320,7 @@ h1 {
 }
 h2 {
   font-size: 1.2em;
-  line-height: 1em;
+  line-height: .6em;
   top: 0;
   position: relative;
   opacity: 0;
@@ -329,9 +335,9 @@ h2 {
   -o-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-@media (max-width: 1000px) {
+@media (max-width: 700px) {
   h2 {
-    font-size: 3em;
+    font-size: 2.5em;
   }
 }
 h3 {
@@ -340,8 +346,8 @@ h3 {
 }
 .logo {
   position: relative;
-  margin-top: 30px;
-  margin-bottom: 80px;
+  margin-top: 3em;
+  margin-bottom: 3em;
   opacity: 0;
   top: 0;
   -webkit-transform: translateY(10px);
@@ -379,7 +385,7 @@ p {
   font-family: 'Clarendon W01 Light 692104';
   line-height: 1.5em;
 }
-@media (max-width: 1000px) {
+@media (max-width: 700px) {
   p {
     width: 100%;
     font-size: 1.5em;
@@ -452,7 +458,7 @@ p {
   position: fixed;
   right: 10%;
   top: 6%;
-  margin-top: 50px;
+  margin-top: 2em;
   z-index: 2000;
 }
 @media screen and (max-width: 700px) {
@@ -527,18 +533,22 @@ p {
   position: absolute;
   margin: auto;
   width: 80%;
-  height: 35px;
+  height: 2em;
 }
 @media screen and (max-width: 700px) {
   .timeline {
     width: 90%;
   }
 }
+.timeline .hashes {
+  position: absolute;
+  left: -2px;
+}
 .timeline .hashes .hash {
   position: absolute;
   color: #BD2132;
-  top: 8px;
-  padding-left: 10px;
+  top: .5em;
+  padding-left: .5em;
   border-left: 1px solid #BD2132;
 }
 .timeline .sliders {
@@ -585,8 +595,17 @@ p {
 }
 .slider .age {
   right: 0px;
-  width: 300px;
+  top: -0.6em;
   text-align: right;
+  width: 2.15em;
+  height: 2.15em;
+  border: 0.15em solid #F1734C;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: #43191d;
+  text-align: center;
+  padding-top: .25em;
 }
 .slider .drag {
   position: absolute;
@@ -595,29 +614,24 @@ p {
   color: #F1734C;
   right: 40px;
 }
+@media (max-width: 700px) {
+  .slider .drag {
+    display: none;
+  }
+}
 .you-slider {
   width: 25%;
   height: 100%;
 }
 .you-slider .age {
   right: -1em;
-  top: -0.6em;
-  width: 2.15em;
-  height: 2.15em;
-  border: 4px solid #F1734C;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  background: #43191d;
-  text-align: center;
-  padding-top: .25em;
 }
 .you-slider .bar {
   background: #F1734C;
 }
 .name {
   position: absolute;
-  font-size: 2.2rem;
+  font-size: 3em;
   line-height: 1;
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
@@ -648,14 +662,19 @@ p {
   position: absolute;
   font-size: .8rem;
   letter-spacing: .05rem;
-  top: 40px;
+  top: 4em;
   left: 0;
   width: 200px;
   color: #F1734C;
   opacity: 0;
 }
+@media (max-width: 700px) {
+  .name label {
+    top: 2.5em;
+  }
+}
 .your-name {
-  top: -30px;
+  top: -1em;
   opacity: 0;
   -webkit-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   -moz-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -700,17 +719,8 @@ p {
   color: #fef5b9;
 }
 .son-slider .age {
-  left: -70px;
-  top: -25px;
-  width: 80px;
-  height: 80px;
-  border: 4px solid #fef5b9;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  background: #43191d;
-  text-align: center;
-  padding-top: 10px;
+  left: -2em;
+  border-color: #fef5b9;
 }
 .son-slider .bar {
   background: #fef5b9;
@@ -754,7 +764,7 @@ p {
   color: #BD2132;
 }
 .window-slider .son-age {
-  top: -9px;
+  top: -1em;
 }
 .window-slider .bar {
   width: 100%;
@@ -916,7 +926,6 @@ p {
   transition-property: all;
 }
 .isCountdown .tagline {
-  padding-bottom: 0;
   margin-bottom: .5em;
 }
 .isCountdown .signup {
@@ -965,6 +974,11 @@ p {
 .hash .drag {
   display: none;
 }
+@media (max-width: 700px) {
+  .hash {
+    display: none;
+  }
+}
 #clock {
   display: none;
   opacity: 0;
@@ -980,13 +994,14 @@ p {
   display: inline-block;
   margin-right: 6em;
   color: #F1734C;
-  margin-left: -10px;
+  margin-left: -0.5em;
   margin-top: 1em;
   margin-bottom: 0;
 }
 #clock .smalltext {
-  margin-left: 10px;
+  margin-left: .5em;
   color: #fef5b9;
+  font-size: 1.2em;
 }
 #clock span {
   font-size: 8em;
