@@ -328,9 +328,6 @@ h2 {
   -ms-backface-visibility: hidden;
   -o-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  -moz-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 @media (max-width: 1000px) {
   h2 {
@@ -920,6 +917,7 @@ p {
 }
 .isCountdown .tagline {
   padding-bottom: 0;
+  margin-bottom: .5em;
 }
 .isCountdown .signup {
   opacity: 1;
@@ -948,10 +946,15 @@ p {
   transition-property: all;
 }
 .isCountdown #clock {
+  display: block;
+  height: auto;
   pointer-events: auto;
-  -webkit-animation: fade-in 2s 2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  -moz-animation: fade-in 2s 2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: fade-in 2s 2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 1;
+}
+.isCountdown .fade-in {
+  -webkit-animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .hash .name {
   display: none;
@@ -963,8 +966,12 @@ p {
   display: none;
 }
 #clock {
+  display: none;
   opacity: 0;
   pointer-events: none;
+}
+#clock h2 {
+  opacity: 0;
 }
 #clock timeline {
   display: none;
@@ -973,6 +980,9 @@ p {
   display: inline-block;
   margin-right: 6em;
   color: #F1734C;
+  margin-left: -10px;
+  margin-top: 1em;
+  margin-bottom: 0;
 }
 #clock .smalltext {
   margin-left: 10px;
@@ -980,4 +990,5 @@ p {
 }
 #clock span {
   font-size: 8em;
+  line-height: 1;
 }

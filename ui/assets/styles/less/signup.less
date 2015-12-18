@@ -158,7 +158,7 @@ h2{
  position: relative;
  opacity: 0;
  .transform(translateY(10px));
- .animation(fade-in 1s 1s forwards @easeOutBack);
+ // .animation(fade-in 1s 1s forwards @easeOutBack);
  @media (max-width: 1000px){
     font-size: 3em;
   }
@@ -545,6 +545,7 @@ p{
   background: #1B0B0B;
   .tagline{
     padding-bottom: 0;
+    margin-bottom: .5em;
   }
   .signup{
     opacity: 1;
@@ -556,8 +557,13 @@ p{
     .transition(.5s);
   }
   #clock{
+    display: block;
+    height: auto;
     pointer-events: auto;
-    .animation(fade-in 2s 2s forwards @easeOutBack);
+    opacity: 1;
+  }
+  .fade-in{
+    .animation(fade-in 1s 0s forwards @easeOutBack);
   }
 }
 .hash{
@@ -572,8 +578,12 @@ p{
   }
 }
 #clock{
+  display: none;
   opacity: 0;
   pointer-events: none;
+  h2{
+    opacity: 0;
+  }
   timeline{
     display: none;
   }
@@ -581,6 +591,9 @@ p{
     display: inline-block;
     margin-right: 6em;
     color: @orange;
+    margin-left: -10px;
+    margin-top: 1em;
+    margin-bottom: 0;
   }
   .smalltext{
     margin-left: 10px;
@@ -588,5 +601,6 @@ p{
   }
   span{
     font-size: 8em;
+    line-height: 1;
   }
 }

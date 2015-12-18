@@ -85,7 +85,6 @@ $(function() {
 			if(el.text() == 'What is your name?'){
 				el.html('')
 			}
-			console.log(el.text())
 			if(el.text() == 'What did you name your son?'){
 				el.html('')
 			}
@@ -205,27 +204,53 @@ function getTimeRemaining(endtime) {
     'seconds': seconds
   };
 }
+
+var clock;
+var timeInterval;
+
 function initializeClock() {
-	var endtime = new Date(Date.now() + ((yearsLeft * 365 * 24 * 60 * 60 * 1000)-((128*52)*yearsLeft)*60*60*1000));
-  var clock = document.getElementById('clock');
-  var daysSpan = clock.querySelector('.days');
-  var hoursSpan = clock.querySelector('.hours');
-  var minutesSpan = clock.querySelector('.minutes');
-  var secondsSpan = clock.querySelector('.seconds');
+  clock = document.getElementById('clock');
+  startCountdown(0);
+  setTimeout(function(){
+  	clock.getElementsByTagName('h2')[0].classList.add('fade-in')
+  	startCountdown(0);
+  },1500)
+  setTimeout(function(){
+  	clock.getElementsByTagName('h2')[1].classList.add('fade-in')
+  	startCountdown(47);
+  },2500)
+  setTimeout(function(){
+  	clock.getElementsByTagName('h2')[2].classList.add('fade-in')
+  	startCountdown(95);
+  },6000)
+  setTimeout(function(){
+  	clock.getElementsByTagName('h2')[3].classList.add('fade-in')
+  	startCountdown(128);
+  },10000)
+ 
+}
+function startCountdown (minusHours) {
+	
+	var endtime = new Date(Date.now() + ((yearsLeft * 365 * 24 * 60 * 60 * 1000)-((minusHours*52)*yearsLeft)*60*60*1000));
+	var daysSpan = clock.querySelector('.days');
+	var hoursSpan = clock.querySelector('.hours');
+	var minutesSpan = clock.querySelector('.minutes');
+	var secondsSpan = clock.querySelector('.seconds');
 
-  function updateClock() {
-    var t = getTimeRemaining(endtime);
+	function updateClock() {
+	  var t = getTimeRemaining(endtime);
 
-    daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+	  daysSpan.innerHTML = t.days;
+	  hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+	  minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+	  secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-    if (t.total <= 0) {
-      clearInterval(timeinterval);
-    }
-  }
+	  if (t.total <= 0) {
+	    clearInterval(timeInterval);
+	  }
+	}
 
-  updateClock();
-  var timeinterval = setInterval(updateClock, 1000);
+	updateClock();
+	clearInterval(timeInterval)
+	timeInterval = setInterval(updateClock, 1000);
 }
