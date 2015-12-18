@@ -596,14 +596,14 @@ p {
   opacity: 0;
   top: -27px;
   color: #F1734C;
-  right: 20px;
+  right: 40px;
 }
 .you-slider {
   width: 25%;
   height: 100%;
 }
 .you-slider .age {
-  right: -70px;
+  right: -1em;
   top: -0.6em;
   width: 2.15em;
   height: 2.15em;
@@ -663,6 +663,8 @@ p {
   -webkit-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   -moz-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.your-name span:focus {
   background: rgba(66, 222, 205, 0.7);
 }
 .son-name {
@@ -697,7 +699,7 @@ p {
 }
 .son-slider .drag {
   right: auto;
-  left: 18px;
+  left: -12em;
   color: #fef5b9;
 }
 .son-slider .age {
@@ -722,6 +724,7 @@ p {
   text-align: right;
   top: -30px;
   width: 150px;
+  color: #F1734C;
 }
 .window-slider {
   opacity: 0;
@@ -766,10 +769,10 @@ p {
 .window-slider:after {
   content: "";
   height: 120px;
-  border-right: 1px solid #BD2132;
+  border-right: 4px solid #F1734C;
   position: absolute;
   right: 0;
-  opacity: .5;
+  opacity: 1;
   width: 100%;
 }
 .continue {
@@ -777,7 +780,7 @@ p {
   opacity: .1;
   pointer-events: none;
 }
-.isTyped .your-name {
+.isTyped .your-name span {
   background: transparent;
 }
 .isTyped .your-name label {
@@ -876,7 +879,7 @@ p {
   margin-left: -100px;
   top: calc(100% - 250px);
   background: #F1734C;
-  border: 6px solid #43191d;
+  border: 3px solid #43191d;
   opacity: .03;
   -webkit-transform: translate(0, 0);
   -moz-transform: translate(0, 0);
@@ -892,6 +895,32 @@ p {
   -webkit-border-radius: 50%;
   border-radius: 50%;
   position: absolute;
+}
+.isCountdown .timeline {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  -ms-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -ms-transition-timing-function: linear;
+  transition-transition-timing-function: linear;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+}
+.isCountdown body {
+  background: #000;
 }
 .hash .name {
   display: none;

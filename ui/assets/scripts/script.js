@@ -3,10 +3,12 @@ var userObj = {};
 var resultingData;
 var WIN = $(window);
 var DOC = $(document);
+var countdownTimer;
 var slider;
 var paused;
-color = 0;
+var sunTick = .04
 $(function() {
+	var sunTop = 0;
 
 	var particleInterval = setInterval(function(){
 		if(!paused){
@@ -15,14 +17,12 @@ $(function() {
 			$('.particle').eq($('.particle').length-1).css({
 				'-webkit-transform': 'translate('+(Math.random()*(WIN.width()/4)-(WIN.width()/4)/2)+'px,'+(Math.random()*(WIN.height()/4)-(WIN.height()/2)/2)+'px)'
 			})
-			$('.particles').css({
-				top: "+=.05px"
-			})
-		}else{
-			// $('.particle').css({
-			// 	width: 10,
-			// 	height: 10
-			// })
+			if(sunTop < 240){
+				sunTop += sunTick;
+				$('.particles').css({
+					top: sunTop
+				})
+			}
 		}
 	},20)
 
@@ -132,7 +132,6 @@ $(function() {
 			})
 		}
 		function onRelease (e) {
-			console.log('release')
 			WIN.off('mousemove')
 			WIN.off('touchmove')
 			WIN.off('mouseup')
@@ -141,7 +140,7 @@ $(function() {
 				changeTagline('How many years have<br> you been on Earth <span class="window-years">with '+userObj.sonName+'?</span>')	
 				$('.content').addClass("isSonAge");
 				$('.son-slider').css({
-					right: WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width())
+					right: WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2
 				})
 			}else{
 				changeTagline(userObj.dadName+' and '+userObj.sonName+' have<br><span class="window-years">' + (18-Number($('.son-slider').find($('.age')).text()))+' more years together.</span>')
@@ -151,6 +150,11 @@ $(function() {
 				// console.log(userObj)
 				saveTimeline();
 				setWindowWidth();
+				clearTimeout(countdownTimer)
+				countdownTimer = setTimeout(function(){
+					$('.content').addClass('isCountdown');
+					sunTick = 1;
+				},3000)
 			}
 		}
 		function setWindowWidth(){
@@ -163,7 +167,7 @@ $(function() {
 		function changeTagline (message) {
 			$('.tagline').css({
 				'-webkit-transition-duration':'1s',
-				'-webkit-filter':'blur(10px) opacity(10%)'
+				'-webkit-filter':'blur(10px) opacity(0%)'
 			})
 			setTimeout(function(){
 				$('.tagline').html(message)
@@ -182,72 +186,3 @@ $(function() {
 		}
 	}
 })
-
-// // particles
-// var system;
-
-// function setup() {
-//   createCanvas(window.innerWidth, window.innerHeight);
-//   system = new ParticleSystem(createVector(width/2, height/2));
-// }
-
-// function draw() {
-//   background(67,25,29);
-//   system.addParticle();
-//   system.run();
-// }
-
-// // A simple Particle class
-// var Particle = function(position) {
-//   this.acceleration = createVector(0, 0.05);
-//   this.velocity = createVector(random(-1, 1), random(-1, 1));
-//   this.position = position.copy();
-//   this.lifespan = 25.0;
-// };
-
-// Particle.prototype.run = function() {
-//   this.update();
-//   this.display();
-// };
-
-// // Method to update position
-// Particle.prototype.update = function(){
-//   this.velocity.add(this.acceleration);
-//   this.position.add(this.velocity);
-//   this.lifespan -= 2;
-// };
-
-// // Method to display
-// Particle.prototype.display = function() {
-// 	strokeWeight(0)
-//   fill(189,33,50, this.lifespan);
-//   ellipse(this.position.x, this.position.y, 222, 222);
-// };
-
-// // Is the particle still useful?
-// Particle.prototype.isDead = function(){
-//   if (this.lifespan < 0) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// };
-
-// var ParticleSystem = function(position) {
-//   this.origin = position.copy();
-//   this.particles = [];
-// };
-
-// ParticleSystem.prototype.addParticle = function() {
-//   this.particles.push(new Particle(this.origin));
-// };
-
-// ParticleSystem.prototype.run = function() {
-//   for (var i = this.particles.length-1; i >= 0; i--) {
-//     var p = this.particles[i];
-//     p.run();
-//     if (p.isDead()) {
-//       this.particles.splice(i, 1);
-//     }
-//   }
-// };

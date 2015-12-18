@@ -52,15 +52,15 @@ body{
   -webkit-overflow-scrolling: touch;
   position: relative;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#43191d+0,6a2d28+100 */
-background: #43191d; /* Old browsers */
-background: -moz-linear-gradient(top, #43191d 0%, #6a2d28 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, #43191d 0%,#6a2d28 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, #43191d 0%,#6a2d28 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#43191d', endColorstr='#6a2d28',GradientType=0 ); /* IE6-9 */
-  @media (max-width: 700px){
-    .body-font(2vw);
+  background: #43191d; /* Old browsers */
+  background: -moz-linear-gradient(top, #43191d 0%, #6a2d28 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #43191d 0%,#6a2d28 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #43191d 0%,#6a2d28 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#43191d', endColorstr='#6a2d28',GradientType=0 ); /* IE6-9 */
+    @media (max-width: 700px){
+      .body-font(2vw);
+    }
   }
-}
 
 .touch{
   -webkit-touch-callout: none;
@@ -310,14 +310,14 @@ p{
     opacity: 0;
     top: -27px;
     color: @orange;
-    right: 20px;
+    right: 40px;
   }
 }
 .you-slider{
   width: 25%;
   height: 100%;
   .age{
-    right: -70px;
+    right: -1em;
     top: -.6em;
     width: 2.15em;
     height: 2.15em;
@@ -358,7 +358,9 @@ p{
   top: -30px;
   opacity: 0;
   .animation(fade-in 1s 1s forwards @easeOutBack);
-  background: rgba(66,222,205,.7);
+  span:focus{
+    background: rgba(66,222,205,.7);
+  }
 }
 .son-name{
   top: 44px;
@@ -373,7 +375,7 @@ p{
   .transition(.4s,ease-out, opacity);
   .drag{
     right: auto;
-    left: 18px;
+    left: -12em;
     color: @lightColor;
   }
   .age{
@@ -397,6 +399,7 @@ p{
   text-align: right;
   top: -30px;
   width: 150px;
+  color: @orange;
 }
 .window-slider{
   opacity: 0;
@@ -425,11 +428,11 @@ p{
   &:after{
     content: "";
     height: 120px;
-    border-right: 1px solid @red;
+    border-right: 4px solid @orange;
     position: absolute;
     right: 0;
     // background: @red;
-    opacity: .5;
+    opacity: 1;
     width: 100%;
   }
 }
@@ -440,7 +443,9 @@ p{
 }
 .isTyped{
   .your-name{
-    background: transparent;
+    span{
+      background: transparent;
+    }
     label{
       opacity: 1;
     }
@@ -519,6 +524,7 @@ p{
   width: 100%;
   height: 100%;
   overflow: hidden;
+
   .particle{
     .transition(2.5s,ease-in);
     width: 15em;
@@ -527,7 +533,7 @@ p{
     margin-left: -100px;
     top: ~'calc(100% - 250px)';
     background: @orange;
-    border: 6px solid @darkColor;
+    border: 3px solid @darkColor;
     opacity: .03;
     .transform(translate(0,0));
     .rounded(50%);
@@ -535,6 +541,16 @@ p{
   }
 }
 
+.isCountdown{
+  .timeline{
+    opacity: 0;
+    pointer-events: none;
+    .transition(.5s);
+  }
+  body{
+    background: #000;
+  }
+}
 .hash{
   .name{
     display: none;
