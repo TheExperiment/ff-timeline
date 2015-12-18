@@ -222,11 +222,11 @@ function initializeClock() {
   setTimeout(function(){
   	clock.getElementsByTagName('h2')[2].classList.add('fade-in')
   	startCountdown(95);
-  },6000)
+  },5500)
   setTimeout(function(){
   	clock.getElementsByTagName('h2')[3].classList.add('fade-in')
   	startCountdown(128);
-  },10000)
+  },9000)
  
 }
 function startCountdown (minusHours) {
