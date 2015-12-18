@@ -241,7 +241,7 @@ body {
    Author: Nick Jones / The Experiment
    ========================================================================== */
 .content {
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   left: 0;
   top: 0;
@@ -263,7 +263,7 @@ header {
   font-size: 4.2em;
   font-family: 'Clarendon W01 Light 692104';
   line-height: 1em;
-  padding-bottom: 1em;
+  padding-bottom: .5em;
 }
 .tagline img {
   position: relative;
@@ -278,8 +278,8 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Clarendon W01 Bold 692098';
-  font-weight: 100;
+  font-family: 'Clarendon W01 Light 692104';
+  font-weight: normal;
   line-height: .8em;
 }
 h1 {
@@ -313,7 +313,7 @@ h1 {
   }
 }
 h2 {
-  font-size: 2.5em;
+  font-size: 1.2em;
   line-height: 1em;
   top: 0;
   position: relative;
@@ -468,15 +468,15 @@ p {
   display: inline-block;
   position: relative;
   padding: 14px 20px;
-  background: #43191d;
+  background: transparent;
   font-family: 'Futura W01 Bold';
   font-size: 0.8em;
   color: #F1734C;
   border: 4px solid #BD2132;
   letter-spacing: .2em;
   line-height: .8em;
-  opacity: 0;
   outline: none;
+  opacity: 0;
   -webkit-transition-duration: 0.5s;
   -moz-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
@@ -896,6 +896,34 @@ p {
   border-radius: 50%;
   position: absolute;
 }
+.isCountdown {
+  background: #1B0B0B;
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -ms-transition-timing-function: linear;
+  transition-transition-timing-function: linear;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+}
+.isCountdown .tagline {
+  padding-bottom: 0;
+}
+.isCountdown .signup {
+  opacity: 1;
+}
 .isCountdown .timeline {
   opacity: 0;
   pointer-events: none;
@@ -919,8 +947,11 @@ p {
   -ms-transition-property: all;
   transition-property: all;
 }
-.isCountdown body {
-  background: #000;
+.isCountdown #clock {
+  pointer-events: auto;
+  -webkit-animation: fade-in 2s 2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-animation: fade-in 2s 2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fade-in 2s 2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .hash .name {
   display: none;
@@ -930,4 +961,23 @@ p {
 }
 .hash .drag {
   display: none;
+}
+#clock {
+  opacity: 0;
+  pointer-events: none;
+}
+#clock timeline {
+  display: none;
+}
+#clock > div {
+  display: inline-block;
+  margin-right: 6em;
+  color: #F1734C;
+}
+#clock .smalltext {
+  margin-left: 10px;
+  color: #fef5b9;
+}
+#clock span {
+  font-size: 8em;
 }

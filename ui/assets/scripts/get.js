@@ -19,9 +19,12 @@ function getTimeline(timelineId) {
 function setTimeline(resultingData) {
   console.log(resultingData.attributes)
   $('.content').addClass('hash')
+  $('body').addClass('isCountdown')
   $('.content').addClass('isYouName')
   $('.content').addClass('isSonName')
   $('.content').addClass('isBothNames')
+  yearsLeft = 18 - resultingData.attributes.son_age;
+  initializeClock();
   
   $('.your-name').empty();
 

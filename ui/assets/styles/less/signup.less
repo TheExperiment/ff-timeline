@@ -6,7 +6,7 @@
   font-size: @size;
   font-family: @headline-font;
 }
-@headline-font: 'Clarendon W01 Bold 692098';
+@headline-font: 'Clarendon W01 Light 692104';
 .button-font(@size){
   font-family:'Futura W01 Bold';
   font-size: @size;
@@ -98,7 +98,7 @@ body{
 //   }
 // }
 .content{
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   left: 0;
   top: 0;
@@ -117,7 +117,7 @@ header{
 .tagline{
   .body-font(4.2em);
   line-height: 1em;
-  padding-bottom: 1em;
+  padding-bottom: .5em;
   img{
     position: relative;
     top: -4px;
@@ -130,7 +130,7 @@ header{
 
 h1,h2,h3,h4,h5{
   font-family: @headline-font;
-  font-weight: 100;
+  font-weight: normal;
   line-height: .8em;
   // margin: 30px 0;
 }
@@ -152,7 +152,7 @@ h1{
   }
 }
 h2{
- font-size: 2.5em; 
+ font-size: 1.2em; 
  line-height: 1em;
  top: 0;
  position: relative;
@@ -238,14 +238,14 @@ p{
   display: inline-block;
   position: relative;
   padding: 14px 20px;
-  background: @darkColor;
+  background: transparent;
   .button-font(.8em);
   color: @orange;
   border: 4px solid @red;
   letter-spacing: .2em;
   line-height: .8em;
-  opacity: 0;
   outline: none;
+  opacity: 0;
   .transition(.5s, @easeOut);
   // .animation(fade-in 1s 2s forwards ease-in-out); 
   @media screen and (max-width: 700px) {
@@ -542,13 +542,22 @@ p{
 }
 
 .isCountdown{
+  background: #1B0B0B;
+  .tagline{
+    padding-bottom: 0;
+  }
+  .signup{
+    opacity: 1;
+  }
+  .transition(1s);
   .timeline{
     opacity: 0;
     pointer-events: none;
     .transition(.5s);
   }
-  body{
-    background: #000;
+  #clock{
+    pointer-events: auto;
+    .animation(fade-in 2s 2s forwards @easeOutBack);
   }
 }
 .hash{
@@ -560,5 +569,24 @@ p{
   }
   .drag{
     display: none;
+  }
+}
+#clock{
+  opacity: 0;
+  pointer-events: none;
+  timeline{
+    display: none;
+  }
+  > div{
+    display: inline-block;
+    margin-right: 6em;
+    color: @orange;
+  }
+  .smalltext{
+    margin-left: 10px;
+    color: @lightColor;
+  }
+  span{
+    font-size: 8em;
   }
 }

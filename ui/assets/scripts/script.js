@@ -7,6 +7,7 @@ var countdownTimer;
 var slider;
 var paused;
 var sunTick = .04
+var yearsLeft;
 $(function() {
 	var sunTop = 0;
 
@@ -25,7 +26,9 @@ $(function() {
 			}
 		}
 	},20)
-
+	$('.signup').on('click',function(){
+		window.location.href = 'http://futurefather.co'
+	})
 	WIN.on('keydown',function(){
 		paused = true;
 		setTimeout(function(){
@@ -143,7 +146,8 @@ $(function() {
 					right: WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2
 				})
 			}else{
-				changeTagline(userObj.dadName+' and '+userObj.sonName+' have<br><span class="window-years">' + (18-Number($('.son-slider').find($('.age')).text()))+' more years together.</span>')
+				yearsLeft = (18-Number($('.son-slider').find($('.age')).text()));
+				changeTagline(userObj.dadName+' and '+userObj.sonName+' have<br><span class="window-years">' + yearsLeft +' more years together.</span>')
 				$('.window-slider').find($('.bar')).addClass('blink');
 				userObj.dadAge = $('.you-slider .age').text();
 				userObj.sonAge = $('.son-slider .age').text();
@@ -152,7 +156,8 @@ $(function() {
 				setWindowWidth();
 				clearTimeout(countdownTimer)
 				countdownTimer = setTimeout(function(){
-					$('.content').addClass('isCountdown');
+					$('body').addClass('isCountdown');
+					initializeClock();
 					sunTick = 1;
 				},3000)
 			}
@@ -186,3 +191,41 @@ $(function() {
 		}
 	}
 })
+function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.now();
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+function initializeClock() {
+	var endtime = new Date(Date.now() + ((yearsLeft * 365 * 24 * 60 * 60 * 1000)-((128*52)*yearsLeft)*60*60*1000));
+  var clock = document.getElementById('clock');
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
