@@ -585,6 +585,8 @@ p{
   }
 }
 .hour-picker{
+  cursor: pointer;
+  color: @orange;
   &:before{
     position: absolute;
     content: '↕';
@@ -593,6 +595,7 @@ p{
     top: .45vw;
   }
   &:hover{
+    color: @lightColor;
     &:before{
       color: @lightColor;
     }

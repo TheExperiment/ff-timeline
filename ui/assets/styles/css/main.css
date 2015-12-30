@@ -989,12 +989,19 @@ p {
   -moz-animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+.hour-picker {
+  cursor: pointer;
+  color: #F1734C;
+}
 .hour-picker:before {
   position: absolute;
   content: '↕';
   left: -1vw;
   color: #BD2132;
   top: .45vw;
+}
+.hour-picker:hover {
+  color: #fef5b9;
 }
 .hour-picker:hover:before {
   color: #fef5b9;

@@ -187,6 +187,12 @@ $(function() {
 			}
 			moved = Math.floor((startY-y)/5);
 			slider.html(Math.max(0,startHours + moved))
+			clearTimeout(countdownTimer)
+			countdownTimer = setTimeout(function(){
+				$('body').addClass('isCountdown');
+				startCountdown(currentHours())
+				sunTick = 1;
+			},200)
 		}
 		function onReleaseHour (e) {
 			WIN.off('mousemove')
@@ -194,12 +200,6 @@ $(function() {
 			WIN.off('mouseup')
 			WIN.off('touchend')
 			saveTimeline();
-			clearTimeout(countdownTimer)
-			countdownTimer = setTimeout(function(){
-				$('body').addClass('isCountdown');
-				startCountdown(currentHours())
-				sunTick = 1;
-			},3000)
 		}
 		function currentHours () {
 			var hours = 0;
