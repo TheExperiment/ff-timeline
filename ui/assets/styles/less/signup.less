@@ -105,6 +105,7 @@ body{
   width: 100%;
   height: 100%;
   padding: 2% 10%;
+  .transition(.3s);
   @media (max-width: 700px){
     padding: 7% 5%;
   }
@@ -113,6 +114,9 @@ header{
   width: 100%;
   height: 100px;
   text-align: center;
+}
+sup{
+  font-size: .7em;
 }
 .tagline{
   .body-font(4.2em);
@@ -274,6 +278,8 @@ p{
   margin: auto;
   width: 80%;
   height: 2em;
+  top: 26vw;
+  .transition(1s,ease-in-out,top);
   @media screen and (max-width: 700px) {
     width: 90%;
   }
@@ -349,9 +355,10 @@ p{
 .name{
   position: absolute;
   font-size: 3em;
-  line-height: 1;
-  // border-bottom: 1px solid @orangeRed;
+  line-height: 1.13;
+  border-bottom: 1px dotted @blue;
   .transition(.3s,ease-in-out);
+  color: @blue;
   span{
     outline: none;
     min-width: 50px;
@@ -361,11 +368,15 @@ p{
     position: absolute;
     font-size: .8rem;
     letter-spacing: .05rem;
-    top: 4em;
-    left: 0;
+    top: 5em;
+    left: .1em;
     width: 200px;
-    color: @lightColor50;
+    color: @orange;
     opacity: 0;
+  }
+  &.not-default{
+    border-bottom: 1px solid @orange;
+    color: @lightColor;
   }
   @media (max-width: 700px){
     label{
@@ -375,15 +386,15 @@ p{
 
 }
 .your-name{
-  top: -1em;
   opacity: 0;
+  top: -1.2em;
   .animation(fade-in 1s 1s forwards @easeOutBack);
   span:focus{
     background: @blue;
   }
 }
 .son-name{
-  top: 44px;
+  top: .8em;
   opacity: 0;
 }
 .son-slider{
@@ -499,6 +510,7 @@ p{
     label{
       opacity: 0;
     }
+
   }
 }
 .isSonAge{
@@ -572,6 +584,9 @@ p{
     opacity: 0;
     pointer-events: none;
     .transition(.5s);
+    .slider{
+      pointer-events: none;
+    }
   }
   #clock{
     display: block;
@@ -598,6 +613,8 @@ p{
     color: @lightColor;
     &:before{
       color: @lightColor;
+      .transform(scale(1.2));
+      .transition(.2s);
     }
   }
 }
@@ -607,6 +624,9 @@ p{
   pointer-events: none;
   h2{
     opacity: 0;
+    sup{
+      opacity: .5;
+    }
   }
   timeline{
     display: none;

@@ -34,20 +34,8 @@ function setTimeline(resultingData) {
   $('.son-slider .age').html(resultingData.attributes.son_age );
   $('.you-slider .age').html(resultingData.attributes.father_age );
 
-  $('.tagline').html(resultingData.attributes.father_name+' and '+resultingData.attributes.son_name+' have <span class="window-years">' +yearsLeft+' more years together.</span><br><span class="parenthetical">(Until '+resultingData.attributes.son_name+' he turns 18)</span>')
-
-  var width = parseInt(resultingData.attributes.index) - $('.you-slider').offset().left;
-
-  $('.you-slider').css({
-    width: Math.max(5,Math.min($('.timeline').width(),width))
-  })
-
+  $('.tagline').html(resultingData.attributes.father_name+' and '+resultingData.attributes.son_name+' have <span class="window-years">' +yearsLeft+' more years together.</span><br><span class="parenthetical">(Until '+resultingData.attributes.son_name+' turns 18)</span>')
 
   $('.content').addClass("isSonAge");
   $('.content').addClass("isSonAge");
-  $('.son-slider').css({
-    right: WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width())
-  })
-
-  $('.window-slider').find($('.bar')).addClass('blink');
 }

@@ -240,6 +240,25 @@ body {
   width: 100%;
   height: 100%;
   padding: 2% 10%;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -ms-transition-timing-function: linear;
+  transition-transition-timing-function: linear;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
 }
 @media (max-width: 700px) {
   .content {
@@ -250,6 +269,9 @@ header {
   width: 100%;
   height: 100px;
   text-align: center;
+}
+sup {
+  font-size: .7em;
 }
 .tagline {
   font-size: 4.2em;
@@ -533,6 +555,26 @@ p {
   margin: auto;
   width: 80%;
   height: 2em;
+  top: 26vw;
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-transition-timing-function: ease-in-out;
+  -webkit-transition-property: top;
+  -moz-transition-property: top;
+  -ms-transition-property: top;
+  transition-property: top;
 }
 @media screen and (max-width: 700px) {
   .timeline {
@@ -632,7 +674,8 @@ p {
 .name {
   position: absolute;
   font-size: 3em;
-  line-height: 1;
+  line-height: 1.13;
+  border-bottom: 1px dotted rgba(66, 222, 205, 0.6);
   -webkit-transition-duration: 0.3s;
   -moz-transition-duration: 0.3s;
   -o-transition-duration: 0.3s;
@@ -652,6 +695,7 @@ p {
   -moz-transition-property: all;
   -ms-transition-property: all;
   transition-property: all;
+  color: rgba(66, 222, 205, 0.6);
 }
 .name span {
   outline: none;
@@ -662,11 +706,15 @@ p {
   position: absolute;
   font-size: .8rem;
   letter-spacing: .05rem;
-  top: 4em;
-  left: 0;
+  top: 5em;
+  left: .1em;
   width: 200px;
-  color: rgba(223, 236, 230, 0.5);
+  color: #F1734C;
   opacity: 0;
+}
+.name.not-default {
+  border-bottom: 1px solid #F1734C;
+  color: #fef5b9;
 }
 @media (max-width: 700px) {
   .name label {
@@ -674,17 +722,17 @@ p {
   }
 }
 .your-name {
-  top: -1em;
   opacity: 0;
+  top: -1.2em;
   -webkit-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   -moz-animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .your-name span:focus {
-  background: rgba(66, 222, 205, 0.8);
+  background: rgba(66, 222, 205, 0.6);
 }
 .son-name {
-  top: 44px;
+  top: .8em;
   opacity: 0;
 }
 .son-slider {
@@ -977,6 +1025,9 @@ p {
   -ms-transition-property: all;
   transition-property: all;
 }
+.isCountdown .timeline .slider {
+  pointer-events: none;
+}
 .isCountdown #clock {
   display: block;
   height: auto;
@@ -1005,6 +1056,35 @@ p {
 }
 .hour-picker:hover:before {
   color: #fef5b9;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  -ms-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  -ms-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  -ms-transition-timing-function: linear;
+  transition-transition-timing-function: linear;
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
 }
 #clock {
   display: none;
@@ -1013,6 +1093,9 @@ p {
 }
 #clock h2 {
   opacity: 0;
+}
+#clock h2 sup {
+  opacity: .5;
 }
 #clock timeline {
   display: none;

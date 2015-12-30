@@ -7,8 +7,10 @@ var countdownTimer;
 var slider;
 var paused;
 var startY;
-var sunTick = .04
+var sunTick = .04;
 var yearsLeft;
+var clock;
+var timeInterval;
 $(function() {
 	var sunTop = 0;
 
@@ -61,10 +63,11 @@ $(function() {
 				$('.content').addClass('isYouName')
 			},500)
 		})
-		$('.son-name').on('keypress',function(e){
+		$('.son-name span').on('keypress',function(e){
 			if(e.keyCode == 13){
 				continueClick();
 			}
+			resetField($(this))
 			clearTimeout(sonTimeout);
 			sonTimeout = setTimeout(function(){
 				$('.content').addClass('isSonName')
@@ -79,16 +82,18 @@ $(function() {
 		$('.son-name span').on('focus',function(){
 			var name = $(this)
 			setTimeout(function(){
-				name.prop('selectionStart', 0)
 				resetField(name)
 			},300)
 		})
 		function resetField(el){
 			if(el.text() == 'What is your name?'){
 				el.html('')
-			}
-			if(el.text() == 'What did you name your son?'){
+				el.parent().removeClass('not-default')
+			}else if(el.text() == 'What did you name your son?'){
 				el.html('')
+				el.parent().removeClass('not-default')
+			}else{
+				el.parent().addClass('not-default')
 			}
 			
 		}
@@ -188,11 +193,7 @@ $(function() {
 			moved = Math.floor((startY-y)/5);
 			slider.html(Math.max(0,startHours + moved))
 			clearTimeout(countdownTimer)
-			countdownTimer = setTimeout(function(){
-				$('body').addClass('isCountdown');
-				startCountdown(currentHours())
-				sunTick = 1;
-			},200)
+			startCountdown(currentHours())
 		}
 		function onReleaseHour (e) {
 			WIN.off('mousemove')
@@ -237,6 +238,7 @@ $(function() {
 		}
 	}
 })
+
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.now();
   var seconds = Math.floor((t / 1000) % 60);
@@ -251,9 +253,6 @@ function getTimeRemaining(endtime) {
     'seconds': seconds
   };
 }
-
-var clock;
-var timeInterval;
 
 function initializeClock() {
   clock = document.getElementById('clock');
@@ -280,6 +279,7 @@ function initializeClock() {
   },12000)
  
 }
+
 function startCountdown (minusHours) {
 	
 	var endtime = new Date(Date.now() + ((yearsLeft * 365 * 24 * 60 * 60 * 1000)-((minusHours*52)*yearsLeft)*60*60*1000));
