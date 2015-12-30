@@ -205,14 +205,6 @@ body {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#43191d+0,6a2d28+100 */
   background: #43191d;
   /* Old browsers */
-  background: -moz-linear-gradient(top, #43191d 0%, #6a2d28 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #43191d 0%, #6a2d28 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #43191d 0%, #6a2d28 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#43191d', endColorstr='#6a2d28', GradientType=0);
-  /* IE6-9 */
 }
 @media (max-width: 700px) {
   body {
@@ -247,7 +239,7 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  padding: 4% 10%;
+  padding: 2% 10%;
 }
 @media (max-width: 700px) {
   .content {
@@ -265,6 +257,7 @@ header {
   line-height: 1em;
   padding-bottom: .5em;
   width: 62%;
+  margin-top: 1.5rem;
 }
 @media (max-width: 700px) {
   .tagline {
@@ -278,6 +271,12 @@ header {
 }
 .tagline .window-years {
   color: #F1734C;
+}
+.parenthetical {
+  font-size: 1.2rem;
+  position: absolute;
+  bottom: -1.8vw;
+  left: 0;
 }
 h1,
 h2,
@@ -346,8 +345,8 @@ h3 {
 }
 .logo {
   position: relative;
-  margin-top: 3em;
-  margin-bottom: 3em;
+  margin-top: 2em;
+  margin-bottom: 2em;
   opacity: 0;
   top: 0;
   -webkit-transform: translateY(10px);
@@ -592,6 +591,7 @@ p {
   width: 100px;
   height: 100%;
   cursor: pointer;
+  pointer-events: none;
 }
 .slider .age {
   right: 0px;
@@ -665,7 +665,7 @@ p {
   top: 4em;
   left: 0;
   width: 200px;
-  color: #F1734C;
+  color: rgba(223, 236, 230, 0.5);
   opacity: 0;
 }
 @media (max-width: 700px) {
@@ -681,7 +681,7 @@ p {
   animation: fade-in 1s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .your-name span:focus {
-  background: rgba(66, 222, 205, 0.7);
+  background: rgba(66, 222, 205, 0.8);
 }
 .son-name {
   top: 44px;
@@ -693,6 +693,7 @@ p {
   right: 0;
   visibility: hidden;
   opacity: 0;
+  display: block;
   -webkit-transition-duration: 0.4s;
   -moz-transition-duration: 0.4s;
   -o-transition-duration: 0.4s;
@@ -803,6 +804,9 @@ p {
   opacity: 1;
   pointer-events: auto;
 }
+.isBothNames .slider {
+  pointer-events: auto;
+}
 .isBothNames .sliders {
   -webkit-transition-duration: 1s;
   -moz-transition-duration: 1s;
@@ -842,6 +846,25 @@ p {
   display: block;
   opacity: 1;
   visibility: visible;
+  -webkit-transition-duration: 1s;
+  -moz-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  -ms-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-delay: 3s;
+  -moz-transition-delay: 3s;
+  -o-transition-delay: 3s;
+  -ms-transition-delay: 3s;
+  transition-delay: 3s;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  transition-transition-timing-function: ease-in-out;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
 }
 .isMovingYouAge .you-slider .drag {
   display: none;
@@ -886,7 +909,7 @@ p {
   margin-left: -100px;
   top: calc(100% - 250px);
   background: #F1734C;
-  border: 3px solid #43191d;
+  border: 15px solid #43191d;
   opacity: .03;
   -webkit-transform: translate(0, 0);
   -moz-transform: translate(0, 0);
@@ -959,25 +982,22 @@ p {
   height: auto;
   pointer-events: auto;
   opacity: 1;
+  top: 1vw;
 }
 .isCountdown .fade-in {
   -webkit-animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   -moz-animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.hash .name {
-  display: none;
+.hour-picker:before {
+  position: absolute;
+  content: '↕';
+  left: -1vw;
+  color: #BD2132;
+  top: .45vw;
 }
-.hash .slider {
-  pointer-events: none;
-}
-.hash .drag {
-  display: none;
-}
-@media (max-width: 700px) {
-  .hash {
-    display: none;
-  }
+.hour-picker:hover:before {
+  color: #fef5b9;
 }
 #clock {
   display: none;
@@ -995,7 +1015,7 @@ p {
   margin-right: 6em;
   color: #F1734C;
   margin-left: -0.5em;
-  margin-top: 1em;
+  margin-top: 1.5em;
   margin-bottom: 0;
 }
 #clock .smalltext {
@@ -1003,7 +1023,21 @@ p {
   color: #fef5b9;
   font-size: 1.2em;
 }
-#clock span {
+.huge-text {
   font-size: 8em;
   line-height: 1;
+}
+.isHash .name {
+  display: none;
+}
+.isHash .slider {
+  pointer-events: none;
+}
+.isHash .drag {
+  display: none;
+}
+@media (max-width: 700px) {
+  .isHash {
+    display: none;
+  }
 }

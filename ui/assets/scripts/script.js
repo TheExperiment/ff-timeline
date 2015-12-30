@@ -6,6 +6,7 @@ var DOC = $(document);
 var countdownTimer;
 var slider;
 var paused;
+var startY;
 var sunTick = .04
 var yearsLeft;
 $(function() {
@@ -29,6 +30,7 @@ $(function() {
 	$('.signup').on('click',function(){
 		window.location.href = 'http://futurefather.co'
 	})
+	$('.hour-picker').on('mousedown',startDragHour)
 	WIN.on('keydown',function(){
 		paused = true;
 		setTimeout(function(){
@@ -139,14 +141,14 @@ $(function() {
 			WIN.off('mouseup')
 			WIN.off('touchend')
 			if(slider.hasClass('you-slider')){
-				changeTagline('How many years have you been on Earth <span class="window-years">with '+userObj.sonName+'?</span>')	
+				changeTagline('How many years has <span class="window-years">'+userObj.sonName+'</span> been on Earth with you?')	
 				$('.content').addClass("isSonAge");
 				$('.son-slider').css({
 					right: WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2
 				})
 			}else{
-				yearsLeft = (18-Number($('.son-slider').find($('.age')).text()));
-				changeTagline(userObj.dadName+' and '+userObj.sonName+' have <span class="window-years">' + yearsLeft +' more years together.</span>')
+				yearsLeft = Math.max(0,(18-Number($('.son-slider').find($('.age')).text())));
+				changeTagline(userObj.dadName+' and '+userObj.sonName+' have <span class="window-years">' + yearsLeft +' more years together.</span><br><span class="parenthetical">(Until '+userObj.sonName+' turns 18)</span>')
 				$('.window-slider').find($('.bar')).addClass('blink');
 				userObj.dadAge = $('.you-slider .age').text();
 				userObj.sonAge = $('.son-slider .age').text();
@@ -160,6 +162,51 @@ $(function() {
 					sunTick = 1;
 				},3000)
 			}
+		}
+		function startDragHour (e) {
+			e.preventDefault();
+			slider = $(this)
+			if(e.type == 'touchmove'){
+				startY = e.originalEvent.touches[0].pageY;
+			}else{
+				startY = e.pageY
+			}
+			startHours = Number(slider.text());
+			WIN.on('mousemove',onMoveHour)
+			WIN.on('touchmove',onMoveHour)
+			WIN.on('mouseup',onReleaseHour)
+			WIN.on('touchend',onReleaseHour)
+		}
+		function onMoveHour (e) {
+			var y;
+			var moved;
+			if(e.type == 'touchmove'){
+				y = e.originalEvent.touches[0].pageY;
+			}else{
+				y = e.pageY
+			}
+			moved = Math.floor((startY-y)/5);
+			slider.html(Math.max(0,startHours + moved))
+		}
+		function onReleaseHour (e) {
+			WIN.off('mousemove')
+			WIN.off('touchmove')
+			WIN.off('mouseup')
+			WIN.off('touchend')
+			saveTimeline();
+			clearTimeout(countdownTimer)
+			countdownTimer = setTimeout(function(){
+				$('body').addClass('isCountdown');
+				startCountdown(currentHours())
+				sunTick = 1;
+			},3000)
+		}
+		function currentHours () {
+			var hours = 0;
+			for (var i = $('.hour-picker').length - 1; i >= 0; i--) {
+				hours += Number($('.hour-picker').eq(i).text());
+			};
+			return hours;
 		}
 		function setWindowWidth(){
 			// $('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
@@ -221,12 +268,16 @@ function initializeClock() {
   },2500)
   setTimeout(function(){
   	clock.getElementsByTagName('h2')[2].classList.add('fade-in')
-  	startCountdown(95);
+  	startCountdown(117);
   },5500)
   setTimeout(function(){
   	clock.getElementsByTagName('h2')[3].classList.add('fade-in')
-  	startCountdown(128);
+  	startCountdown(150);
   },9000)
+  setTimeout(function(){
+  	clock.getElementsByTagName('h2')[4].classList.add('fade-in')
+  	startCountdown(154);
+  },12000)
  
 }
 function startCountdown (minusHours) {
@@ -240,10 +291,10 @@ function startCountdown (minusHours) {
 	function updateClock() {
 	  var t = getTimeRemaining(endtime);
 
-	  daysSpan.innerHTML = t.days;
-	  hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-	  minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-	  secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+	  daysSpan.innerHTML = Math.max(0,t.days);
+	  hoursSpan.innerHTML = ('0' + Math.max(0,t.hours)).slice(-2);
+	  minutesSpan.innerHTML = ('0' + Math.max(0,t.minutes)).slice(-2);
+	  secondsSpan.innerHTML = ('0' + Math.max(0,t.seconds)).slice(-2);
 
 	  if (t.total <= 0) {
 	    clearInterval(timeInterval);

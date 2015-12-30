@@ -18,12 +18,13 @@ function getTimeline(timelineId) {
 
 function setTimeline(resultingData) {
   console.log(resultingData.attributes)
-  $('.content').addClass('hash')
+  $('.content').addClass('isHash')
   $('body').addClass('isCountdown')
   $('.content').addClass('isYouName')
   $('.content').addClass('isSonName')
   $('.content').addClass('isBothNames')
-  yearsLeft = 18 - resultingData.attributes.son_age;
+  yearsLeft = Math.max(0,18 - resultingData.attributes.son_age);
+
   initializeClock();
   
   $('.your-name').empty();
@@ -33,7 +34,7 @@ function setTimeline(resultingData) {
   $('.son-slider .age').html(resultingData.attributes.son_age );
   $('.you-slider .age').html(resultingData.attributes.father_age );
 
-  $('.tagline').html(resultingData.attributes.father_name+' and '+resultingData.attributes.son_name+' have <span class="window-years">' + (18 - resultingData.attributes.son_age )+' more years together.</span>')
+  $('.tagline').html(resultingData.attributes.father_name+' and '+resultingData.attributes.son_name+' have <span class="window-years">' +yearsLeft+' more years together.</span><br><span class="parenthetical">(Until '+resultingData.attributes.son_name+' he turns 18)</span>')
 
   var width = parseInt(resultingData.attributes.index) - $('.you-slider').offset().left;
 
