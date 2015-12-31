@@ -7,7 +7,7 @@ var countdownTimer;
 var slider;
 var paused;
 var startY;
-var sunTick = .04;
+var sunTick = .2;
 var yearsLeft;
 var clock;
 var timeInterval;
@@ -21,7 +21,7 @@ $(function() {
 			$('.particle').eq($('.particle').length-1).css({
 				'-webkit-transform': 'translate('+(Math.random()*(WIN.width()/4)-(WIN.width()/4)/2)+'px,'+(Math.random()*(WIN.height()/4)-(WIN.height()/4)/2)+'px)'
 			})
-			if(sunTop < 230){
+			if(sunTop < 210){
 				sunTop += sunTick;
 				$('.particles').css({
 					top: sunTop
@@ -37,6 +37,11 @@ $(function() {
 		window.location.href = 'http://futurefather.co'
 	})
 	$('.hour-picker').on('mousedown',startDragHour)
+	$('body').on('scroll',function(){
+		$('.particles').css({
+			'-webkit-transform': 'perspective(1000) translate3d(0,'+($('.content').offset().top/-5)+'px,'+($('.content').offset().top)+'px)'
+		})
+	})
 	WIN.on('keydown',function(){
 		paused = true;
 		setTimeout(function(){
@@ -156,7 +161,7 @@ $(function() {
 					right: WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2
 				})
 			}else{
-				yearsLeft = Math.max(0,(18-Number($('.son-slider').find($('.age')).text())));
+				yearsLeft = getYearsLeft();
 				changeTagline(userObj.dadName+' and '+userObj.sonName+' have <span class="window-years">' + yearsLeft +' more years together.</span><br><span class="parenthetical">(Until '+userObj.sonName+' turns 18)</span>')
 				$('.window-slider').find($('.bar')).addClass('blink');
 				userObj.dadAge = $('.you-slider .age').text();
@@ -171,6 +176,13 @@ $(function() {
 					sunTick = 1;
 				},3000)
 			}
+		}
+		function getYearsLeft () {
+			yearsLeft = Math.max(0,(18-Number($('.son-slider').find($('.age')).text())));
+			$('body').css({
+				'-webkit-filter':'saturate('+(40+((yearsLeft/18)*60))+'%)'
+			})
+			return yearsLeft;
 		}
 		function startDragHour (e) {
 			e.preventDefault();
@@ -216,7 +228,7 @@ $(function() {
 		function setWindowWidth(){
 			// $('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
 			$('.window-slider').css({
-				width: $('.timeline').width()*((18-$('.son-slider').find($('.age')).text())/80),
+				width: $('.timeline').width()*(getYearsLeft()/80),
 				left: $('.you-slider').width()
 			});
 		}

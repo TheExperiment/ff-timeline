@@ -374,6 +374,7 @@ h3 {
   margin-bottom: 2em;
   opacity: 0;
   top: 0;
+  left: -6vw;
   -webkit-transform: translateY(10px);
   -moz-transform: translateY(10px);
   -ms-transform: translateY(10px);
@@ -423,17 +424,35 @@ p {
   letter-spacing: .04rem;
 }
 .message {
-  width: 62%;
-  padding-top: 4vw;
+  width: 52%;
+  padding-top: 6vw;
   opacity: 0;
   visibility: hidden;
+  margin: auto;
+  margin-bottom: 4vw;
+  padding-bottom: 4vw;
+  text-align: justify;
+  text-indent: 2em;
+}
+.message p:first-child {
+  text-indent: 0;
+}
+.message p:first-child:first-letter {
+  float: left;
+  text-align: left;
+  font-size: 6.4vw;
+  line-height: 5vw;
+  padding-top: .6vw;
+  padding-right: .8vw;
+  padding-left: 0vw;
+  color: #F1734C;
 }
 .message:before {
   content: '';
   position: relative;
   display: block;
-  width: 200px;
-  border-top: 3px solid #BD2132;
+  width: 100%;
+  border-top: 8px solid #F1734C;
 }
 .founder-twitter path {
   -webkit-transition-duration: 0.2s;
@@ -1068,9 +1087,9 @@ p {
 }
 .isCountdown .message {
   visibility: visible;
-  -webkit-animation: fade-in 2s 13s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  -moz-animation: fade-in 2s 13s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: fade-in 2s 13s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-animation: fade-in 2s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-animation: fade-in 2s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fade-in 2s 1s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .hour-picker {
   cursor: pointer;
