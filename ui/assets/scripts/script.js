@@ -19,14 +19,18 @@ $(function() {
 			$('.particles').append('<div class="particle"></div>')
 			$('.particle').eq($('.particle').length-100).remove();
 			$('.particle').eq($('.particle').length-1).css({
-				'-webkit-transform': 'translate('+(Math.random()*(WIN.width()/4)-(WIN.width()/4)/2)+'px,'+(Math.random()*(WIN.height()/4)-(WIN.height()/2)/2)+'px)'
+				'-webkit-transform': 'translate('+(Math.random()*(WIN.width()/4)-(WIN.width()/4)/2)+'px,'+(Math.random()*(WIN.height()/4)-(WIN.height()/4)/2)+'px)'
 			})
-			if(sunTop < 240){
+			if(sunTop < 230){
 				sunTop += sunTick;
 				$('.particles').css({
 					top: sunTop
 				})
 			}
+		}else{
+			$('.particle').css({
+				'-webkit-transform': 'scale(1.6)'
+			})
 		}
 	},20)
 	$('.signup').on('click',function(){
@@ -76,7 +80,7 @@ $(function() {
 		$('.continue').on('click',continueClick)
 		$('.your-name span').focus();
 		$('.name span').on('click',function(e){
-			resetField()
+			resetField($(this))
 			$('.content').addClass('isTyped')
 		})
 		$('.son-name span').on('focus',function(){

@@ -97,6 +97,11 @@ body{
 //     .transition(1s,ease-in);
 //   }
 // }
+
+::selection {
+  background: @blue;
+}
+
 .content{
   z-index: 2;
   position: absolute;
@@ -190,6 +195,9 @@ h3{
   top: 0;
   .transform(translateY(10px));
   .animation(fade-in 1s .2s forwards @easeOutBack);
+  img{
+    width: 7vw;
+  }
 }
 
 p{
@@ -207,8 +215,22 @@ p{
 }
 
 .small-text{
-  font-size: .8rem;
+  font-size: .8vw;
   letter-spacing: .04rem;
+}
+
+.message{
+  width: 62%;
+  padding-top: 4vw;
+  opacity: 0;
+  visibility: hidden;
+  &:before{
+    content: '';
+    position: relative;
+    display: block;
+    width: 200px;
+    border-top: 3px solid @red;
+  }
 }
 .founder-twitter{
   path{
@@ -285,13 +307,14 @@ p{
   }
   .hashes{
     position: absolute;
-    left: -2px;
+    left: -1px;
     .hash{
       position: absolute;
       color: @red;
-      top: .5em;
-      padding-left: .5em;
+      top: 0;
+      padding-left: .7em;
       border-left: 1px solid @red;
+      line-height: 2.4em;
     }
   }
   .sliders{
@@ -334,9 +357,9 @@ p{
   .drag{
     position: absolute;
     opacity: 0;
-    top: -27px;
+    top: -1.5vw;
     color: @orange;
-    right: 40px;
+    right: 2.5vw;
     @media (max-width: 700px){
       display: none;
     }
@@ -368,7 +391,7 @@ p{
     position: absolute;
     font-size: .8rem;
     letter-spacing: .05rem;
-    top: 5em;
+    top: 4vw;
     left: .1em;
     width: 200px;
     color: @orange;
@@ -377,6 +400,9 @@ p{
   &.not-default{
     border-bottom: 1px solid @orange;
     color: @lightColor;
+    span:focus{
+      background: transparent;
+    }
   }
   @media (max-width: 700px){
     label{
@@ -396,6 +422,9 @@ p{
 .son-name{
   top: .8em;
   opacity: 0;
+  span:focus{
+    background: @blue;
+  }
 }
 .son-slider{
   width: 100px;
@@ -526,7 +555,7 @@ p{
     display: block;
     opacity: 1;
     visibility: visible;
-    .transition(1s,ease-in-out,opacity,3s);
+    .transition(1s,ease-in-out,opacity,2s);
   }
 }
 .isMovingYouAge{
@@ -597,6 +626,10 @@ p{
   }
   .fade-in{
     .animation(fade-in 1s 0s forwards @easeOutBack);
+  }
+  .message{
+    visibility: visible;
+    .animation(fade-in 2s 13s forwards @easeOutBack);
   }
 }
 .hour-picker{

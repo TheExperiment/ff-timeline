@@ -232,6 +232,9 @@ body {
 /* ===== Primary Styles ========================================================
    Author: Nick Jones / The Experiment
    ========================================================================== */
+::selection {
+  background: rgba(66, 222, 205, 0.6);
+}
 .content {
   z-index: 2;
   position: absolute;
@@ -385,6 +388,9 @@ h3 {
   -moz-animation: fade-in 1s 0.2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: fade-in 1s 0.2s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+.logo img {
+  width: 7vw;
+}
 p {
   position: relative;
   top: 0;
@@ -413,8 +419,21 @@ p {
   }
 }
 .small-text {
-  font-size: .8rem;
+  font-size: .8vw;
   letter-spacing: .04rem;
+}
+.message {
+  width: 62%;
+  padding-top: 4vw;
+  opacity: 0;
+  visibility: hidden;
+}
+.message:before {
+  content: '';
+  position: relative;
+  display: block;
+  width: 200px;
+  border-top: 3px solid #BD2132;
 }
 .founder-twitter path {
   -webkit-transition-duration: 0.2s;
@@ -583,14 +602,15 @@ p {
 }
 .timeline .hashes {
   position: absolute;
-  left: -2px;
+  left: -1px;
 }
 .timeline .hashes .hash {
   position: absolute;
   color: #BD2132;
-  top: .5em;
-  padding-left: .5em;
+  top: 0;
+  padding-left: .7em;
   border-left: 1px solid #BD2132;
+  line-height: 2.4em;
 }
 .timeline .sliders {
   position: absolute;
@@ -652,9 +672,9 @@ p {
 .slider .drag {
   position: absolute;
   opacity: 0;
-  top: -27px;
+  top: -1.5vw;
   color: #F1734C;
-  right: 40px;
+  right: 2.5vw;
 }
 @media (max-width: 700px) {
   .slider .drag {
@@ -706,7 +726,7 @@ p {
   position: absolute;
   font-size: .8rem;
   letter-spacing: .05rem;
-  top: 5em;
+  top: 4vw;
   left: .1em;
   width: 200px;
   color: #F1734C;
@@ -715,6 +735,9 @@ p {
 .name.not-default {
   border-bottom: 1px solid #F1734C;
   color: #fef5b9;
+}
+.name.not-default span:focus {
+  background: transparent;
 }
 @media (max-width: 700px) {
   .name label {
@@ -734,6 +757,9 @@ p {
 .son-name {
   top: .8em;
   opacity: 0;
+}
+.son-name span:focus {
+  background: rgba(66, 222, 205, 0.6);
 }
 .son-slider {
   width: 100px;
@@ -899,11 +925,11 @@ p {
   -o-transition-duration: 1s;
   -ms-transition-duration: 1s;
   transition-duration: 1s;
-  -webkit-transition-delay: 3s;
-  -moz-transition-delay: 3s;
-  -o-transition-delay: 3s;
-  -ms-transition-delay: 3s;
-  transition-delay: 3s;
+  -webkit-transition-delay: 2s;
+  -moz-transition-delay: 2s;
+  -o-transition-delay: 2s;
+  -ms-transition-delay: 2s;
+  transition-delay: 2s;
   -webkit-transition-timing-function: ease-in-out;
   -moz-transition-timing-function: ease-in-out;
   -o-transition-timing-function: ease-in-out;
@@ -1039,6 +1065,12 @@ p {
   -webkit-animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   -moz-animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: fade-in 1s 0s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.isCountdown .message {
+  visibility: visible;
+  -webkit-animation: fade-in 2s 13s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-animation: fade-in 2s 13s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fade-in 2s 13s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .hour-picker {
   cursor: pointer;
