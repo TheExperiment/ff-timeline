@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Future Father</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="Nick Jones / The Experiment">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <!--Scripts-->
+    <script src="ui/assets/scripts/jquery-2.1.1.min.js"></script>
+    <script src="ui/assets/scripts/p5.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.4.min.js"></script>
+    <script type="text/javascript">
+      Parse.initialize("8WLSVyS5c0l6rzXHtpUGP9ecoDnJtTRtADmPr6QJ", "IMuqqwV87a5UvbmVEpobgnwiGrmFanoy8wuqcWID");
+    </script>
+    <script type="text/javascript" src="ui/assets/scripts/get.js"></script>
+    <script type="text/javascript" src="ui/assets/scripts/put.js"></script>
+    <script type="text/javascript" src="ui/assets/scripts/script.js"></script>
+
+    <!--Styles-->
+    <link rel="stylesheet" type="text/css" href="ui/assets/styles/css/main.css">
+    <!--Fonts-->
+    <script type="text/javascript" src="https://fast.fonts.net/jsapi/f28c71c8-6749-4860-ac60-3c10c18b60df.js"></script>
+
+</head>
+<body>
+  <div class="particles"></div>
+  <div class="content">
+    <div class="logo"><img src="ui/assets/images/ffather.svg"></div>
+    <p class="tagline">Childhood is a brief window of time.</p>
+    <div class="countdown">
+      <div id="clock">
+        <h2>Minus</h2>
+        <h2><span class='hour-picker'>47</span><a href="https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=average+work+week" target="_blank"> hours/week you work.<sup> ?</sup> </a></h2>
+        <h2><span class='hour-picker'>70</span><a href="http://qz.com/338157/how-much-sleep-your-child-really-needs-by-age-group/" target="_blank"> hours/week he sleeps.<sup> ?</sup> </a></h2>
+        <h2><span class='hour-picker'>33</span><a href="https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=how+many+hours+does+the+average+adult+spend+watching+tv" target="_blank"> hours/week of TV<sup> ?</sup> </a></h2>
+        <h2><span class='hour-picker'>4</span><a href="https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=how+long+avg+american+toilet" target="_blank"> hours/week on the toilet...<sup> ?</sup> </a></h2>
+        <div>
+          <div class="smalltext">Days</div>
+          <span class="huge-text days"></span>
+        </div>
+        <div>
+          <div class="smalltext">Hours</div>
+          <span class="huge-text hours"></span>
+        </div>
+        <div>
+          <div class="smalltext">Minutes</div>
+          <span class="huge-text minutes"></span>
+        </div>
+        <div>
+          <div class="smalltext">Seconds</div>
+          <span class="huge-text seconds"></span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="sliders">
+        <div class="slider you-slider">
+          <div class="bar"></div>
+          <div class="age">20</div>
+          <div class="drag small-text blink">Drag Your Age ></div>
+        </div>
+        <div class="slider son-slider">
+          <div class="age">5</div>
+          <div class="bar"></div>
+          <div class="drag small-text blink">< His Age</div>
+        </div>
+        <div class="hashes">
+          <div class="hash small-text">0<br>years</div>
+          <div class="hash small-text">10</div>
+          <div class="hash small-text">20</div>
+          <div class="hash small-text">30</div>
+          <div class="hash small-text">40</div>
+          <div class="hash small-text">50</div>
+          <div class="hash small-text">60</div>
+          <div class="hash small-text">70</div>
+          <div class="hash small-text">80</div>
+        </div>
+        <div class="window-slider">
+<!--           <div class="age son-age">18</div>
+          <div class="age your-age">50</div> -->
+          <div class="until">Until he is 18</div>
+          <div class="bar"></div>
+        </div>
+      </div>
+      <div class="name your-name"><label>Your Name</label><span contenteditable tabindex="1">What is your name?</span></div>
+      <div class="name son-name"><label>Son’s Name</label><span contenteditable tabindex="2">What did you name your son?</span></div>
+      <button class="btn-signup continue" tabindex="3">CONTINUE</button>
+    </div>
+    <div class="btn-signup-holder">
+    	<div class="btn-signup signup">SIGN UP</div>
+    	<!-- <div class="total">Total Fathers:<br><span class="count">{{ $totalUsersCount }}</span></div> -->
+    </div>
+    <div class="message">
+      <p>
+      I always told myself that the insane hours I’ve worked over the years were for my kids and wife. The thinking went that if I commit extra time to learning, making and reading the right articles, one day I’d reach a level of productivity and prestige which would afford me the time and money I need to make the dream life with my family. What should’ve been obvious wasn’t. Research from a 75 year study on happiness proves it. The quality of our relationships is what makes us happy and healthy <a href="https://www.ted.com/talks/robert_waldinger_what_makes_a_good_life_lessons_from_the_longest_study_on_happiness" target="_blank">(video)</a>. Everything we commit our time talent and energy to is either in service to, or a distraction from that truth.
+      </p>
+      <p>
+      We floated the idea of making Future Father in October of 2014. Around 500 people signed up. A few were offended that the idea is for dads and sons. The decision to focus on that one relationship until we get it right wasn’t made lightly. Gender is culturally complex. Even more so now than when we started. Likely, it always was and I didn’t notice. What I noticed, was a problem I have with my dad and one he has with his dad and one I don’t want my sons to have with me. I am working on this for selfish reasons to solve personal problems but I know they aren’t unique to me. Twenty seven others wanted it to exist so much they put down $100 (which we haven’t spent, promise). So we aren’t just making it for ourselves and our sons anymore.
+      </p>
+      <p>
+      I started writing all the reasons we aren’t further along with the thing but they aren’t very exciting. We are starting again with renewed excitement for the idea. I need it to exist. We are keeping it simple but aren’t just going to hack something together in a week like we started out intending to do. It’s a thoughtful sort of product and deserves a thoughtful sort of approach. Thanks
+      </p>
+      <p>
+      More soon.
+      </p>
+      <p><a href="http://twitter.com/narrowd">—Nick Jones</a></p>
+    </div>
+  </div>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-45973655-5', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+  <!--Application-->
+
+</body>
+
+</html>
