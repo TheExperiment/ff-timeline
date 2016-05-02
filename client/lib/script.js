@@ -36,7 +36,21 @@ $(function() {
 	$('.signup').on('click',function(){
 		window.location.href = 'http://futurefather.co'
 	})
-	// $('.hour-picker').on('mousedown',startDragHour)
+	function startDragHour (e) {
+		e.preventDefault();
+		slider = $(this)
+		if(e.type == 'touchmove'){
+			startY = e.originalEvent.touches[0].pageY;
+		}else{
+			startY = e.pageY
+		}
+		startHours = Number(slider.text());
+		WIN.on('mousemove',onMoveHour)
+		WIN.on('touchmove',onMoveHour)
+		WIN.on('mouseup',onReleaseHour)
+		WIN.on('touchend',onReleaseHour)
+	}
+	$('.hour-picker').on('mousedown',startDragHour)
 	$('body').on('scroll',function(){
 		$('.particles').css({
 			'-webkit-transform': 'perspective(1000) translate3d(0,'+($('.content').offset().top/-5)+'px,'+($('.content').offset().top)+'px)'
@@ -50,13 +64,13 @@ $(function() {
 	})
 	if(window.location.hash) {
 	  var timelineId = window.location.hash.split('#')[1];
-	  placeHashes
+	  placeHashes();
 	  WIN.on('resize',placeHashes)
 	  setWindowWidth
 		getTimeline(timelineId);
 	}
 	else{
-		placeHashes
+		placeHashes()
 		WIN.on('resize',placeHashes)
 		$('.slider').on('mousedown',startDrag)
 		$('.slider').on('touchstart',startDrag)
@@ -82,6 +96,12 @@ $(function() {
 				$('.content').addClass('isSonName')
 			},500)
 		})
+		$('.your-name span').on('keypress',function(e){
+			if(e.keyCode == 13){
+				e.preventDefault();
+				$('.son-name span').focus();
+			}
+		})
 		$('.continue').on('click',continueClick)
 		$('.your-name span').focus();
 		$('.name span').on('click',function(e){
@@ -92,26 +112,26 @@ $(function() {
 			var name = $(this)
 			setTimeout(function(){
 				resetField(name)
-			},300)
+			},600)
 		})
 		function resetField(el){
 			if(el.text() == 'What is your name?'){
 				el.html('')
 				el.parent().removeClass('not-default')
-			}else if(el.text() == 'What did you name your son?'){
+			}else if(el.text() == 'What do you call your son?'){
 				el.html('')
 				el.parent().removeClass('not-default')
 			}else{
 				el.parent().addClass('not-default')
 			}
-			
+
 		}
 		function continueClick(){
 			if(!$('.content').hasClass('isYouName')){
 				$('.content').addClass('isYouName')
 			}else if(!$('.content').hasClass('isBothNames')){
 				$('.content').addClass('isBothNames')
-				changeTagline('How many years have you been on Earth?')
+				changeTagline('How long have you been on Earth?')
 				userObj.sonName = $('.son-name span').text();
 				userObj.dadName = $('.your-name span').text();
 			}else{
@@ -141,7 +161,7 @@ $(function() {
 				$('.content').addClass('isWindow')
 				var width = (WIN.width() - x - WIN.width()/10) - (WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width()));
 				userObj.index = x;
-				
+
 				setWindowWidth
 			}
 			slider.find($('.age')).html(Math.max(0,Math.floor(80*(width/$('.timeline').width()))));
@@ -155,14 +175,14 @@ $(function() {
 			WIN.off('mouseup')
 			WIN.off('touchend')
 			if(slider.hasClass('you-slider')){
-				changeTagline('How many years has <span class="window-years">'+userObj.sonName+'</span> been on Earth with you?')	
+				changeTagline('How long has <span class="window-years">'+userObj.sonName+'</span> been on Earth with you?')
 				$('.content').addClass("isSonAge");
 				$('.son-slider').css({
-					right: WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2
+					right: (WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2) + 3
 				})
 			}else{
 				yearsLeft = getYearsLeft();
-				changeTagline(userObj.dadName+' and '+userObj.sonName+' have <span class="window-years">' + yearsLeft +' more years together.</span><br><span class="parenthetical">(Until '+userObj.sonName+' turns 18)</span>')
+				changeTagline(userObj.dadName+' and '+userObj.sonName+' have <span class="window-years">');
 				$('.window-slider').find($('.bar')).addClass('blink');
 				userObj.dadAge = $('.you-slider .age').text();
 				userObj.sonAge = $('.son-slider .age').text();
@@ -183,20 +203,6 @@ $(function() {
 				'-webkit-filter':'saturate('+(40+((yearsLeft/18)*60))+'%)'
 			})
 			return yearsLeft;
-		}
-		function startDragHour (e) {
-			e.preventDefault();
-			slider = $(this)
-			if(e.type == 'touchmove'){
-				startY = e.originalEvent.touches[0].pageY;
-			}else{
-				startY = e.pageY
-			}
-			startHours = Number(slider.text());
-			WIN.on('mousemove',onMoveHour)
-			WIN.on('touchmove',onMoveHour)
-			WIN.on('mouseup',onReleaseHour)
-			WIN.on('touchend',onReleaseHour)
 		}
 		function onMoveHour (e) {
 			var y;
@@ -272,32 +278,33 @@ function getTimeRemaining(endtime) {
 
 function initializeClock() {
   clock = document.getElementById('clock');
+  minus = document.getElementById('minus');
   startCountdown(0);
   setTimeout(function(){
-  	clock.getElementsByTagName('h2')[0].classList.add('fade-in')
+  	minus.getElementsByTagName('h2')[0].classList.add('fade-in')
   	startCountdown(0);
-  },1500)
+  },1000)
   setTimeout(function(){
-  	clock.getElementsByTagName('h2')[1].classList.add('fade-in')
+  	minus.getElementsByTagName('h2')[1].classList.add('fade-in')
   	startCountdown(47);
-  },2500)
+  },2000)
   setTimeout(function(){
-  	clock.getElementsByTagName('h2')[2].classList.add('fade-in')
+  	minus.getElementsByTagName('h2')[2].classList.add('fade-in')
   	startCountdown(117);
-  },5500)
+  },5000)
   setTimeout(function(){
-  	clock.getElementsByTagName('h2')[3].classList.add('fade-in')
+  	minus.getElementsByTagName('h2')[3].classList.add('fade-in')
   	startCountdown(150);
-  },9000)
+  },8500)
   setTimeout(function(){
-  	clock.getElementsByTagName('h2')[4].classList.add('fade-in')
+  	minus.getElementsByTagName('h2')[4].classList.add('fade-in')
   	startCountdown(154);
-  },12000)
- 
+  },11500)
+
 }
 
 function startCountdown (minusHours) {
-	
+
 	var endtime = new Date(Date.now() + ((yearsLeft * 365 * 24 * 60 * 60 * 1000)-((minusHours*52)*yearsLeft)*60*60*1000));
 	var daysSpan = clock.querySelector('.days');
 	var hoursSpan = clock.querySelector('.hours');

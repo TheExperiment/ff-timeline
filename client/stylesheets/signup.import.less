@@ -32,7 +32,7 @@ html{
   height: 100%;
   overflow: hidden;
   color: @lightColor;
-  
+
   a { color: @highlightColor; text-decoration:none; font-size: 1em;}
   a:visited { color:  @highlightColor }
   a:hover { color:  @lightColor }
@@ -41,8 +41,8 @@ html{
 }
 
 body{
-  font-size: 1em; 
-  line-height: 1.4; 
+  font-size: 1em;
+  line-height: 1.4;
   .body-font(1vw);
   letter-spacing: .01rem;
   width: 100%;
@@ -52,7 +52,7 @@ body{
   -webkit-overflow-scrolling: touch;
   position: relative;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#43191d+0,6a2d28+100 */
-  background: black; /* Old browsers */
+  background: @darkColor; /* Old browsers */
   // background: -moz-linear-gradient(top, #43191d 0%, #6a2d28 100%); /* FF3.6-15 */
   // background: -webkit-linear-gradient(top, #43191d 0%,#6a2d28 100%); /* Chrome10-25,Safari5.1-6 */
   // background: linear-gradient(to bottom, #43191d 0%,#6a2d28 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -84,7 +84,7 @@ body{
    ========================================================================== */
 
 // .background{
-//   background: url('/ui/assets/images/olly.jpg') center center; 
+//   background: url('/ui/assets/images/olly.jpg') center center;
 //   background-size: cover;
 //   position: fixed;
 //   top: 0;
@@ -126,9 +126,10 @@ sup{
 .tagline{
   .body-font(4.2em);
   line-height: 1em;
-  padding-bottom: .5em;
+  // padding-bottom: .5em;
   width: 62%;
   margin-top: 1.5rem;
+
   @media (max-width: 700px){
     width: 100%;
   }
@@ -171,7 +172,7 @@ h1{
   }
 }
 h2{
- font-size: 1.2em; 
+ font-size: 1.2em;
  line-height: .6em;
  top: 0;
  position: relative;
@@ -188,16 +189,14 @@ h3{
 }
 
 .logo{
-  position: relative;
-  margin-top: 2em;
-  margin-bottom: 2em;
+  position: fixed;
+  top: 4.3em;
   opacity: 0;
-  top: 0;
-  left: -6vw;
+  left: 2vw;
   .transform(translateY(10px));
   .animation(fade-in 1s .2s forwards @easeOutBack);
   img{
-    width: 7vw;
+    width: 5vw;
   }
 }
 
@@ -234,14 +233,14 @@ p{
   p:first-child{
     text-indent: 0;
   }
-  p:first-child:first-letter { 
-    float: left; 
+  p:first-child:first-letter {
+    float: left;
     text-align: left;
-    font-size: 6.4vw; 
-    line-height: 5vw; 
-    padding-top: .6vw; 
-    padding-right: .8vw; 
-    padding-left: 0vw; 
+    font-size: 7vw;
+    line-height: 5vw;
+    padding-top: .6vw;
+    padding-right: .8vw;
+    padding-left: 0vw;
     color: @orange;
   }
   &:before{
@@ -297,20 +296,20 @@ p{
   background: transparent;
   .button-font(.8em);
   color: @orange;
-  border: 4px solid @red;
+  border: 4px solid @blue;
   letter-spacing: .2em;
   line-height: .8em;
   outline: none;
   opacity: 0;
   .transition(.5s, @easeOut);
-  // .animation(fade-in 1s 2s forwards ease-in-out); 
+  // .animation(fade-in 1s 2s forwards ease-in-out);
   @media screen and (max-width: 700px) {
     font-size: 1.2em;
   }
   &:hover,&:focus{
     .transition(.2s, @easeOut);
     // border: 4px solid @orange;
-    background: @red;
+    background: @blue;
     color: @darkColor;
   }
 }
@@ -319,8 +318,8 @@ p{
   position: absolute;
   margin: auto;
   width: 80%;
-  height: 2em;
-  top: 26vw;
+  height: 1.7em;
+  top: 15.7vw;
   .transition(1s,ease-in-out,top);
   @media screen and (max-width: 700px) {
     width: 90%;
@@ -330,25 +329,27 @@ p{
     left: -1px;
     .hash{
       position: absolute;
-      color: @red;
+      color: @blue;
       top: 0;
       padding-left: .7em;
-      border-left: 1px solid @red;
-      line-height: 2.4em;
+      padding-top: 1.2em;
+      border-left: 1px dotted @blue;
+      line-height: 1em;
     }
   }
   .sliders{
     position: absolute;
     width: 100%;
     height: 100%;
-    border: 1px solid @red;
+    border-top: 1px solid @blue;
     opacity: 0;
+    top: 5vw;
     .transition(.5s);
   }
 }
 .bar{
   width: 100%;
-  height: 100%;
+  height: .7vw;
 }
 .age{
   position: absolute;
@@ -358,69 +359,104 @@ p{
 }
 .slider{
   position: absolute;
-  width: 100px;
+  width: 0px;
   height: 100%;
   cursor: pointer;
   pointer-events: none;
   .age{
     right: 0px;
-    top: -.6em;
+    top: -1.1em;
     text-align: right;
     width: 2.15em;
     height: 2.15em;
-    border: .15em solid @orange;
+    border: .15em solid @blue;
     .rounded(50%);
     background: @darkColor;
     text-align: center;
     padding-top: .25em;
+    &:after {
+      position: absolute;
+      font-size: .5em;
+      top: 4.7vw;
+      color: @blue;
+      left: .7vw;
+      content: "years";
+    }
   }
   .drag{
     position: absolute;
     opacity: 0;
     top: -1.5vw;
-    color: @orange;
-    right: 2.5vw;
+    color: @blue;
+    left: 2.7vw;
+    width: 200px;
     @media (max-width: 700px){
       display: none;
     }
   }
 }
 .you-slider{
-  width: 25%;
   height: 100%;
   .age{
     right: -1em;
+  }
+  .bar{
+    background: @blue;
+  }
+}
+.son-slider{
+  width: 0px;
+  height: 100%;
+  right: 0;
+  visibility: hidden;
+  opacity: 0;
+  display: block;
+  .transition(.4s,ease-out, opacity);
+  .drag{
+    left: auto;
+    right: 0px;
+    color: @orange;
+  }
+  .age{
+    left: -2em;
+    border-color: @orange;
+    &:after {
+      color: @orange;
+      content: "years";
+    }
   }
   .bar{
     background: @orange;
   }
 }
 .name{
-  position: absolute;
-  font-size: 3em;
+  position: relative;
+  font-size: 4.2em;
   line-height: 1.13;
-  border-bottom: 1px dotted @blue;
   .transition(.3s,ease-in-out);
   color: @blue;
   span{
     outline: none;
-    min-width: 50px;
-    display: block;
+    min-width: 150px;
+    display: inline-block;
+    position: relative;
+    border-bottom: 1px dotted @blue;
   }
   label{
-    position: absolute;
+    position: relative;
     font-size: .8rem;
     letter-spacing: .05rem;
-    top: 4vw;
+    top: 1em;
     left: .1em;
     width: 200px;
-    color: @orange;
+    min-width: 150%;
+    color: @blue;
     opacity: 0;
+    display: block;
   }
   &.not-default{
-    border-bottom: 1px solid @orange;
-    color: @lightColor;
     span:focus{
+      border-bottom: 1px solid @blue;
       background: transparent;
     }
   }
@@ -429,42 +465,32 @@ p{
       top: 2.5em;
     }
   }
-
 }
 .your-name{
   opacity: 0;
-  top: -1.2em;
   .animation(fade-in 1s 1s forwards @easeOutBack);
   span:focus{
     background: @blue;
   }
 }
 .son-name{
-  top: .8em;
+  margin-top: 1em;
   opacity: 0;
+  color: @orange;
+  span {
+    border-color: @orange;
+  }
   span:focus{
-    background: @blue;
+    background: @orange60;
+    border-color: @orange;
   }
-}
-.son-slider{
-  width: 100px;
-  height: 100%;
-  right: 0;
-  visibility: hidden;
-  opacity: 0;
-  display: block;
-  .transition(.4s,ease-out, opacity);
-  .drag{
-    right: auto;
-    left: -12em;
-    color: @lightColor;
+  &.not-default{
+    span:focus{
+      border-color: @orange;
+    }
   }
-  .age{
-    left: -2em;
-    border-color: @lightColor;
-  }
-  .bar{
-    background: @lightColor;
+  label {
+    color: @orange;
   }
 }
 .until{
@@ -484,7 +510,7 @@ p{
   .age{
     left: 100%;
     margin-left: 16px;
-    color: @red;
+    color: @blue;
   }
   .son-age{
     top: -1em;
@@ -494,7 +520,7 @@ p{
   }
   .bar{
     width: 100%;
-    background: @red;
+    background: @blue;
     height: 100%;
     position: absolute;
     opacity: .8;
@@ -505,13 +531,13 @@ p{
     border-right: 4px solid @orange;
     position: absolute;
     right: 0;
-    // background: @red;
+    // background: @blue;
     opacity: 1;
     width: 100%;
   }
 }
 .continue{
-  top: 150px;
+  margin-top: 5vw;
   opacity: .1;
   pointer-events: none;
 }
@@ -571,6 +597,9 @@ p{
   //     right: -7px;
   //   }
   // }
+  .hashes {
+    display: none;
+  }
   .son-slider{
     display: block;
     opacity: 1;
@@ -595,14 +624,18 @@ p{
     opacity: 1;
   }
 }
-.particles{
-  // -webkit-filter: blur(2px);
+.particles-container {
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
+  overflow: hidden;
+}
+.particles{
+  // -webkit-filter: blur(2px);
   width: 100%;
   height: 100%;
-  overflow: hidden;
 
   .particle{
     .transition(2.5s,ease-in);
@@ -623,7 +656,7 @@ p{
 .isCountdown{
   background: #1B0B0B;
   .tagline{
-    margin-bottom: .5em;
+    margin-bottom: 0;
   }
   .signup{
     opacity: 1;
@@ -642,7 +675,13 @@ p{
     height: auto;
     pointer-events: auto;
     opacity: 1;
-    top: 1vw;
+  }
+  .Minus {
+    pointer-events: auto;
+    .minus-text {
+      font-size: 2em;
+      line-height: 1;
+    }
   }
   .fade-in{
     .animation(fade-in 1s 0s forwards @easeOutBack);
@@ -659,7 +698,7 @@ p{
     position: absolute;
     content: '↕';
     left: -1vw;
-    color: @red;
+    color: @blue;
     top: .45vw;
   }
   &:hover{
@@ -689,17 +728,19 @@ p{
     margin-right: 6em;
     color: @orange;
     margin-left: -.5em;
-    margin-top: 1.5em;
     margin-bottom: 0;
   }
   .smalltext{
-    margin-left: .5em;
-    color: @lightColor;
-    font-size: 1.2em;
+    margin-left: .1em;
+    font-size: 4.2em;
+    margin-top: -1vw;
   }
 }
+.Minus {
+  pointer-events: none;
+}
 .huge-text{
-  font-size: 8em;
+  font-size: 6.8em;
   line-height: 1;
 }
 .isHash{

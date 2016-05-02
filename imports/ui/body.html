@@ -1,48 +1,52 @@
 <body>
 
-  <div class="particles"></div>
+  <div class="particles-container">
+    <div class="particles"></div>
+  </div>
   <div class="content">
     <div class="logo"><img src="/assets/images/ffather.svg"></div>
     <p class="tagline">Childhood is a brief window of time.</p>
     <div class="countdown">
       <div id="clock">
-        <h2>Minus</h2>
+        <div>
+          <span class="huge-text days"></span>
+          <div class="smalltext">Days</div>
+        </div>
+        <div>
+          <span class="huge-text hours"></span>
+          <div class="smalltext">Hrs</div>
+        </div>
+        <div>
+          <span class="huge-text minutes"></span>
+          <div class="smalltext">Mins</div>
+        </div>
+        <div>
+          <span class="huge-text seconds"></span>
+          <div class="smalltext">Secs</div>
+        </div>
+      </div>
+      <div class="Minus" id="minus">
+        <h2 class="minus-text">Until he turns 18.<br>Minus:</h2>
         <h2><span class='hour-picker'>47</span><a href="https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=average+work+week" target="_blank"> hours/week you work.<sup> ?</sup> </a></h2>
         <h2><span class='hour-picker'>70</span><a href="http://qz.com/338157/how-much-sleep-your-child-really-needs-by-age-group/" target="_blank"> hours/week he sleeps.<sup> ?</sup> </a></h2>
         <h2><span class='hour-picker'>33</span><a href="https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=how+many+hours+does+the+average+adult+spend+watching+tv" target="_blank"> hours/week of TV<sup> ?</sup> </a></h2>
         <h2><span class='hour-picker'>4</span><a href="https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=how+long+avg+american+toilet" target="_blank"> hours/week on the toilet...<sup> ?</sup> </a></h2>
-        <div>
-          <div class="smalltext">Days</div>          
-          <span class="huge-text days"></span>
-        </div>
-        <div>
-          <div class="smalltext">Hours</div>          
-          <span class="huge-text hours"></span>
-        </div>
-        <div>
-          <div class="smalltext">Minutes</div>          
-          <span class="huge-text minutes"></span>
-        </div>
-        <div>
-          <div class="smalltext">Seconds</div>          
-          <span class="huge-text seconds"></span>
-        </div>
       </div>
     </div>
     <div class="timeline">
       <div class="sliders">
         <div class="slider you-slider">
           <div class="bar"></div>
-          <div class="age">20</div>
-          <div class="drag small-text blink">Drag Your Age ></div>
+          <div class="age">0</div>
+          <div class="drag small-text blink">Drag Your Age &gt;</div>
         </div>
         <div class="slider son-slider">
-          <div class="age">5</div>
+          <div class="age">0</div>
           <div class="bar"></div>
-          <div class="drag small-text blink"> His Age</div>
+          <div class="drag small-text blink"> &lt; Drag His Age</div>
         </div>
         <div class="hashes">
-          <div class="hash small-text">0<br>years</div>
+          <div class="hash small-text">0</div>
           <div class="hash small-text">10</div>
           <div class="hash small-text">20</div>
           <div class="hash small-text">30</div>
@@ -52,15 +56,9 @@
           <div class="hash small-text">70</div>
           <div class="hash small-text">80</div>
         </div>
-        <div class="window-slider">
-<!--           <div class="age son-age">18</div>
-          <div class="age your-age">50</div> -->
-          <div class="until">Until he is 18</div>
-          <div class="bar"></div>
-        </div>
       </div>
-      <div class="name your-name"><label>Your Name</label><span contenteditable tabindex="1">What is your name?</span></div>
-      <div class="name son-name"><label>Son’s Name</label><span contenteditable tabindex="2">What did you name your son?</span></div>
+      <div class="name your-name"><span contenteditable tabindex="1">What is your name?</span><label>Your Name</label></div>
+      <div class="name son-name"><span contenteditable tabindex="2">What do you call your son?</span><label>Son’s Name</label></div>
       <button class="btn-signup continue" tabindex="3">CONTINUE</button>
     </div>
     <div class="btn-signup-holder">
@@ -68,14 +66,21 @@
       <!-- <div class="total">Total Fathers:<br><span class="count">{{ $totalUsersCount }}</span></div> -->
     </div>
     <div class="message">
-      <p>Another year in the books. Oliver is 12. I worked fewer hours this year, spent more of them thinking about the time I have left with him and tried to make the most of it. But as I look at this countdown (mine says 395 days), I feel a little more urgency and a little less impressed with myself. How I chose to spend my time this year isn’t how I plan to spend my time in 2016.</p>
-      <p>We floated the idea of making Future Father in October of 2014. Around 500 people signed up. A few were offended that the idea is for dads and sons. Gender is culturally complex right now. Likely it always was and I didn’t notice. What I noticed was a problem I have with my dad and one he has with his dad and one I don’t want my sons to have with me. I am working on this for selfish reasons to solve personal problems but I know they are not unique to me. 27 others wanted it to exist so much they put down $100 (which we haven’t spent, promise). So we aren’t just making it for ourselves or our sons anymore.</p>
-      <p>I started writing all the reasons we aren’t further along with the thing but they aren’t very exciting. We are starting the new year with renewed excitement for the idea. It needs to exist. We are keeping it simple but aren’t just going to hack something together in a week like we started out intending to do. It’s a thoughtful sort of product and deserves a thoughtful sort of approach.</p>
-      <p>Hope you gave yourself a break for the holiday and made some memories. See you more in 2016.</p>
-      <p><a href="http://twitter.com/narrowd">—Nick Jones</a></p>
+      <p>
+      Over the years, designing and developing things for the web, I convinced myself that the insane hours I was working were for my wife and kids. The thinking went that if I just committed extra time to learning, making and reading the right articles, one day I’d reach a level of productivity and prestige which would afford me the time and money I needed, to make the dream life with my family. What should’ve been obvious wasn’t. Research from a 75 year study on happiness shows how wrong I was. Quality relationships make us happy and healthy <a href="https://www.ted.com/talks/robert_waldinger_what_makes_a_good_life_lessons_from_the_longest_study_on_happiness" target="_blank">(video)</a>. Those are the two things I want for my son and myself and for you.
+      </p>
+      <p>
+      We floated the idea of making Future Father in October of 2014. Around 500 people signed up. A few were offended that the idea is for dads and sons. The decision to focus on that one relationship until we get it right wasn’t made lightly. Gender is culturally complex. Even more so now than when we started. Likely, it always was and I didn’t notice. What I noticed, was a problem I have with my dad and one he has with his dad and one I don’t want my sons to have with me. I am working on this for selfish reasons to solve personal problems but I know they aren’t unique to me. Twenty seven others wanted it to exist so much they put down $100 (which we haven’t spent, promise). So we aren’t just making it for ourselves and our sons anymore.
+      </p>
+      <p>
+      I started writing all the reasons we aren’t further along with the thing but they aren’t very exciting. We are starting again with renewed excitement for the idea. I need it to exist. We are keeping it simple but aren’t just going to hack something together in a week like we started out intending to do. It’s a thoughtful sort of product and deserves a thoughtful sort of approach. Thanks
+      </p>
+      <p>
+      More soon.
+      </p>
     </div>
   </div>
-  
+
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
