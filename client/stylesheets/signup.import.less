@@ -192,11 +192,17 @@ h3{
   position: fixed;
   top: 4.3em;
   opacity: 0;
-  left: 2vw;
+  left: 2.5em;
   .transform(translateY(10px));
   .animation(fade-in 1s .2s forwards @easeOutBack);
   img{
-    width: 5vw;
+    width: 5em;
+  }
+  @media (max-width: 700px){
+    top: 2em;
+    img {
+      width: 8em;
+    }
   }
 }
 
@@ -319,7 +325,7 @@ p{
   margin: auto;
   width: 80%;
   height: 1.7em;
-  top: 15.7vw;
+  top: 15em;
   .transition(1s,ease-in-out,top);
   @media screen and (max-width: 700px) {
     width: 90%;

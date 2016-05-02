@@ -114,150 +114,150 @@ $(function() {
 				resetField(name)
 			},600)
 		})
-		function resetField(el){
-			if(el.text() == 'What is your name?'){
-				el.html('')
-				el.parent().removeClass('not-default')
-			}else if(el.text() == 'What do you call your son?'){
-				el.html('')
-				el.parent().removeClass('not-default')
-			}else{
-				el.parent().addClass('not-default')
-			}
+	}
+	function resetField(el){
+		if(el.text() == 'What is your name?'){
+			el.html('')
+			el.parent().removeClass('not-default')
+		}else if(el.text() == 'What do you call your son?'){
+			el.html('')
+			el.parent().removeClass('not-default')
+		}else{
+			el.parent().addClass('not-default')
+		}
 
+	}
+	function continueClick(){
+		if(!$('.content').hasClass('isYouName')){
+			$('.content').addClass('isYouName')
+		}else if(!$('.content').hasClass('isBothNames')){
+			$('.content').addClass('isBothNames')
+			changeTagline('How long have you been on Earth?')
+			userObj.sonName = $('.son-name span').text();
+			userObj.dadName = $('.your-name span').text();
+		}else{
+			//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
 		}
-		function continueClick(){
-			if(!$('.content').hasClass('isYouName')){
-				$('.content').addClass('isYouName')
-			}else if(!$('.content').hasClass('isBothNames')){
-				$('.content').addClass('isBothNames')
-				changeTagline('How long have you been on Earth?')
-				userObj.sonName = $('.son-name span').text();
-				userObj.dadName = $('.your-name span').text();
-			}else{
-				//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
-			}
+	}
+	function startDrag (e) {
+		e.preventDefault();
+		slider = $(this)
+		WIN.on('mousemove',onMove)
+		WIN.on('touchmove',onMove)
+		WIN.on('mouseup',onRelease)
+		WIN.on('touchend',onRelease)
+	}
+	function onMove (e) {
+		var x;
+		if(e.type == 'touchmove'){
+			x = e.originalEvent.touches[0].pageX;
+		}else{
+			x = e.pageX
 		}
-		function startDrag (e) {
-			e.preventDefault();
-			slider = $(this)
-			WIN.on('mousemove',onMove)
-			WIN.on('touchmove',onMove)
-			WIN.on('mouseup',onRelease)
-			WIN.on('touchend',onRelease)
-		}
-		function onMove (e) {
-			var x;
-			if(e.type == 'touchmove'){
-				x = e.originalEvent.touches[0].pageX;
-			}else{
-				x = e.pageX
-			}
-			if(slider.hasClass('you-slider')){
-				$('.content').addClass("isMovingYouAge");
-				var width = x - slider.offset().left;
-			}else{
-				$('.content').addClass("isMovingSonAge");
-				$('.content').addClass('isWindow')
-				var width = (WIN.width() - x - WIN.width()/10) - (WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width()));
-				userObj.index = x;
+		if(slider.hasClass('you-slider')){
+			$('.content').addClass("isMovingYouAge");
+			var width = x - slider.offset().left;
+		}else{
+			$('.content').addClass("isMovingSonAge");
+			$('.content').addClass('isWindow')
+			var width = (WIN.width() - x - WIN.width()/10) - (WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width()));
+			userObj.index = x;
 
-				setWindowWidth
-			}
-			slider.find($('.age')).html(Math.max(0,Math.floor(80*(width/$('.timeline').width()))));
-			slider.css({
-				width: Math.max(5,Math.min($('.timeline').width(),width))
+			setWindowWidth
+		}
+		slider.find($('.age')).html(Math.max(0,Math.floor(80*(width/$('.timeline').width()))));
+		slider.css({
+			width: Math.max(5,Math.min($('.timeline').width(),width))
+		})
+	}
+	function onRelease (e) {
+		WIN.off('mousemove')
+		WIN.off('touchmove')
+		WIN.off('mouseup')
+		WIN.off('touchend')
+		if(slider.hasClass('you-slider')){
+			changeTagline('How long has <span class="window-years">'+userObj.sonName+'</span> been on Earth with you?')
+			$('.content').addClass("isSonAge");
+			$('.son-slider').css({
+				right: (WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2) + 3
 			})
-		}
-		function onRelease (e) {
-			WIN.off('mousemove')
-			WIN.off('touchmove')
-			WIN.off('mouseup')
-			WIN.off('touchend')
-			if(slider.hasClass('you-slider')){
-				changeTagline('How long has <span class="window-years">'+userObj.sonName+'</span> been on Earth with you?')
-				$('.content').addClass("isSonAge");
-				$('.son-slider').css({
-					right: (WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2) + 3
-				})
-			}else{
-				yearsLeft = getYearsLeft();
-				changeTagline(userObj.dadName+' and '+userObj.sonName+' have <span class="window-years">');
-				$('.window-slider').find($('.bar')).addClass('blink');
-				userObj.dadAge = $('.you-slider .age').text();
-				userObj.sonAge = $('.son-slider .age').text();
-				// console.log(userObj)
-				// saveTimeline();
-				setWindowWidth
-				clearTimeout(countdownTimer)
-				countdownTimer = setTimeout(function(){
-					$('body').addClass('isCountdown');
-					initializeClock();
-					sunTick = 1;
-				},3000)
-			}
-		}
-		function getYearsLeft () {
-			yearsLeft = Math.max(0,(18-Number($('.son-slider').find($('.age')).text())));
-			$('body').css({
-				'-webkit-filter':'saturate('+(40+((yearsLeft/18)*60))+'%)'
-			})
-			return yearsLeft;
-		}
-		function onMoveHour (e) {
-			var y;
-			var moved;
-			if(e.type == 'touchmove'){
-				y = e.originalEvent.touches[0].pageY;
-			}else{
-				y = e.pageY
-			}
-			moved = Math.floor((startY-y)/5);
-			slider.html(Math.max(0,startHours + moved))
+		}else{
+			yearsLeft = getYearsLeft();
+			changeTagline(userObj.dadName+' and '+userObj.sonName+' have <span class="window-years">');
+			$('.window-slider').find($('.bar')).addClass('blink');
+			userObj.dadAge = $('.you-slider .age').text();
+			userObj.sonAge = $('.son-slider .age').text();
+			// console.log(userObj)
+			// saveTimeline();
+			setWindowWidth
 			clearTimeout(countdownTimer)
-			startCountdown(currentHours())
+			countdownTimer = setTimeout(function(){
+				$('body').addClass('isCountdown');
+				initializeClock();
+				sunTick = 1;
+			},3000)
 		}
-		function onReleaseHour (e) {
-			WIN.off('mousemove')
-			WIN.off('touchmove')
-			WIN.off('mouseup')
-			WIN.off('touchend')
-			saveTimeline();
+	}
+	function getYearsLeft () {
+		yearsLeft = Math.max(0,(18-Number($('.son-slider').find($('.age')).text())));
+		$('body').css({
+			'-webkit-filter':'saturate('+(40+((yearsLeft/18)*60))+'%)'
+		})
+		return yearsLeft;
+	}
+	function onMoveHour (e) {
+		var y;
+		var moved;
+		if(e.type == 'touchmove'){
+			y = e.originalEvent.touches[0].pageY;
+		}else{
+			y = e.pageY
 		}
-		function currentHours () {
-			var hours = 0;
-			for (var i = $('.hour-picker').length - 1; i >= 0; i--) {
-				hours += Number($('.hour-picker').eq(i).text());
-			};
-			return hours;
-		}
-		function setWindowWidth(){
-			// $('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
-			$('.window-slider').css({
-				width: $('.timeline').width()*(getYearsLeft()/80),
-				left: $('.you-slider').width()
-			});
-		}
-		function changeTagline (message) {
+		moved = Math.floor((startY-y)/5);
+		slider.html(Math.max(0,startHours + moved))
+		clearTimeout(countdownTimer)
+		startCountdown(currentHours())
+	}
+	function onReleaseHour (e) {
+		WIN.off('mousemove')
+		WIN.off('touchmove')
+		WIN.off('mouseup')
+		WIN.off('touchend')
+		saveTimeline();
+	}
+	function currentHours () {
+		var hours = 0;
+		for (var i = $('.hour-picker').length - 1; i >= 0; i--) {
+			hours += Number($('.hour-picker').eq(i).text());
+		};
+		return hours;
+	}
+	function setWindowWidth(){
+		// $('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
+		$('.window-slider').css({
+			width: $('.timeline').width()*(getYearsLeft()/80),
+			left: $('.you-slider').width()
+		});
+	}
+	function changeTagline (message) {
+		$('.tagline').css({
+			'-webkit-transition-duration':'1s',
+			'-webkit-filter':'blur(10px) opacity(0%)'
+		})
+		setTimeout(function(){
+			$('.tagline').html(message)
 			$('.tagline').css({
 				'-webkit-transition-duration':'1s',
-				'-webkit-filter':'blur(10px) opacity(0%)'
+				'-webkit-filter':'blur(0px) opacity(100%)'
 			})
-			setTimeout(function(){
-				$('.tagline').html(message)
-				$('.tagline').css({
-					'-webkit-transition-duration':'1s',
-					'-webkit-filter':'blur(0px) opacity(100%)'
-				})
-			},1000)
-		}
-		function placeHashes(){
-			for (var i = $('.hash').length - 1; i >= 0; i--) {
-				$('.hash').eq(i).css({
-					left: i*$('.timeline').width()/8
-				})
-			};
-		}
+		},1000)
+	}
+	function placeHashes(){
+		for (var i = $('.hash').length - 1; i >= 0; i--) {
+			$('.hash').eq(i).css({
+				left: i*$('.timeline').width()/8
+			})
+		};
 	}
 })
 
