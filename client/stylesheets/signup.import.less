@@ -413,11 +413,11 @@ p{
 .son-slider{
   width: 0px;
   height: 100%;
-  right: 0;
-  visibility: hidden;
+  right: 100%;
   opacity: 0;
   display: block;
-  .transition(.4s,ease-out, opacity);
+  pointer-events: none;
+  .transition(.4s,ease-out);
   .drag{
     left: auto;
     right: 0px;
@@ -426,6 +426,8 @@ p{
   .age{
     left: -2em;
     border-color: @orange;
+    .transform(translate3d(-300px,0,0) scale(.5));
+    .transition(1s,ease-out,all,1s);
     &:after {
       color: @orange;
       content: "years";
@@ -609,8 +611,11 @@ p{
   .son-slider{
     display: block;
     opacity: 1;
-    visibility: visible;
+    pointer-events: auto;
     .transition(1s,ease-in-out,opacity,2s);
+    .age {
+      .transform(translate3d(0,0,0));
+    }
   }
 }
 .isMovingYouAge{

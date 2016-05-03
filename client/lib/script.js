@@ -44,7 +44,7 @@ $(function() {
 		}else{
 			startY = e.pageY
 		}
-		startHours = Number(slider.text());
+		startHours = Number(slider.text().substr(5));
 		WIN.on('mousemove',onMoveHour)
 		WIN.on('touchmove',onMoveHour)
 		WIN.on('mouseup',onReleaseHour)
@@ -163,7 +163,7 @@ $(function() {
 			var width = (WIN.width() - x - WIN.width()/10) - (WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width()));
 			userObj.index = x;
 
-			setWindowWidth
+			setWindowWidth()
 		}
 		slider.find($('.age')).html(Math.max(0,Math.floor(80*(width/$('.timeline').width()))));
 		slider.css({
@@ -179,7 +179,7 @@ $(function() {
 			changeTagline('How long has <span class="window-years">'+userObj.sonName+'</span> been on Earth with you?')
 			$('.content').addClass("isSonAge");
 			$('.son-slider').css({
-				right: (WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2) + 3
+				right: (WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2) + $('.son-slider .age').width() + 8
 			})
 		}else{
 			yearsLeft = getYearsLeft();
@@ -189,8 +189,9 @@ $(function() {
 			userObj.sonAge = $('.son-slider .age').text();
 			// console.log(userObj)
 			// saveTimeline();
-			setWindowWidth
+			setWindowWidth()
 			clearTimeout(countdownTimer)
+			$('.his-name').html(userObj.sonName);
 			countdownTimer = setTimeout(function(){
 				$('body').addClass('isCountdown');
 				initializeClock();
@@ -214,7 +215,7 @@ $(function() {
 			y = e.pageY
 		}
 		moved = Math.floor((startY-y)/5);
-		slider.html(Math.max(0,startHours + moved))
+		slider.html("Minus " + Math.max(0,startHours + moved))
 		clearTimeout(countdownTimer)
 		startCountdown(currentHours())
 	}
@@ -223,12 +224,12 @@ $(function() {
 		WIN.off('touchmove')
 		WIN.off('mouseup')
 		WIN.off('touchend')
-		saveTimeline();
+		// saveTimeline();
 	}
 	function currentHours () {
 		var hours = 0;
 		for (var i = $('.hour-picker').length - 1; i >= 0; i--) {
-			hours += Number($('.hour-picker').eq(i).text());
+			hours += Number($('.hour-picker').eq(i).text().substr(5));
 		};
 		return hours;
 	}
@@ -236,7 +237,7 @@ $(function() {
 		// $('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
 		$('.window-slider').css({
 			width: $('.timeline').width()*(getYearsLeft()/80),
-			left: $('.you-slider').width()
+			left: $('.you-slider').width() - $('.son-slider .age').width() - 8
 		});
 	}
 	function changeTagline (message) {
