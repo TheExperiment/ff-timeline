@@ -132,9 +132,9 @@ $(function() {
 			$('.content').addClass('isYouName')
 		}else if(!$('.content').hasClass('isBothNames')){
 			$('.content').addClass('isBothNames')
-			changeTagline('How long have you been on Earth?')
 			userObj.sonName = $('.son-name span').text();
 			userObj.dadName = $('.your-name span').text();
+			changeTagline('How long have you been on Earth, ' + userObj.dadName + '?')
 		}else{
 			//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
 		}
@@ -160,7 +160,7 @@ $(function() {
 		}else{
 			$('.content').addClass("isMovingSonAge");
 			$('.content').addClass('isWindow')
-			var width = (WIN.width() - x - WIN.width()/10) - (WIN.width()-$('.you-slider').width() - (WIN.width() - $('.timeline').width()));
+			var width = (WIN.width() - x - WIN.width()/10) - (WIN.width()-$('.you-slider').width() + $('.son-slider .age').width()  - (WIN.width() - $('.timeline').width()));
 			userObj.index = x;
 
 			setWindowWidth()
@@ -176,14 +176,14 @@ $(function() {
 		WIN.off('mouseup')
 		WIN.off('touchend')
 		if(slider.hasClass('you-slider')){
-			changeTagline('How long has <span class="window-years">'+userObj.sonName+'</span> been on Earth with you?')
+			changeTagline('How long has <span class="window-years his-name">'+userObj.sonName+'</span> been on Earth with you?')
 			$('.content').addClass("isSonAge");
 			$('.son-slider').css({
 				right: (WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2) + $('.son-slider .age').width() + 8
 			})
 		}else{
 			yearsLeft = getYearsLeft();
-			changeTagline(userObj.dadName+' and '+userObj.sonName+' have <span class="window-years">');
+			changeTagline(userObj.dadName+' and <span class="his-name">' +userObj.sonName + '</span> have <span class="window-years">');
 			$('.window-slider').find($('.bar')).addClass('blink');
 			userObj.dadAge = $('.you-slider .age').text();
 			userObj.sonAge = $('.son-slider .age').text();
@@ -196,7 +196,7 @@ $(function() {
 				$('body').addClass('isCountdown');
 				initializeClock();
 				sunTick = 1;
-			},3000)
+			},1000)
 		}
 	}
 	function getYearsLeft () {

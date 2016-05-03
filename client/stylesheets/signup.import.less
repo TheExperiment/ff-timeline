@@ -172,7 +172,7 @@ h1{
   }
 }
 h2{
- font-size: 1.2em;
+ font-size: 2rem;
  line-height: .6em;
  top: 0;
  position: relative;
@@ -449,6 +449,7 @@ p{
     display: inline-block;
     position: relative;
     border-bottom: 1px dotted @blue;
+    text-transform: capitalize;
   }
   label{
     position: relative;
@@ -473,6 +474,9 @@ p{
       top: 2.5em;
     }
   }
+}
+.blue {
+  color: @blue;
 }
 .your-name{
   opacity: 0;
@@ -500,6 +504,9 @@ p{
   label {
     color: @orange;
   }
+}
+.his-name {
+  text-transform: capitalize;
 }
 .until{
   position: absolute;
@@ -676,13 +683,14 @@ p{
   .timeline{
     opacity: 0;
     pointer-events: none;
+    .transform(translate3d(0,-100px,0));
     .transition(.5s);
     .slider{
       pointer-events: none;
     }
   }
   #clock{
-    display: block;
+    visibility: visible;
     height: auto;
     pointer-events: auto;
     opacity: 1;
@@ -708,9 +716,9 @@ p{
   &:before{
     position: absolute;
     content: '↕';
-    left: -1vw;
+    left: -.8em;
     color: @blue;
-    top: .45vw;
+    top: .35em;
   }
   &:hover{
     color: @lightColor;
@@ -722,9 +730,10 @@ p{
   }
 }
 #clock{
-  display: none;
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
+  .transition(.5s,east-out,all,.5s);
   h2{
     opacity: 0;
     sup{
@@ -745,13 +754,15 @@ p{
     margin-left: .1em;
     font-size: 4.2em;
     margin-top: -1vw;
+    padding-bottom: .05em;
+    border-bottom: 4px solid;
   }
 }
 .Minus {
   pointer-events: none;
 }
 .huge-text{
-  font-size: 6.8em;
+  font-size: 8em;
   line-height: 1;
 }
 .isHash{
