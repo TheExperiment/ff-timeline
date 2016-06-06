@@ -17,11 +17,11 @@ Meteor.methods({
     });
   },
   'tasks.getTimeline'(timelineId) {
-  Meteor.myFunctions.buildTimeline();
  	// console.log(timelineId)
  	//var results = Tasks.find();
-  var results = Tasks.findOne({ _id:("W5wyEyQxjGcRZjAai") })
+  var results = Tasks.findOne({ _id:(timelineId) })
  	console.log(results)
+  Meteor.myFunctions.deepLink(results);
     // FlowRouter.getQueryParam("queryParamName");
   },
  });

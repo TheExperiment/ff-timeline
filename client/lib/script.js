@@ -62,14 +62,14 @@ $(function() {
 			paused = false;
 		},1000)
 	})
-	if(window.location.hash) {
-	  var timelineId = window.location.hash.split('#')[1];
-	  placeHashes();
-	  WIN.on('resize',placeHashes)
-	  setWindowWidth
-	  Meteor.call('tasks.getTimeline', timelineId);
-	}
-	else{
+	// if(window.location.hash) {
+	//   var timelineId = window.location.hash.split('#')[1];
+	//   // placeHashes();
+	//   // WIN.on('resize',placeHashes)
+	//   // setWindowWidth
+	//   Meteor.call('tasks.getTimeline', timelineId);
+	// }
+	//else{
 		placeHashes()
 		WIN.on('resize',placeHashes)
 		$('.slider').on('mousedown',startDrag)
@@ -114,7 +114,7 @@ $(function() {
 				resetField(name)
 			},600)
 		})
-	}
+	//}
 	function resetField(el){
 		if(el.text() == 'What is your name?'){
 			el.html('')
