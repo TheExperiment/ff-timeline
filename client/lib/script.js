@@ -128,6 +128,7 @@ $(function() {
 
 	}
 	function continueClick(){
+		alert('wtf')
 		if(!$('.content').hasClass('isYouName')){
 			$('.content').addClass('isYouName')
 		}else if(!$('.content').hasClass('isBothNames')){

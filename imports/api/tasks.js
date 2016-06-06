@@ -14,14 +14,13 @@ Meteor.methods({
     Tasks.insert({
       userObj,
       createdAt: new Date(),
-      // sonName: text.sonName,
-      //username: Meteor.tasks.insert(this.userId).username,
     });
   },
   'tasks.getTimeline'(timelineId) {
- 	console.log(timelineId)
- 	var results = Tasks.find(this.timelineId);
-  // results = Tasks.findOne({ _id:("W5wyEyQxjGcRZjAai") })
+  Meteor.myFunctions.buildTimeline();
+ 	// console.log(timelineId)
+ 	//var results = Tasks.find();
+  var results = Tasks.findOne({ _id:("W5wyEyQxjGcRZjAai") })
  	console.log(results)
     // FlowRouter.getQueryParam("queryParamName");
   },
