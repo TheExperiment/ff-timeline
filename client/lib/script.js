@@ -196,11 +196,7 @@ $(function() {
 			setWindowWidth()
 			clearTimeout(countdownTimer)
 			$('.his-name').html(userObj.sonName);
-			countdownTimer = setTimeout(function(){
-				$('body').addClass('isCountdown');
-				initializeClock();
-				sunTick = 1;
-			},1000)
+			setIsCountdown();
 		}
 	}
 	function getYearsLeft () {
@@ -279,6 +275,10 @@ function getTimeRemaining(endtime) {
     'minutes': minutes,
     'seconds': seconds
   };
+  function deepLink(userObj) {
+  	changeTagline(userObj.dadName+' and <span class="his-name">' +userObj.sonName + '</span> have <span class="window-years">');
+		setIsCountdown();
+  }
 }
 
 function initializeClock() {
@@ -308,6 +308,13 @@ function initializeClock() {
 
 }
 
+function setIsCountdown() {
+	countdownTimer = setTimeout(function(){
+		$('body').addClass('isCountdown');
+		initializeClock();
+		sunTick = 1;
+	},1000)
+}
 function startCountdown (minusHours) {
 
 	var endtime = new Date(Date.now() + ((yearsLeft * 365 * 24 * 60 * 60 * 1000)-((minusHours*52)*yearsLeft)*60*60*1000));
