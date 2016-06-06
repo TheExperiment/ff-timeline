@@ -128,7 +128,6 @@ $(function() {
 
 	}
 	function continueClick(){
-		alert('wtf')
 		if(!$('.content').hasClass('isYouName')){
 			$('.content').addClass('isYouName')
 		}else if(!$('.content').hasClass('isBothNames')){
@@ -199,8 +198,11 @@ $(function() {
 			setIsCountdown();
 		}
 	}
-	function getYearsLeft () {
-		yearsLeft = Math.max(0,(18-Number($('.son-slider').find($('.age')).text())));
+	function getYearsLeft (sonAge) {
+		if(!sonAge){
+			sonAge = Number($('.son-slider').find($('.age')).text());
+		}
+		yearsLeft = Math.max(0,(18-sonAge));
 		$('body').css({
 			'-webkit-filter':'saturate('+(40+((yearsLeft/18)*60))+'%)'
 		})
@@ -240,19 +242,6 @@ $(function() {
 			left: $('.you-slider').width() - $('.son-slider .age').width() - 8
 		});
 	}
-	function changeTagline (message) {
-		$('.tagline').css({
-			'-webkit-transition-duration':'1s',
-			'-webkit-filter':'blur(10px) opacity(0%)'
-		})
-		setTimeout(function(){
-			$('.tagline').html(message)
-			$('.tagline').css({
-				'-webkit-transition-duration':'1s',
-				'-webkit-filter':'blur(0px) opacity(100%)'
-			})
-		},1000)
-	}
 	function placeHashes(){
 		for (var i = $('.hash').length - 1; i >= 0; i--) {
 			$('.hash').eq(i).css({
@@ -275,12 +264,20 @@ function getTimeRemaining(endtime) {
     'minutes': minutes,
     'seconds': seconds
   };
-  function deepLink(userObj) {
-  	changeTagline(userObj.dadName+' and <span class="his-name">' +userObj.sonName + '</span> have <span class="window-years">');
-		setIsCountdown();
-  }
 }
-
+function changeTagline (message) {
+	$('.tagline').css({
+		'-webkit-transition-duration':'1s',
+		'-webkit-filter':'blur(10px) opacity(0%)'
+	})
+	setTimeout(function(){
+		$('.tagline').html(message)
+		$('.tagline').css({
+			'-webkit-transition-duration':'1s',
+			'-webkit-filter':'blur(0px) opacity(100%)'
+		})
+	},1000)
+}
 function initializeClock() {
   clock = document.getElementById('clock');
   minus = document.getElementById('minus');
@@ -315,6 +312,7 @@ function setIsCountdown() {
 		sunTick = 1;
 	},1000)
 }
+
 function startCountdown (minusHours) {
 
 	var endtime = new Date(Date.now() + ((yearsLeft * 365 * 24 * 60 * 60 * 1000)-((minusHours*52)*yearsLeft)*60*60*1000));
