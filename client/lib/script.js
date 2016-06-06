@@ -128,7 +128,6 @@ $(function() {
 
 	}
 	function continueClick(){
-		alert('wtf')
 		if(!$('.content').hasClass('isYouName')){
 			$('.content').addClass('isYouName')
 		}else if(!$('.content').hasClass('isBothNames')){
@@ -196,15 +195,14 @@ $(function() {
 			setWindowWidth()
 			clearTimeout(countdownTimer)
 			$('.his-name').html(userObj.sonName);
-			countdownTimer = setTimeout(function(){
-				$('body').addClass('isCountdown');
-				initializeClock();
-				sunTick = 1;
-			},1000)
+			setIsCountdown();
 		}
 	}
-	function getYearsLeft () {
-		yearsLeft = Math.max(0,(18-Number($('.son-slider').find($('.age')).text())));
+	function getYearsLeft (sonAge) {
+		if(!sonAge){
+			sonAge = Number($('.son-slider').find($('.age')).text());
+		}
+		yearsLeft = Math.max(0,(18-sonAge));
 		$('body').css({
 			'-webkit-filter':'saturate('+(40+((yearsLeft/18)*60))+'%)'
 		})
@@ -244,19 +242,6 @@ $(function() {
 			left: $('.you-slider').width() - $('.son-slider .age').width() - 8
 		});
 	}
-	function changeTagline (message) {
-		$('.tagline').css({
-			'-webkit-transition-duration':'1s',
-			'-webkit-filter':'blur(10px) opacity(0%)'
-		})
-		setTimeout(function(){
-			$('.tagline').html(message)
-			$('.tagline').css({
-				'-webkit-transition-duration':'1s',
-				'-webkit-filter':'blur(0px) opacity(100%)'
-			})
-		},1000)
-	}
 	function placeHashes(){
 		for (var i = $('.hash').length - 1; i >= 0; i--) {
 			$('.hash').eq(i).css({
@@ -280,7 +265,19 @@ function getTimeRemaining(endtime) {
     'seconds': seconds
   };
 }
-
+function changeTagline (message) {
+	$('.tagline').css({
+		'-webkit-transition-duration':'1s',
+		'-webkit-filter':'blur(10px) opacity(0%)'
+	})
+	setTimeout(function(){
+		$('.tagline').html(message)
+		$('.tagline').css({
+			'-webkit-transition-duration':'1s',
+			'-webkit-filter':'blur(0px) opacity(100%)'
+		})
+	},1000)
+}
 function initializeClock() {
   clock = document.getElementById('clock');
   minus = document.getElementById('minus');
@@ -306,6 +303,14 @@ function initializeClock() {
   	startCountdown(154);
   },11500)
 
+}
+
+function setIsCountdown() {
+	countdownTimer = setTimeout(function(){
+		$('body').addClass('isCountdown');
+		initializeClock();
+		sunTick = 1;
+	},1000)
 }
 
 function startCountdown (minusHours) {
