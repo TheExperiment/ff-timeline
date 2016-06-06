@@ -5,6 +5,10 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "meteor-node-stubs": "~0.2.0"
+    "meteor-node-stubs": "~0.2.0",
+    "express": "~4.13.4",
+    "body-parser": "~1.15.1",
+    "mongoose": "~4.4.15",
+    "mongoose-auto-increment": "~5.0.1"
   }
 }

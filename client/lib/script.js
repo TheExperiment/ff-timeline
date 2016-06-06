@@ -67,7 +67,7 @@ $(function() {
 	  placeHashes();
 	  WIN.on('resize',placeHashes)
 	  setWindowWidth
-		getTimeline(timelineId);
+	  Meteor.call('tasks.getTimeline', timelineId);
 	}
 	else{
 		placeHashes()
@@ -134,9 +134,11 @@ $(function() {
 			$('.content').addClass('isBothNames')
 			userObj.sonName = $('.son-name span').text();
 			userObj.dadName = $('.your-name span').text();
-			changeTagline('How long have you been on Earth, ' + userObj.dadName + '?')
+			changeTagline('How long have you been on Earth, ' + userObj.dadName + '?');
 		}else{
 			//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
+			console.log(userObj)
+			alert('hello')
 		}
 	}
 	function startDrag (e) {
@@ -187,8 +189,9 @@ $(function() {
 			$('.window-slider').find($('.bar')).addClass('blink');
 			userObj.dadAge = $('.you-slider .age').text();
 			userObj.sonAge = $('.son-slider .age').text();
-			// console.log(userObj)
+			console.log(userObj)
 			// saveTimeline();
+			Meteor.call('tasks.insert', userObj);
 			setWindowWidth()
 			clearTimeout(countdownTimer)
 			$('.his-name').html(userObj.sonName);
