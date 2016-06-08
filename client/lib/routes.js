@@ -2,7 +2,8 @@
 FlowRouter.route( '/', {
   action: function() {
     console.log( "timelines page!" );
-    var timelineId = window.location.hash.split('#')[1];
+    // var timelineId = window.location.hash.split('?')[1];
+    var timelineId = FlowRouter.getQueryParam("uuid")
     // placeHashes();
     // WIN.on('resize',placeHashes)
     // setWindowWidth
