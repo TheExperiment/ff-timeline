@@ -19,7 +19,6 @@ Meteor.methods({
   },
   'tasks.getTimeline'(timelineId) {
 
-    // selectedUsr(timelineId)
     console.log('get ' + timelineId)
     
     setTimeout(function(){
@@ -34,22 +33,11 @@ Meteor.methods({
 
         } else
         console.log(item)
-        Meteor.myFunctions.deepLink(item.userObj);
+        Meteor.ffFunctions.deepLink(item.userObj);
         // callback(null,"result");
         // failure:
         // callback(new Error("error"));
-    },2000)
-
-
-    // var test = Tasks.findOne({ _id: 'W5wyEyQxjGcRZjAai' });
-    // var task = Tasks.find( {sonName: '77777' }).fetch();
-    // var post = Tasks.findOne({ _id: 'PaoaFM2p4f7oRG8Zr' });
-    // alert(post);
-
-    // var test = Tasks.find({ name: "77777" }).fetch();
-    // console.log(test.text);  
-  // Meteor.myFunctions.deepLink(results);
-    // FlowRouter.getQueryParam("queryParamName");
+    },500)
   },
   'selectedUsr': function(timelineId){
       var selectedUsr = timelineId;

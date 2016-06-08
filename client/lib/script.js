@@ -61,59 +61,51 @@ $(function() {
 			paused = false;
 		},1000)
 	})
-	// if(window.location.hash) {
-	//   var timelineId = window.location.hash.split('#')[1];
-	//   // placeHashes();
-	//   // WIN.on('resize',placeHashes)
-	//   // setWindowWidth
-	//   Meteor.call('tasks.getTimeline', timelineId);
-	// }
-	//else{
-		placeHashes()
-		WIN.on('resize',placeHashes)
-		$('.slider').on('mousedown',startDrag)
-		$('.slider').on('touchstart',startDrag)
-		var youTimeout;
-		var sonTimeout;
-		$('.your-name span').on('keydown',function(){
-			$('.content').addClass('isTyped')
-			resetField($(this))
-		})
-		$('.your-name').on('keyup',function(){
-			clearTimeout(youTimeout);
-			youTimeout = setTimeout(function(){
-				$('.content').addClass('isYouName')
-			},500)
-		})
-		$('.son-name span').on('keypress',function(e){
-			if(e.keyCode == 13){
-				continueClick();
-			}
-			resetField($(this))
-			clearTimeout(sonTimeout);
-			sonTimeout = setTimeout(function(){
-				$('.content').addClass('isSonName')
-			},500)
-		})
-		$('.your-name span').on('keypress',function(e){
-			if(e.keyCode == 13){
-				e.preventDefault();
-				$('.son-name span').focus();
-			}
-		})
-		$('.continue').on('click',continueClick)
-		$('.your-name span').focus();
-		$('.name span').on('click',function(e){
-			resetField($(this))
-			$('.content').addClass('isTyped')
-		})
-		$('.son-name span').on('focus',function(){
-			var name = $(this)
-			setTimeout(function(){
-				resetField(name)
-			},600)
-		})
-	//}
+
+	placeHashes()
+	WIN.on('resize',placeHashes)
+	$('.slider').on('mousedown',startDrag)
+	$('.slider').on('touchstart',startDrag)
+	var youTimeout;
+	var sonTimeout;
+	$('.your-name span').on('keydown',function(){
+		$('.content').addClass('isTyped')
+		resetField($(this))
+	})
+	$('.your-name').on('keyup',function(){
+		clearTimeout(youTimeout);
+		youTimeout = setTimeout(function(){
+			$('.content').addClass('isYouName')
+		},500)
+	})
+	$('.son-name span').on('keypress',function(e){
+		if(e.keyCode == 13){
+			continueClick();
+		}
+		resetField($(this))
+		clearTimeout(sonTimeout);
+		sonTimeout = setTimeout(function(){
+			$('.content').addClass('isSonName')
+		},500)
+	})
+	$('.your-name span').on('keypress',function(e){
+		if(e.keyCode == 13){
+			e.preventDefault();
+			$('.son-name span').focus();
+		}
+	})
+	$('.continue').on('click',continueClick)
+	$('.your-name span').focus();
+	$('.name span').on('click',function(e){
+		resetField($(this))
+		$('.content').addClass('isTyped')
+	})
+	$('.son-name span').on('focus',function(){
+		var name = $(this)
+		setTimeout(function(){
+			resetField(name)
+		},600)
+	})
 	function resetField(el){
 		if(el.text() == 'What is your name?'){
 			el.html('')
@@ -133,7 +125,7 @@ $(function() {
 			$('.content').addClass('isBothNames')
 			userObj.sonName = $('.son-name span').text();
 			userObj.dadName = $('.your-name span').text();
-			Meteor.myFunctions.changeTagline('How long have you been on Earth, ' + userObj.dadName + '?');
+			Meteor.ffFunctions.changeTagline('How long have you been on Earth, ' + userObj.dadName + '?');
 		}else{
 			//TREVOR THIS IS THE FINAL CONTINUE. SUBMIT HERE
 			console.log(userObj)
@@ -177,14 +169,14 @@ $(function() {
 		WIN.off('mouseup')
 		WIN.off('touchend')
 		if(slider.hasClass('you-slider')){
-			Meteor.myFunctions.changeTagline('How long has <span class="window-years his-name">'+userObj.sonName+'</span> been on Earth with you?')
+			Meteor.ffFunctions.changeTagline('How long has <span class="window-years his-name">'+userObj.sonName+'</span> been on Earth with you?')
 			$('.content').addClass("isSonAge");
 			$('.son-slider').css({
 				right: (WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2) + $('.son-slider .age').width() + 8
 			})
 		}else{
-			yearsLeft = Meteor.myFunctions.getYearsLeft();
-			Meteor.myFunctions.changeTagline(userObj.dadName+' and <span class="his-name">' +userObj.sonName + '</span> have <span class="window-years">');
+			yearsLeft = Meteor.ffFunctions.getYearsLeft();
+			Meteor.ffFunctions.changeTagline(userObj.dadName+' and <span class="his-name">' +userObj.sonName + '</span> have <span class="window-years">');
 			$('.window-slider').find($('.bar')).addClass('blink');
 			userObj.dadAge = $('.you-slider .age').text();
 			userObj.sonAge = $('.son-slider .age').text();
@@ -194,19 +186,9 @@ $(function() {
 			setWindowWidth()
 			clearTimeout(countdownTimer)
 			$('.his-name').html(userObj.sonName);
-			Meteor.myFunctions.setIsCountdown();
+			Meteor.ffFunctions.setIsCountdown();
 		}
 	}
-	// function getYearsLeft (sonAge) {
-	// 	if(!sonAge){
-	// 		sonAge = Number($('.son-slider').find($('.age')).text());
-	// 	}
-	// 	yearsLeft = Math.max(0,(18-sonAge));
-	// 	$('body').css({
-	// 		'-webkit-filter':'saturate('+(40+((yearsLeft/18)*60))+'%)'
-	// 	})
-	// 	return yearsLeft;
-	// }
 	function onMoveHour (e) {
 		var y;
 		var moved;
@@ -218,14 +200,13 @@ $(function() {
 		moved = Math.floor((startY-y)/5);
 		slider.html("Minus " + Math.max(0,startHours + moved))
 		clearTimeout(countdownTimer)
-		Meteor.myFunctions.startCountdown(currentHours())
+		Meteor.ffFunctions.startCountdown(currentHours())
 	}
 	function onReleaseHour (e) {
 		WIN.off('mousemove')
 		WIN.off('touchmove')
 		WIN.off('mouseup')
 		WIN.off('touchend')
-		// saveTimeline();
 	}
 	function currentHours () {
 		var hours = 0;
@@ -235,9 +216,8 @@ $(function() {
 		return hours;
 	}
 	function setWindowWidth(){
-		// $('.window-slider').find($('.your-age')).html(Math.max(Number($('.you-slider').find($('.age')).text()),18-Number($('.son-slider').find($('.age')).text())+Number($('.you-slider').find($('.age')).text())))
 		$('.window-slider').css({
-			width: $('.timeline').width()*(Meteor.myFunctions.getYearsLeft()/80),
+			width: $('.timeline').width()*(Meteor.ffFunctions.getYearsLeft()/80),
 			left: $('.you-slider').width() - $('.son-slider .age').width() - 8
 		});
 	}
@@ -249,91 +229,3 @@ $(function() {
 		};
 	}
 })
-
-// function getTimeRemaining(endtime) {
-//   var t = Date.parse(endtime) - Date.now();
-//   var seconds = Math.floor((t / 1000) % 60);
-//   var minutes = Math.floor((t / 1000 / 60) % 60);
-//   var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-//   var days = Math.floor(t / (1000 * 60 * 60 * 24));
-//   return {
-//     'total': t,
-//     'days': days,
-//     'hours': hours,
-//     'minutes': minutes,
-//     'seconds': seconds
-//   };
-// }
-// function changeTagline (message) {
-// 	$('.tagline').css({
-// 		'-webkit-transition-duration':'1s',
-// 		'-webkit-filter':'blur(10px) opacity(0%)'
-// 	})
-// 	setTimeout(function(){
-// 		$('.tagline').html(message)
-// 		$('.tagline').css({
-// 			'-webkit-transition-duration':'1s',
-// 			'-webkit-filter':'blur(0px) opacity(100%)'
-// 		})
-// 	},1000)
-// }
-// function initializeClock() {
-//   clock = document.getElementById('clock');
-//   minus = document.getElementById('minus');
-//   startCountdown(0);
-//   setTimeout(function(){
-//   	minus.getElementsByTagName('h2')[0].classList.add('fade-in')
-//   	startCountdown(0);
-//   },1000)
-//   setTimeout(function(){
-//   	minus.getElementsByTagName('h2')[1].classList.add('fade-in')
-//   	startCountdown(47);
-//   },2000)
-//   setTimeout(function(){
-//   	minus.getElementsByTagName('h2')[2].classList.add('fade-in')
-//   	startCountdown(117);
-//   },5000)
-//   setTimeout(function(){
-//   	minus.getElementsByTagName('h2')[3].classList.add('fade-in')
-//   	startCountdown(150);
-//   },8500)
-//   setTimeout(function(){
-//   	minus.getElementsByTagName('h2')[4].classList.add('fade-in')
-//   	startCountdown(154);
-//   },11500)
-
-// }
-
-// function setIsCountdown() {
-// 	countdownTimer = setTimeout(function(){
-// 		$('body').addClass('isCountdown');
-// 		initializeClock();
-// 		sunTick = 1;
-// 	},1000)
-// }
-
-// function startCountdown (minusHours) {
-
-// 	var endtime = new Date(Date.now() + ((yearsLeft * 365 * 24 * 60 * 60 * 1000)-((minusHours*52)*yearsLeft)*60*60*1000));
-// 	var daysSpan = clock.querySelector('.days');
-// 	var hoursSpan = clock.querySelector('.hours');
-// 	var minutesSpan = clock.querySelector('.minutes');
-// 	var secondsSpan = clock.querySelector('.seconds');
-
-// 	function updateClock() {
-// 	  var t = getTimeRemaining(endtime);
-
-// 	  daysSpan.innerHTML = Math.max(0,t.days);
-// 	  hoursSpan.innerHTML = ('0' + Math.max(0,t.hours)).slice(-2);
-// 	  minutesSpan.innerHTML = ('0' + Math.max(0,t.minutes)).slice(-2);
-// 	  secondsSpan.innerHTML = ('0' + Math.max(0,t.seconds)).slice(-2);
-
-// 	  if (t.total <= 0) {
-// 	    clearInterval(timeInterval);
-// 	  }
-// 	}
-
-// 	updateClock();
-// 	clearInterval(timeInterval)
-// 	timeInterval = setInterval(updateClock, 1000);
-// }

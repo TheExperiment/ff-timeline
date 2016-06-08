@@ -1,15 +1,14 @@
 var timeInterval = 0;
-Meteor.myFunctions = {
-// var yearsLeft;
+Meteor.ffFunctions = {
     buildTimeline : function()
     {
     	console.log('hello')
     },
     deepLink: function(userObj) {
     	console.log('deeplink' + userObj['sonName'])
-      Meteor.myFunctions.changeTagline(userObj['dadName']+' and <span class="his-name">' +userObj['sonName'] + '</span> have <span class="window-years">');
-      Meteor.myFunctions.setIsCountdown();
-      yearsLeft = Meteor.myFunctions.getYearsLeft(userObj['sonAge'])
+      Meteor.ffFunctions.changeTagline(userObj['dadName']+' and <span class="his-name">' +userObj['sonName'] + '</span> have <span class="window-years">');
+      Meteor.ffFunctions.setIsCountdown();
+      yearsLeft = Meteor.ffFunctions.getYearsLeft(userObj['sonAge'])
     },
     changeTagline: function(message) {
     	$('.tagline').css({
@@ -27,33 +26,33 @@ Meteor.myFunctions = {
     setIsCountdown: function(message) {
     	countdownTimer = setTimeout(function(){
     		$('body').addClass('isCountdown');
-    		Meteor.myFunctions.initializeClock();
+    		Meteor.ffFunctions.initializeClock();
     		sunTick = 1;
     	},1000)
     },
     initializeClock: function() {
     	clock = document.getElementById('clock');
     	minus = document.getElementById('minus');
-    	Meteor.myFunctions.startCountdown(0);
+    	Meteor.ffFunctions.startCountdown(0);
     	setTimeout(function(){
     		minus.getElementsByTagName('h2')[0].classList.add('fade-in')
-    		Meteor.myFunctions.startCountdown(0);
+    		Meteor.ffFunctions.startCountdown(0);
     	},1000)
     	setTimeout(function(){
     		minus.getElementsByTagName('h2')[1].classList.add('fade-in')
-    		Meteor.myFunctions.startCountdown(47);
+    		Meteor.ffFunctions.startCountdown(47);
     	},2000)
     	setTimeout(function(){
     		minus.getElementsByTagName('h2')[2].classList.add('fade-in')
-    		Meteor.myFunctions.startCountdown(117);
+    		Meteor.ffFunctions.startCountdown(117);
     	},5000)
     	setTimeout(function(){
     		minus.getElementsByTagName('h2')[3].classList.add('fade-in')
-    		Meteor.myFunctions.startCountdown(150);
+    		Meteor.ffFunctions.startCountdown(150);
     	},8500)
     	setTimeout(function(){
     		minus.getElementsByTagName('h2')[4].classList.add('fade-in')
-    		Meteor.myFunctions.startCountdown(154);
+    		Meteor.ffFunctions.startCountdown(154);
     	},11500)
     },
     startCountdown: function(minusHours) {
@@ -64,7 +63,7 @@ Meteor.myFunctions = {
     	var secondsSpan = clock.querySelector('.seconds');
 
     	function updateClock() {
-    	  var t = Meteor.myFunctions.getTimeRemaining(endtime);
+    	  var t = Meteor.ffFunctions.getTimeRemaining(endtime);
 
     	  daysSpan.innerHTML = Math.max(0,t.days);
     	  hoursSpan.innerHTML = ('0' + Math.max(0,t.hours)).slice(-2);
