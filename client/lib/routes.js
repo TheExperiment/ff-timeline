@@ -2,13 +2,11 @@
 FlowRouter.route( '/', {
   action: function() {
     console.log( "timelines page!" );
-    var timelineId = FlowRouter.getQueryParam("uuid")
-    // Meteor.call('tasks.getTimeline', timelineId);
-    // Meteor.ffFunctions.deepLink(timelineId);
+    var timelineId = FlowRouter.getQueryParam("tid")
+
     setTimeout(function(){
-        // callback(error, result);
-        // success :
-        var item = Tasks.findOne({
+
+        var item = Timeline.findOne({
             _id: timelineId
         });
         
@@ -18,18 +16,16 @@ FlowRouter.route( '/', {
         } else
         console.log(item)
         Meteor.ffFunctions.deepLink(item.userObj);
-        // callback(null,"result");
-        // failure:
-        // callback(new Error("error"));
     },200)
   },
   name: 'savedTimelines' // Optional route name.
 });
 
 
-FlowRouter.route( '/terms', {
+FlowRouter.route( '/dbchange', {
   action: function() {
-    console.log( "terms page!" );
+  	Meteor.call('tasks.clearDB');
+    console.log( "created" );
   },
-  name: 'termsroute' // Optional route name.
+  name: 'dbchange' // Optional route name.
 });

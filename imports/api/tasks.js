@@ -1,6 +1,6 @@
 import { Mongo } from 'meteor/mongo';
  
-Tasks = new Mongo.Collection('tasks');
+Timeline = new Mongo.Collection('timelines');
 
 
 Meteor.methods({
@@ -12,19 +12,17 @@ Meteor.methods({
     //   throw new Meteor.Error('not-authorized');
     // }
  
-    Tasks.insert({
-      userObj,
-      createdAt: new Date(),
+    Timeline.insert({userObj, createdAt: new Date()}, function(err,docsInserted){
+    console.log(docsInserted);
+    FlowRouter.setQueryParams({tid: docsInserted});
     });
   },
   'tasks.getTimeline'(timelineId) {
-
-    console.log('get ' + timelineId)
+    // console.log('get ' + timelineId)
     
     setTimeout(function(){
-        // callback(error, result);
-        // success :
-        var item = Tasks.findOne({
+
+        var item = Timeline.findOne({
             _id: timelineId
         });
         
@@ -34,14 +32,7 @@ Meteor.methods({
         } else
         console.log(item)
         Meteor.ffFunctions.deepLink(item.userObj);
-        // callback(null,"result");
-        // failure:
-        // callback(new Error("error"));
     },500)
-  },
-  'selectedUsr': function(timelineId){
-      var selectedUsr = timelineId;
-      return Tasks.findOne({ _id: timelineId });
   }
  });
 
