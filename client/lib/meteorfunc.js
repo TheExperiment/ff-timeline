@@ -1,15 +1,15 @@
+var timeInterval = 0;
 Meteor.myFunctions = {
 // var yearsLeft;
-
     buildTimeline : function()
     {
     	console.log('hello')
     },
     deepLink: function(userObj) {
     	console.log('deeplink' + userObj['sonName'])
-      changeTagline(userObj['dadName']+' and <span class="his-name">' +userObj['sonName'] + '</span> have <span class="window-years">');
-      setIsCountdown();
-      yearsLeft = getYearsLeft(userObj['sonAge'])
+      Meteor.myFunctions.changeTagline(userObj['dadName']+' and <span class="his-name">' +userObj['sonName'] + '</span> have <span class="window-years">');
+      Meteor.myFunctions.setIsCountdown();
+      yearsLeft = Meteor.myFunctions.getYearsLeft(userObj['sonAge'])
     },
     changeTagline: function(message) {
     	$('.tagline').css({

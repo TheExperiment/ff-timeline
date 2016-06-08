@@ -10,7 +10,6 @@ var startY;
 var sunTick = .2;
 var yearsLeft;
 var clock;
-var timeInterval;
 $(function() {
 	var sunTop = 0;
 
