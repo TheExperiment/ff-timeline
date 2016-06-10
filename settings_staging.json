@@ -1,0 +1,7 @@
+{
+   "public": {
+     "mongoprod": {
+       "MONGO_URL": "mongodb://trevorobrien:57Cassiobury@ds017582.mlab.com:17582/futurefather"
+    }
+  }
+}

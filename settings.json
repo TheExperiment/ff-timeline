@@ -1,0 +1,9 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      	"ROOT_URL": "http://x.meteorapp.com",
+        "MONGO_URL": "mongodb://dbuser1:L1verp00l@ds017582.mlab.com:17582/futurefather"
+
+    }
+  }
+}
