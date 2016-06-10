@@ -1,7 +1,7 @@
 import { Mongo } from 'meteor/mongo';
- 
-Timeline = new Mongo.Collection('timelines');
 
+Timeline = new Mongo.Collection('timelines')
+// Timeline = new Mongo.Collection('timelines');
 
 Meteor.methods({
   'tasks.insert'(userObj) {
@@ -18,8 +18,7 @@ Meteor.methods({
     });
   },
   'tasks.getTimeline'(timelineId) {
-    // console.log('get ' + timelineId)
-    
+
     setTimeout(function(){
 
         var item = Timeline.findOne({
@@ -32,7 +31,7 @@ Meteor.methods({
         } else
         console.log(item)
         Meteor.ffFunctions.deepLink(item.userObj);
-    },500)
+    },2500)
   }
  });
 
