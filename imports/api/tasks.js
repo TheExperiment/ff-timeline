@@ -31,7 +31,7 @@ Meteor.methods({
         } else
         console.log(item)
         Meteor.ffFunctions.deepLink(item.userObj);
-    },2500)
+    },5000)
   }
  });
 

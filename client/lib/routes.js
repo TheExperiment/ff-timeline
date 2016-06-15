@@ -4,6 +4,8 @@ FlowRouter.route( '/', {
     console.log( "timelines page!" );
     var timelineId = FlowRouter.getQueryParam("tid")
 
+    console.log(timelineId)
+    // Meteor.call('tasks.getTimeline', 1, function (error, result) {});
     setTimeout(function(){
 
         var item = Timeline.findOne({
@@ -16,7 +18,7 @@ FlowRouter.route( '/', {
         } else
         console.log(item)
         Meteor.ffFunctions.deepLink(item.userObj);
-    },1000)
+    },2000)
   },
   name: 'savedTimelines' // Optional route name.
 });
