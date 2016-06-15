@@ -16,7 +16,7 @@ FlowRouter.route( '/', {
         } else
         console.log(item)
         Meteor.ffFunctions.deepLink(item.userObj);
-    },200)
+    },1000)
   },
   name: 'savedTimelines' // Optional route name.
 });
