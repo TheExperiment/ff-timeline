@@ -5,12 +5,16 @@ Meteor.ffFunctions = {
     	console.log('hello')
     },
     deepLink: function(userObj) {
-    	console.log('deeplink' + userObj['sonName'])
-      Meteor.ffFunctions.changeTagline(userObj['dadName']+' and <span class="his-name">' +userObj['sonName'] + '</span> have <span class="window-years">');
+      console.log('deeplink' + userObj['sonName'])
+      Meteor.ffFunctions.changeTagline(userObj['dadName']+' and <span class="his-name">' +userObj['sonName'] + '</span> have <span class="window-years">',userObj);
       Meteor.ffFunctions.setIsCountdown();
       yearsLeft = Meteor.ffFunctions.getYearsLeft(userObj['sonAge'])
     },
-    changeTagline: function(message) {
+    changeTagline: function(message,userObj) {
+      if(userObj){
+        $('.his-name').html(userObj['sonName'])
+        $('.your-name').html(userObj['dadName'])
+      }
     	$('.tagline').css({
     		'-webkit-transition-duration':'1s',
     		'-webkit-filter':'blur(10px) opacity(0%)'
@@ -21,14 +25,14 @@ Meteor.ffFunctions = {
     			'-webkit-transition-duration':'1s',
     			'-webkit-filter':'blur(0px) opacity(100%)'
     		})
-    	},1000)
+    	},0)
     },
     setIsCountdown: function(message) {
     	countdownTimer = setTimeout(function(){
     		$('body').addClass('isCountdown');
     		Meteor.ffFunctions.initializeClock();
     		sunTick = 1;
-    	},1000)
+    	},0)
     },
     initializeClock: function() {
     	clock = document.getElementById('clock');

@@ -198,7 +198,7 @@ $(function() {
 			y = e.pageY
 		}
 		moved = Math.floor((startY-y)/5);
-		slider.html("Minus " + Math.max(0,startHours + moved))
+		slider.html("with " + Math.max(0,startHours + moved))
 		clearTimeout(countdownTimer)
 		Meteor.ffFunctions.startCountdown(currentHours())
 	}
