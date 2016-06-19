@@ -764,6 +764,12 @@ p{
     height: auto;
     pointer-events: auto;
     opacity: 1;
+    display: flex;
+    flex-wrap: wrap;
+    div {
+      flex-basis: 50%;
+
+    }
   }
   .Minus {
     pointer-events: auto;
@@ -815,9 +821,7 @@ p{
   }
   > div{
     display: inline-block;
-    margin-right: 6em;
     color: @orange;
-    margin-left: -.5em;
     margin-bottom: 0;
   }
   .smalltext{
