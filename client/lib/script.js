@@ -32,6 +32,9 @@ $(function() {
 			})
 		}
 	},20)
+	$('.share').on('click',function(){
+		prompt('This will link to your results', window.location.href);
+	})
 	$('.signup').on('click',function(){
 		window.location.href = 'http://futurefather.co'
 	})
