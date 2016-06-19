@@ -5,20 +5,13 @@ Timeline = new Mongo.Collection('timelines')
 
 Meteor.methods({
   'tasks.insert'(userObj) {
-    // check(text, String);
  
-    // Make sure the user is logged in before inserting a task
-    // if (! this.userId) {
-    //   throw new Meteor.Error('not-authorized');
-    // }
- 
-    Timeline.insert({userObj, createdAt: new Date()}, function(err,docsInserted){
-    console.log(docsInserted);
-    FlowRouter.setQueryParams({tid: docsInserted});
+    Timeline.insert({userObj, createdAt: new Date()}, function(err,newTimeline){
+    console.log(newTimeline);
+    FlowRouter.setQueryParams({tid: newTimeline});
     });
   },
   'tasks.getTimeline'(timelineId) {
-
     setTimeout(function(){
 
         var item = Timeline.findOne({
@@ -31,7 +24,7 @@ Meteor.methods({
         } else
         console.log(item)
         Meteor.ffFunctions.deepLink(item.userObj);
-    },5000)
+    },1000)
   }
  });
 
