@@ -265,6 +265,7 @@ p{
   padding-bottom: 4vw;
   text-align: left;
   text-indent: 2rem;
+  position: fixed;
   a {
     font-size: 1.3rem;
   }
@@ -415,6 +416,10 @@ p{
   font-size: 2.2rem;
   z-index: 2;
   color: @lightColor;
+  transition: .1s;
+  &:hover {
+    .transform(scale(1.1));
+  }
 }
 .slider{
   position: absolute;
@@ -442,12 +447,18 @@ p{
       content: "years";
     }
   }
+  &.isDragging {
+    .age {
+      .transition(.1s);
+      .transform(translate3d(0,-2.15em,0));
+    }
+  }
   .drag{
     position: absolute;
     opacity: 0;
     top: -1.5vw;
     color: @blue;
-    left: 2.7vw;
+    left: 4.7vw;
     width: 200px;
     @media (max-width: 960px){
       display: none;
@@ -477,10 +488,10 @@ p{
     color: @orange;
   }
   .age{
-    left: -2em;
+    left: -1em;
     border-color: @orange;
-    .transform(translate3d(-300px,0,0) scale(.5));
-    .transition(1s,ease-out,all,1s);
+    // .transform(translate3d(-300px,0,0) scale(.5));
+    .transition(1s,ease-out,all);
     &:after {
       color: @orange;
       content: "years";
@@ -488,6 +499,7 @@ p{
   }
   .bar{
     background: @orange;
+    left: 2rem;
   }
 }
 .name{
@@ -678,7 +690,7 @@ p{
     pointer-events: auto;
     .transition(1s,ease-in-out,opacity,2s);
     .age {
-      .transform(translate3d(0,0,0));
+      // .transform(translate3d(0,0,0));
     }
   }
 }
@@ -754,7 +766,7 @@ p{
   .timeline{
     opacity: 0;
     pointer-events: none;
-    .transform(translate3d(0,-100px,0));
+    .transform(translate3d(0,50px,0));
     .transition(.5s);
     .slider{
       pointer-events: none;
@@ -768,8 +780,7 @@ p{
     display: flex;
     flex-wrap: wrap;
     div {
-      flex-basis: 25%;
-
+      flex-basis: 50%;
     }
   }
   .Minus {
@@ -783,6 +794,7 @@ p{
     .animation(fade-in 1s 0s forwards @easeOutBack);
   }
   .message{
+    position: relative;
     visibility: visible;
     .animation(fade-in 2s 1s forwards @easeOutBack);
   }
@@ -791,15 +803,16 @@ p{
   cursor: pointer;
   color: @orange;
   &:before{
-    position: absolute;
+    position: relative;
     content: '↕';
-    left: -.8em;
+    left: -.2rem;
+    font-size: 2rem;
     color: @blue;
-    top: .35em;
+    top: .25rem;
   }
   &:hover{
     color: @lightColor;
-    &:before{
+    &:after{
       color: @lightColor;
       .transform(scale(1.2));
       .transition(.2s);

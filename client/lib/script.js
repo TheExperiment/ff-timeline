@@ -9,6 +9,7 @@ var paused;
 var startY;
 var sunTick = .2;
 var yearsLeft;
+var isTouch;
 var clock;
 $(function() {
 	var sunTop = 0;
@@ -41,8 +42,9 @@ $(function() {
 	function startDragHour (e) {
 		e.preventDefault();
 		slider = $(this)
-		if(e.type == 'touchmove'){
+		if(e.type == 'touchstart'){
 			startY = e.originalEvent.touches[0].pageY;
+			console.log(startY)
 		}else{
 			startY = e.pageY
 		}
@@ -53,6 +55,7 @@ $(function() {
 		WIN.on('touchend',onReleaseHour)
 	}
 	$('.hour-picker').on('mousedown',startDragHour)
+	$('.hour-picker').on('touchstart',startDragHour)
 	$('body').on('scroll',function(){
 		$('.particles').css({
 			'-webkit-transform': 'perspective(1000) translate3d(0,'+($('.content').offset().top/-5)+'px,'+($('.content').offset().top)+'px)'
@@ -68,6 +71,9 @@ $(function() {
 	placeHashes()
 	WIN.on('resize',placeHashes)
 	$('.slider').on('mousedown',startDrag)
+	$('.slider').on('touchstart',function(){
+		isTouch = true;
+	})
 	$('.slider').on('touchstart',startDrag)
 	var youTimeout;
 	var sonTimeout;
@@ -142,6 +148,10 @@ $(function() {
 		WIN.on('touchmove',onMove)
 		WIN.on('mouseup',onRelease)
 		WIN.on('touchend',onRelease)
+
+		if(isTouch){
+			slider.addClass('isDragging')
+		}
 	}
 	function onMove (e) {
 		var x;
@@ -156,10 +166,8 @@ $(function() {
 		}else{
 			$('.content').addClass("isMovingSonAge");
 			$('.content').addClass('isWindow')
-			var width = (WIN.width() - x - WIN.width()/10) - (WIN.width()-$('.you-slider').width() + $('.son-slider .age').width()  - (WIN.width() - $('.timeline').width()));
+			var width = (WIN.width() - x - WIN.width()/10) - (WIN.width()-$('.you-slider').width() + $('.son-slider .age').width()/2  - (WIN.width() - $('.timeline').width()));
 			userObj.index = x;
-
-			setWindowWidth()
 		}
 		slider.find($('.age')).html(Math.max(0,Math.floor(80*(width/$('.timeline').width()))));
 		slider.css({
@@ -171,6 +179,7 @@ $(function() {
 		WIN.off('touchmove')
 		WIN.off('mouseup')
 		WIN.off('touchend')
+		slider.removeClass('isDragging')
 		if(slider.hasClass('you-slider')){
 			Meteor.ffFunctions.changeTagline('How long has <span class="window-years his-name">'+userObj.sonName+'</span> been on Earth with you?')
 			$('.content').addClass("isSonAge");
@@ -178,18 +187,19 @@ $(function() {
 				right: (WIN.width() - $('.you-slider').width() - (WIN.width() - $('.timeline').width()) - $('.son-slider .age').width()/2) + $('.son-slider .age').width() + 8
 			})
 		}else{
-			yearsLeft = Meteor.ffFunctions.getYearsLeft();
-			Meteor.ffFunctions.changeTagline(userObj.dadName+' and <span class="his-name">' +userObj.sonName + '</span> have <span class="window-years">');
-			$('.window-slider').find($('.bar')).addClass('blink');
-			userObj.dadAge = $('.you-slider .age').text();
-			userObj.sonAge = $('.son-slider .age').text();
-			console.log(userObj)
-			// saveTimeline();
-			Meteor.call('tasks.insert', userObj);
-			setWindowWidth()
-			clearTimeout(countdownTimer)
-			$('.his-name').html(userObj.sonName);
-			Meteor.ffFunctions.setIsCountdown();
+			setTimeout(function(){
+				yearsLeft = Meteor.ffFunctions.getYearsLeft();
+				Meteor.ffFunctions.changeTagline(userObj.dadName+' and <span class="his-name">' +userObj.sonName + '</span> have <span class="window-years">');
+				$('.window-slider').find($('.bar')).addClass('blink');
+				userObj.dadAge = $('.you-slider .age').text();
+				userObj.sonAge = $('.son-slider .age').text();
+				console.log(userObj)
+				// saveTimeline();
+				Meteor.call('tasks.insert', userObj);
+				clearTimeout(countdownTimer)
+				$('.his-name').html(userObj.sonName);
+				Meteor.ffFunctions.setIsCountdown();
+			},1000)
 		}
 	}
 	function onMoveHour (e) {
@@ -219,10 +229,10 @@ $(function() {
 		return hours;
 	}
 	function setWindowWidth(){
-		$('.window-slider').css({
-			width: $('.timeline').width()*(Meteor.ffFunctions.getYearsLeft()/80),
-			left: $('.you-slider').width() - $('.son-slider .age').width() - 8
-		});
+		// $('.window-slider').css({
+		// 	width: $('.timeline').width()*(Meteor.ffFunctions.getYearsLeft()/80),
+		// 	left: $('.you-slider').width() - $('.son-slider .age').width()/2 - 8
+		// });
 	}
 	function placeHashes(){
 		for (var i = $('.hash').length - 1; i >= 0; i--) {
