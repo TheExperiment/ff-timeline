@@ -12,14 +12,14 @@ FlowRouter.route( '/', {
         var item = Timeline.findOne({
             _id: timelineId
         });
-        
+
         if (!item) {
             console.log("cant find item")
 
         } else
         console.log(item)
         Meteor.ffFunctions.deepLink(item.userObj);
-    },1500)
+    },100)
   },
   name: 'savedTimelines' // Optional route name.
 });
